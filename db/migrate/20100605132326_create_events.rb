@@ -4,8 +4,8 @@ class CreateEvents < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.string :address
-      t.decimal :lat
-      t.decimal :lng
+      t.decimal :lat, :precision => 10, :scale => 7
+      t.decimal :lng, :precision => 10, :scale => 7
 
       t.timestamps
     end

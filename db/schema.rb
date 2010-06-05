@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(:version => 20100605172334) do
     t.string   "title"
     t.text     "description"
     t.string   "address"
-    t.decimal  "lat"
-    t.decimal  "lng"
+    t.decimal  "lat",         :precision => 10, :scale => 7
+    t.decimal  "lng",         :precision => 10, :scale => 7
     t.datetime "created_at"
     t.datetime "updated_at"
   end
