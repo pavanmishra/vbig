@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100605172334) do
+ActiveRecord::Schema.define(:version => 20100606152030) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(:version => 20100605172334) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.decimal  "lat",        :precision => 10, :scale => 7
+    t.decimal  "lng",        :precision => 10, :scale => 7
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

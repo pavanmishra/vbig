@@ -13,6 +13,19 @@
 	</ul>
 	<%= submit_tag 'Search' %>
 </form>
+<h2> Causes </h2>
+<ul>
+	<% Event.cause_counts.each do |cause_tag| %>
+		<li> <%= cause_tag.name %> </li>
+	<% end %>
+</ul>
+<h2> Skills </h2>
+<ul>
+	<% Event.skill_counts.each do |skill_tag| %>
+		<li> <%= skill_tag.name %> </li>
+	<% end %>
+</ul>
+
 <table>
   <tr>
     <th>Title</th>
