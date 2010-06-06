@@ -11,6 +11,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def filter_by_tag
+    @events = Event.tagged_with(params[:tag_name])
+    render :template => 'events/index.html.erb'
+  end
   # GET /events/1
   # GET /events/1.xml
   def show
