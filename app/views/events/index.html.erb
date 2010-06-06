@@ -16,13 +16,13 @@
 <h2> Causes </h2>
 <ul>
 	<% Event.cause_counts.each do |cause_tag| %>
-		<li> <%= cause_tag.name %> </li>
+		<li> <%= link_to cause_tag.name, :controller => :events, :action => :filter_by_tag, :tag_type => 'cause', :tag_name => cause_tag.name %> </li>
 	<% end %>
 </ul>
 <h2> Skills </h2>
 <ul>
 	<% Event.skill_counts.each do |skill_tag| %>
-		<li> <%= skill_tag.name %> </li>
+		<li> <%= link_to skill_tag.name, :controller => :events, :action => :filter_by_tag, :tag_type => 'skill', :tag_name => skill_tag.name %> </li>
 	<% end %>
 </ul>
 
