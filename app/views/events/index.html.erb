@@ -1,5 +1,18 @@
-<h1>Listing events</h1>
+<h1>Events</h1>
 
+<form>
+	<ul>
+	<li>
+		Search For<br />
+		<%= text_field_tag 'search', 'education,environment' %>
+	</li>
+	<li>
+		Near <br />
+		<%= text_field_tag 'near', 'borivali,mumbai' %>
+	</li>
+	</ul>
+	<%= submit_tag 'Search' %>
+</form>
 <table>
   <tr>
     <th>Title</th>

@@ -2,7 +2,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   def index
-    @events = Event.all
+    params[:near] = params[:near].blank? ? 'unknown island' : params[:near]
+    @events = !params[:search].blank? ? Event.tagged_with(params[:search].split(','), :any => true).find(:all, :origin=> params[:near], :within => 25) : Event.find(:all, :origin => params[:near], :within => 25)
     #
     respond_to do |format|
       format.html # index.html.erb
