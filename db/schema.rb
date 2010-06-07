@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100606152030) do
+ActiveRecord::Schema.define(:version => 20100607065030) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20100606152030) do
   end
 
   add_index "events", ["lat", "lng"], :name => "index_events_on_lat_and_lng"
+
+  create_table "organizations", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -47,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20100606152030) do
     t.decimal  "lng",        :precision => 10, :scale => 7
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address"
   end
 
 end
