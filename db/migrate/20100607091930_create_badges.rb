@@ -18,5 +18,6 @@ class CreateBadges < ActiveRecord::Migration
 
   def self.down
     drop_table :badges
+    drop_table :badge_users
   end
 end
