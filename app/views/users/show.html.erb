@@ -7,7 +7,12 @@
   <b>Last name:</b>
   <%=h @user.last_name %>
 </p>
-
+<h2> Recommended Events</h2>
+<ul>
+	<% for event in @recommended_events %>
+		<li> <%= event.title %></li>
+	<% end %>
+</ul>
 <p>
   <b>Lat:</b>
   <%=h @user.lat %>
