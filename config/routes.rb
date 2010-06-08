@@ -44,7 +44,9 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
+
   map.connect 'events/filter/:tag_type/:tag_name', :controller => :events, :action => :filter_by_tag
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
+  map.connect ':name', :controller => :pages, :action => :show  
 end
