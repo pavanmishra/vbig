@@ -13,6 +13,28 @@
 	</ul>
 	<%= submit_tag 'Search' %>
 </form>
+<div id="map" style="width:100%;height:300px">
+	
+</div>
+<% unless @users.blank? %>
+<script type="text/javascript">
+    var latlng = new google.maps.LatLng(0, 0);
+    var myOptions = {
+      zoom: 1,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+	<% for user in @users %>
+	var latlng = new google.maps.LatLng(<%= user.lat %>,<%= user.lng %>)
+	var marker = new google.maps.Marker({
+	      position: latlng,
+	      title:"<%= user.name %>",
+		  map: map
+	  });
+	<% end %>
+</script>
+<% end %>
 
 <table>
   <tr>

@@ -16,9 +16,9 @@
 	
 </div>
 <script type="text/javascript">
-    var latlng = new google.maps.LatLng(0,0);
+    var latlng = new google.maps.LatLng(<%= @event.lat %>, <%= @event.lng %>);
     var myOptions = {
-      zoom: 1,
+      zoom: 10,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };

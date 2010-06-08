@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def index
     params[:near] = params[:near].blank? ? 'unknown island' : params[:near]
     @users = !params[:search].blank? ? User.tagged_with(params[:search].split(','), :any => true).find(:all, :origin=> params[:near], :within => 25) : User.find(:all, :origin => params[:near], :within => 25)
-    
+    @users = User.all if @users.blank?
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }

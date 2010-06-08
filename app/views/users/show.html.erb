@@ -7,6 +7,26 @@
   <b>Last name:</b>
   <%=h @user.last_name %>
 </p>
+<div id="map" style="width:100%;height:300px">
+	
+</div>
+<script type="text/javascript">
+    var latlng = new google.maps.LatLng(<%= @user.lat %>,<%= @user.lng %>);
+    var myOptions = {
+      zoom: 10,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+    var latlng = new google.maps.LatLng(<%= @user.lat %>, <%= @user.lng %>);
+	var marker = new google.maps.Marker({
+	      position: latlng,
+	      title:"<%= @user.name %>",
+		  map: map
+	  });
+
+</script>
+
 <h2> Recommended Events</h2>
 <ul>
 	<% for event in @recommended_events %>

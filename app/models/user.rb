@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
     badges.count(:conditions => { :type => badge }) > 0
   end
     
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
+      
 end
