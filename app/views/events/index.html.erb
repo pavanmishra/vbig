@@ -25,7 +25,6 @@
 		<li> <%= link_to skill_tag.name, :controller => :events, :action => :filter_by_tag, :tag_type => 'skill', :tag_name => skill_tag.name %> </li>
 	<% end %>
 </ul>
-
 <table>
   <tr>
     <th>Title</th>
@@ -52,3 +51,6 @@
 <br />
 
 <%= link_to 'New event', new_event_path %>
+<div id="map">
+	
+</div>

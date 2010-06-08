@@ -4,7 +4,10 @@ class EventsController < ApplicationController
   def index
     params[:near] = params[:near].blank? ? 'unknown island' : params[:near]
     @events = !params[:search].blank? ? Event.tagged_with(params[:search].split(','), :any => true).find(:all, :origin=> params[:near], :within => 25) : Event.find(:all, :origin => params[:near], :within => 25)
-    #
+    @map = GMap.new("map")
+    @map.control_init(:large_map => true,:map_type => true)
+    @map.center_zoom_init([75.5,-42.56],4)
+    @map.overlay_init(GMarker.new([75.6,-42.467],:title => "Hello", :info_window => "Info! Info!"))
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }
