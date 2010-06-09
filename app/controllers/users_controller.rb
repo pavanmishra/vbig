@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     params[:near] = params[:near].blank? ? 'unknown island' : params[:near]
     @users = !params[:search].blank? ? User.tagged_with(params[:search].split(','), :any => true).find(:all, :origin=> params[:near], :within => 25) : User.find(:all, :origin => params[:near], :within => 25)
     @users = User.all if @users.blank?
+    @title = 'People'
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
+    @title = @user.name
     @recommended_events = Event.tagged_with(@user.causes).all(:origin => [@user.lat, @user.lng], :within => User::WithinDistance)
     respond_to do |format|
       format.html # show.html.erb

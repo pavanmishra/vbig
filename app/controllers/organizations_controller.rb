@@ -3,7 +3,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations.xml
   def index
     @organizations = Organization.all
-
+    @title = "NGO's"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @organizations }
@@ -14,7 +14,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1.xml
   def show
     @organization = Organization.find(params[:id])
-
+    @title = @organization.name
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @organization }
