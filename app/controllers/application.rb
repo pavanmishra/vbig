@@ -1,1 +1,1 @@
-app/controllers/application_controller.rb
+application_controller.rb
