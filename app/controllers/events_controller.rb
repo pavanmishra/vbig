@@ -31,7 +31,7 @@ class EventsController < ApplicationController
   # GET /events/new.xml
   def new
     @event = Event.new
-
+    @title = 'New Event'
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @event }
@@ -41,6 +41,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    @title = 'Editing Event'
   end
 
   # POST /events

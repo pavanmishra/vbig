@@ -1,7 +1,7 @@
 
 <% @organizations.each do |organization| %>
 <div> 
-	<h2><%=h organization.name %></h2>
+	<h2><%=link_to organization.name, organization %></h2>
 	<p> <%= organization.cause_list %></p>
 </div>
 <% end %>

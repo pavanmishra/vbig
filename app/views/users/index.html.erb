@@ -1,5 +1,3 @@
-<h1>Listing users</h1>
-
 <form>
 	<ul>
 	<li>
@@ -10,7 +8,7 @@
 		Near <br />
 		<%= text_field_tag 'near', 'borivali,mumbai' %>
 	</li>
-	</ul>
+	</ul><br/>
 	<%= submit_tag 'Search' %>
 </form>
 <div id="map" style="width:100%;height:300px">
@@ -35,28 +33,13 @@
 	<% end %>
 </script>
 <% end %>
-
-<table>
-  <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Lat</th>
-    <th>Lng</th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%=h user.first_name %></td>
-    <td><%=h user.last_name %></td>
-    <td><%=h user.lat %></td>
-    <td><%=h user.lng %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
 <br />
+<% @users.each do |user| %>
+	<div>
+    	<h2><%=link_to user.name, user %></h2>
+		<p> <%=h user.cause_list%></p>
+		<p> <%= h user.skill_list %></p>
+	</div>
+<% end %>
 
 <%= link_to 'New user', new_user_path %>
