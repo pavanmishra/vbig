@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :pages
+
   map.resources :organizations
 
   map.resources :users
@@ -48,5 +50,5 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'events/filter/:tag_type/:tag_name', :controller => :events, :action => :filter_by_tag
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
-  map.connect ':name', :controller => :pages, :action => :show  
+  map.connect ':name', :controller => :pages, :action => :show_by_name  
 end
