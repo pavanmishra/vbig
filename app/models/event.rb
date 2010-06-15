@@ -1,10 +1,16 @@
 class Event < ActiveRecord::Base
+  belongs_to  :organization
+  named_scope :featured, :conditions => {:featured => true}
 
   acts_as_mappable :auto_geocode => true
   validates_presence_of :title, :description, :address
   acts_as_taggable_on :causes, :skills
-  #attr_accessor :cause_list, :skill_set
   
-  belongs_to  :organization
-  
+  # paperclip image attachment
+  has_attached_file :image, :styles => {
+        :thumb=> "100x100#",
+        :small  => "150x150>",
+        :medium => "300x300>",
+        :large =>   "400x400>"
+  }
 end

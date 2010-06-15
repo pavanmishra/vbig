@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100615112623) do
+ActiveRecord::Schema.define(:version => 20100615143028) do
 
   create_table "badge_users", :force => true do |t|
     t.integer  "badge_id"
@@ -30,13 +30,16 @@ ActiveRecord::Schema.define(:version => 20100615112623) do
     t.string   "title"
     t.text     "description"
     t.string   "address"
-    t.decimal  "lat",             :precision => 10, :scale => 7
-    t.decimal  "lng",             :precision => 10, :scale => 7
+    t.decimal  "lat",                :precision => 10, :scale => 7
+    t.decimal  "lng",                :precision => 10, :scale => 7
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "organization_id"
     t.boolean  "featured"
     t.datetime "datetime"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
   end
 
   add_index "events", ["lat", "lng"], :name => "index_events_on_lat_and_lng"
@@ -46,6 +49,9 @@ ActiveRecord::Schema.define(:version => 20100615112623) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
   end
 
   create_table "pages", :force => true do |t|
@@ -87,6 +93,9 @@ ActiveRecord::Schema.define(:version => 20100615112623) do
     t.string   "crypted_password",          :limit => 40
     t.string   "remember_token",            :limit => 40
     t.datetime "remember_token_expires_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
   end
 
 end

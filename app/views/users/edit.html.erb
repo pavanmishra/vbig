@@ -1,6 +1,6 @@
-<h1>Editing user</h1>
+<% @title = 'Profile'%>
 
-<% form_for(@user) do |f| %>
+<% form_for(@user, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -10,6 +10,10 @@
   <p>
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
+  </p>
+  <p>
+	<%= f.label :image, "Photo" %>
+	<%= f.file_field :image %>
   </p>
   <p>
     <%= f.label :skills %><br />
@@ -22,14 +26,6 @@
   <p>
     <%= f.label :address %><br />
     <%= f.text_field :address %>
-  </p>
-  <p>
-    <%= f.label :lat %><br />
-    <%= f.text_field :lat %>
-  </p>
-  <p>
-    <%= f.label :lng %><br />
-    <%= f.text_field :lng %>
   </p>
   <p>
     <%= f.submit 'Update' %>

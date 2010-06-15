@@ -4,14 +4,20 @@ class EventsController < ApplicationController
   def index
     @title = 'Events'
     params[:near] = params[:near].blank? ? 'unknown island' : params[:near]
-    @events = !params[:search].blank? ? Event.tagged_with(params[:search].split(','), :any => true).find(:all, :origin=> params[:near], :within => 25) : Event.find(:all, :origin => params[:near], :within => 25)
-    @events = Event.all if @events.blank?
+    #@events = !params[:search].blank? ? Event.tagged_with(params[:search].split(','), :any => true).find(:all, :origin=> params[:near], :within => 25) : Event.find(:all, :origin => params[:near], :within => 25)
+    @events = Event.all(:origin=> params[:near], :within => 25, :conditions => "title like '%#{params[:search]}%'")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }
     end
   end
 
+  def featured
+    @title = 'Featured Events'
+    @events = Event.featured
+    render  :template => 'events/index.html.erb'
+  end
+  
   def filter_by_tag
     @events = Event.tagged_with(params[:tag_name])
     render :template => 'events/index.html.erb'

@@ -1,6 +1,6 @@
-<h1>Editing organization</h1>
+<% @title = 'Edit Organization' %>
 
-<% form_for(@organization) do |f| %>
+<% form_for(@organization, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -10,6 +10,14 @@
   <p>
     <%= f.label :causes %><br />
     <%= f.text_field :cause_list %>
+  </p>
+  <p>
+    <%= f.label :skill_list, "Skills Required" %><br />
+    <%= f.text_field :skill_list %>
+  </p>
+  <p>
+	<%= f.label :image, "Photo" %>
+	<%= f.file_field :image %>
   </p>
   <p>
     <%= f.submit 'Update' %>
