@@ -91,7 +91,11 @@
             
         </ul> 
         <ul id='account-links'> 
-            <li><a id='login' href='/account/login/'>log in / <strong>sign up</strong></a></li>
+			<% if logged_in? %>
+			<li> <%= link_to current_user.name, current_user %>
+			<% else %>
+			<li> <%= link_to 'log in / <strong>sign up</strong>', login_path %></li>
+			<% end %>
         </ul> 
     </div><!-- /.inner --> 
 </div><!-- /#nav --> 
@@ -128,7 +132,7 @@
 				</div> 
 		</div>
     <h3 class='supertitle'><a href='/+projects/'>Projects</a></h3>
-    <h1><%= @title || 'Module' %></h1>
+    <h1><%= @title %></h1>
  
  
 <div id='content'>

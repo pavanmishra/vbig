@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100608110009) do
+ActiveRecord::Schema.define(:version => 20100611095400) do
 
   create_table "badge_users", :force => true do |t|
     t.integer  "badge_id"
@@ -74,10 +74,16 @@ ActiveRecord::Schema.define(:version => 20100608110009) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "address"
-    t.decimal  "lat",        :precision => 10, :scale => 7
-    t.decimal  "lng",        :precision => 10, :scale => 7
+    t.decimal  "lat",                                      :precision => 10, :scale => 7
+    t.decimal  "lng",                                      :precision => 10, :scale => 7
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "login",                     :limit => 40
+    t.string   "email",                     :limit => 100
+    t.string   "salt",                      :limit => 40
+    t.string   "crypted_password",          :limit => 40
+    t.string   "remember_token",            :limit => 40
+    t.datetime "remember_token_expires_at"
   end
 
 end
