@@ -1,26 +1,37 @@
-<% @title = 'New Organization' %>
-<% form_for(@organization, :html => {:multipart => true}) do |f| %>
-  <%= f.error_messages %>
+<div class='module'> 
+    <div class='head'> 
+        <h3></h3> 
+    </div> 
+    <div class='body'>
+	<% @title = 'New Organization' %>
+	<% form_for(@organization, :html => {:multipart => true}) do |f| %>
+  	<%= f.error_messages %>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :causes %><br />
-    <%= f.text_field :cause_list %>
-  </p>
-  <p>
-    <%= f.label :skill_list, "Skills Required" %><br />
-    <%= f.text_field :skill_list %>
-  </p>
-  <p>
-	<%= f.label :image, "Photo" %>
-	<%= f.file_field :image %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
+  	<p>
+    	<%= f.label :name %><br />
+    	<%= f.text_field :name %>
+  	</p>
+  	<p>
+    	<%= f.label :description %><br />
+    	<%= f.text_area :description %>
+  	</p>
+  	<p>
+    	<%= f.label :causes %><br />
+    	<%= f.text_field :cause_list %>
+  	</p>
+  	<p>
+    	<%= f.label :skill_list, "Skills Required" %><br />
+    	<%= f.text_field :skill_list %>
+  	</p>
+  	<p>
+		<%= f.label :image, "Photo" %>
+		<%= f.file_field :image %>
+  	</p>
+  	<p>
+    	<%= f.submit 'Create' %>
+  	</p>
+	<% end %>
 
-<%= link_to 'Back', organizations_path %>
+	<%= link_to 'Back', organizations_path %>
+	</div>
+</div>	

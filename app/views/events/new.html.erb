@@ -1,6 +1,8 @@
 <% form_for(@event, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
 
+	<%= f.hidden_field :organization_id, :value => params[:organization_id]%>
+
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>

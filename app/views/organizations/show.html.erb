@@ -1,8 +1,26 @@
-<p>
-  <b>Name:</b>
-  <%=h @organization.name %>
-</p>
+<div class='module'> 
+    <div class='head'> 
+        <h3>About</h3> 
+    </div> 
+    <div class='body'>
+		<p>
+  			<%=h @organization.description %>
+		</p>
 
 
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
-<%= link_to 'Back', organizations_path %>
+		<%= link_to 'Edit', edit_organization_path(@organization) %> |
+		<%= link_to 'Back', organizations_path %>
+	</div>
+</div>
+<div class="module">
+	<div class="head">
+		<h3> Events </h3>
+	</div>
+	
+	<div class="body">
+		<%= link_to 'New', new_organization_event_path(@organization)%>
+		<ul>
+			<%= render :partial => 'events/summary', :collection => @organization.events %>
+		</ul>
+	</div>
+</div>

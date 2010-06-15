@@ -11,7 +11,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :pages
 
-  map.resources :organizations
+  map.resources :organizations do |organizations|
+    organizations.resources :events
+  end
 
   map.resources :users
 
