@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   has_many :badge_users
   has_many :badges, :through => :badge_users
+  has_many :organization_users
+  has_many :organizations, :through => :organization_users
   
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills
@@ -73,6 +75,13 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
+  def helping?(organization)
+    OrganizationUser.find(:first, :conditions => {:organization_id => organization, :user_id => self}) ? true : false
+  end
+  
+  def help(organization)
+    self.organizations << organization
+  end
   protected
     
 

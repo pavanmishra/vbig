@@ -5,7 +5,9 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.connect 'events/featured', :controller => :events, :action => :featured
   map.profile 'profile', :controller => :users, :action => :edit
+  map.help_organization '/help/:id', :controller => :organization_users, :action => :help
   map.resources :users
+  
 
   map.resource :session
 

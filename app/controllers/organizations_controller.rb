@@ -2,7 +2,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.xml
   def index
-    @organizations = Organization.all
+    @organizations = params[:search].blank? ? Organization.all : Organization.all(:conditions => "name like '%#{params[:search]}%'")
     @title = "NGO's"
     respond_to do |format|
       format.html # index.html.erb

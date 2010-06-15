@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100615143028) do
+ActiveRecord::Schema.define(:version => 20100615160138) do
 
   create_table "badge_users", :force => true do |t|
     t.integer  "badge_id"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20100615143028) do
   end
 
   add_index "events", ["lat", "lng"], :name => "index_events_on_lat_and_lng"
+
+  create_table "organization_users", :force => true do |t|
+    t.integer  "organization_id"
+    t.integer  "user_id"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "organizations", :force => true do |t|
     t.string   "name"
