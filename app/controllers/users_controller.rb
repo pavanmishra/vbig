@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.name
-    @recommended_events = Event.tagged_with(@user.causes).all(:origin => [@user.lat, @user.lng], :within => User::WithinDistance)
+    @recommended_events = []#Event.tagged_with(@user.causes).all(:origin => [@user.lat, @user.lng], :within => User::WithinDistance)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }

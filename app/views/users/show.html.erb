@@ -1,3 +1,8 @@
+<div class='module'> 
+    <div class='head'> 
+        <h3></h3> 
+    </div> 
+    <div class='body'>
 <p>
   <b>First name:</b>
   <%=h @user.first_name %>
@@ -46,3 +51,17 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+    </div>
+</div><!-- /.module #requests -->
+<div class='module'> 
+    <div class='head'> 
+        <h3>Participating in </h3> 
+    </div> 
+    <div class='body'>
+	<ul>
+	<% for event in @user.events %>
+		<li> <%= link_to event.title, event %></li>
+	<% end %>
+	</ul>
+    </div>
+</div><!-- /.module #requests -->
