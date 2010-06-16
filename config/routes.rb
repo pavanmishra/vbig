@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'events/featured', :controller => :events, :action => :featured
   map.profile 'profile', :controller => :users, :action => :edit
   map.help_organization '/help/:id', :controller => :organization_users, :action => :help
+  map.participate_event '/participate/:id', :controller => :event_users, :action => :participate
   map.resources :users
   
 

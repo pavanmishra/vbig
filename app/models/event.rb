@@ -1,7 +1,9 @@
 class Event < ActiveRecord::Base
   belongs_to  :organization
+  has_many  :event_users
+  has_many  :users, :through => :event_users
   named_scope :featured, :conditions => {:featured => true}
-
+  
   acts_as_mappable :auto_geocode => true
   validates_presence_of :title, :description, :address
   acts_as_taggable_on :causes, :skills

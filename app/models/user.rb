@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :badges, :through => :badge_users
   has_many :organization_users
   has_many :organizations, :through => :organization_users
+  has_many  :event_users
+  has_many  :events, :through => :event_users
   
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills
@@ -76,11 +78,19 @@ class User < ActiveRecord::Base
   end
 
   def helping?(organization)
-    OrganizationUser.find(:first, :conditions => {:organization_id => organization, :user_id => self}) ? true : false
+    self.organizations.include?(organization)
   end
   
   def help(organization)
     self.organizations << organization
+  end
+  
+  def participating?(event)
+    self.events.include?(event)
+  end
+  
+  def participate(event)
+    self.events << event
   end
   protected
     

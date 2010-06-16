@@ -34,3 +34,4 @@
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+<% if logged_in? and !current_user.participating?(@event) %>| <%= link_to 'Participate', participate_event_path(@event), :method => :post %>	<% end %>	
