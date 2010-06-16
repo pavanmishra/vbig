@@ -10,6 +10,14 @@
     <%= f.text_area :description %>
   </p>
   <p>
+	<%= f.label :datetime, 'Date' %><br />
+	<%= f.text_field :datetime %>
+  </p>
+  <script>
+	var picker = new Control.DatePicker('event_datetime', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
+  </script>
+
+  <p>
 	<%= f.label :image, "Photo" %>
 	<%= f.file_field :image %>
   </p>
