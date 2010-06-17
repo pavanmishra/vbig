@@ -9,7 +9,7 @@
 
     <% for message in @messages %>
       <tr>
-        <td><%#=h message.recipients.map(&:login).to_sentence %></td>
+        <td><%=h message.recipients.map(&:login).to_sentence %></td>
         <td><%= link_to h(message.subject), sent_path(message) %></td>
         <td><%= distance_of_time_in_words(message.created_at, Time.now) %> ago</td>
       </tr>
