@@ -1,6 +1,10 @@
 class PagesController < ApplicationController
   # GET /pages
   # GET /pages.xml
+  def root
+    
+  end
+  
   def index
     @pages = Page.all
 
