@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :organizations, :through => :organization_users
   has_many  :event_users
   has_many  :events, :through => :event_users
+  has_many  :sent_messages, :class_name => 'Message', :foreign_key => :author_id
+  has_many  :received_messages, :class_name => 'MessageCopy', :foreign_key  => :recipient_id
   
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills

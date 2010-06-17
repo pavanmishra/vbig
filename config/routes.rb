@@ -21,6 +21,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
 
   map.resources :events
+  
+  map.resources :sent, :messages
+  
+  map.inbox 'inbox',  :controller => 'received', :action => 'index'
 
   # The priority is based upon order of creation: first created -> highest priority.
 
