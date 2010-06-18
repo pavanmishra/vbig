@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100617131537) do
+ActiveRecord::Schema.define(:version => 20100618053231) do
 
   create_table "badge_users", :force => true do |t|
     t.integer  "badge_id"
@@ -44,10 +44,11 @@ ActiveRecord::Schema.define(:version => 20100617131537) do
     t.datetime "updated_at"
     t.integer  "organization_id"
     t.boolean  "featured"
-    t.datetime "datetime"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
+    t.datetime "from"
+    t.datetime "to"
   end
 
   add_index "events", ["lat", "lng"], :name => "index_events_on_lat_and_lng"

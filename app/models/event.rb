@@ -16,6 +16,4 @@ class Event < ActiveRecord::Base
         :large =>   "400x400>"
   }
   
-  FeaturedCauses = ['Environment', 'Poverty']
-  FeaturedSkills = ['Social Media', 'Writing']
 end

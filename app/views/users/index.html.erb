@@ -3,50 +3,51 @@
         <h3></h3> 
     </div> 
     <div class='body'>
-<form>
-	<ul>
-	<li>
-		Search For<br />
-		<%= text_field_tag 'search', 'education,environment' %>
-	</li>
-	<li>
-		Near <br />
-		<%= text_field_tag 'near', 'borivali,mumbai' %>
-	</li>
-	</ul><br/>
-	<%= submit_tag 'Search' %>
-</form>
-<div id="map" style="width:100%;height:300px">
+
+		<form>
+			<p>
+					Search For<br />
+					<%= text_field_tag 'search', 'education,environment' %>
+			</p>
+			<p>
+					Near <br />
+					<%= text_field_tag 'near', 'borivali,mumbai' %>
+			</p>
+			
+			<%= submit_tag 'Search' %>
+		</form>
+
+		<div id="map" style="width:100%;height:300px">
 	
-</div>
-<% unless @users.blank? %>
-<script type="text/javascript">
-    var latlng = new google.maps.LatLng(0, 0);
-    var myOptions = {
-      zoom: 1,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    var map = new google.maps.Map(document.getElementById("map"), myOptions);
-	<% for user in @users %>
-	var latlng = new google.maps.LatLng(<%= user.lat %>,<%= user.lng %>)
-	var marker = new google.maps.Marker({
+		</div>
+		<% unless @users.blank? %>
+		<script type="text/javascript">
+    	var latlng = new google.maps.LatLng(0, 0);
+    	var myOptions = {
+      		zoom: 1,
+      		center: latlng,
+      		mapTypeId: google.maps.MapTypeId.ROADMAP
+    	};
+    	var map = new google.maps.Map(document.getElementById("map"), myOptions);
+		<% for user in @users %>
+		var latlng = new google.maps.LatLng(<%= user.lat %>,<%= user.lng %>)
+		var marker = new google.maps.Marker({
 	      position: latlng,
 	      title:"<%= user.name %>",
 		  map: map
-	  });
-	<% end %>
-</script>
-<% end %>
-<br />
-<% @users.each do |user| %>
-	<div>
-    	<h2><%=link_to user.name, user %></h2>
-		<p> <%=h user.cause_list%></p>
-		<p> <%= h user.skill_list %></p>
-	</div>
-<% end %>
+	  	});
+		<% end %>
+		</script>
+		<% end %>
 
-<%= link_to 'New user', new_user_path %>
+		<% @users.each do |user| %>
+		<div>
+    		<h2><%=link_to user.name, user %></h2>
+			<p> <%=h user.cause_list%></p>
+			<p> <%= h user.skill_list %></p>
+		</div>
+		<% end %>
+
+		<%= link_to 'New user', new_user_path %>
     </div>
 </div><!-- /.module #requests -->

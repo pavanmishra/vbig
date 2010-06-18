@@ -15,13 +15,17 @@
     <%= f.text_area :description %>
   </p>
   <p>
-	<%= f.label :datetime, 'Date' %><br />
-	<%= f.text_field :datetime %>
+	<%= f.label :from %><br />
+	<%= f.text_field :from %>
+  </p>
+  <p>
+	<%= f.label :to %><br />
+	<%= f.text_field :to %>
   </p>
   <script>
-	var picker = new Control.DatePicker('event_datetime', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
+	var from_picker = new Control.DatePicker('event_from', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
+	var to_picker = new Control.DatePicker('event_to', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
   </script>
-
   <p>
 	<%= f.label :image, "Photo" %>
 	<%= f.file_field :image %>
