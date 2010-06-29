@@ -35,11 +35,11 @@
   </p>
   <p>
     <%= f.label :skills %><br />
-	<%= render :partial => 'common/tag_checkboxes', :locals => {:items => default_skills, :item_name => 'skills'}%>
+	<%= render :partial => 'common/tag_checkboxes', :locals => {:items => default_skills, :item_name => 'skills', :object_items=>[]}%>
   </p>
   <p>
     <%= f.label :causes %><br />
-	<%= render :partial => 'common/tag_checkboxes', :locals => {:items => default_causes, :item_name => 'causes'}%>
+	<%= render :partial => 'common/tag_checkboxes', :locals => {:items => default_causes, :item_name => 'causes', :object_items=>[]}%>
   </p>
   <p>
     <%= f.label :address %><br />

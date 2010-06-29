@@ -1,5 +1,5 @@
 <% for item in items %>
-	<%= check_box_tag item_name+'[]', value=item %> <%= item %><br />
+	<%= check_box_tag item_name+'[]', item, object_items.include?(item) %> <%= item %><br />
 <% end %>
 Others(comma separated) <br />
-<%= text_field_tag 'other_'+item_name %>
+<%= text_field_tag 'other_'+item_name, (object_items - items).join(',') %>

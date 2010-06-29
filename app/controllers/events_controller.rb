@@ -56,7 +56,7 @@ class EventsController < ApplicationController
     process_params_for_tags 'event', 'cause'
     process_params_for_tags 'event', 'skill'
     @event = Event.new(params[:event])
-    #raise
+
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'
@@ -73,6 +73,8 @@ class EventsController < ApplicationController
   # PUT /events/1.xml
   def update
     @event = Event.find(params[:id])
+    process_params_for_tags 'event', 'cause'
+    process_params_for_tags 'event', 'skill'
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
