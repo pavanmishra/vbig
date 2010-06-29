@@ -1,0 +1,5 @@
+<% for item in items %>
+	<%= check_box_tag item_name+'[]', value=item %> <%= item %><br />
+<% end %>
+Others(comma separated) <br />
+<%= text_field_tag 'other_'+item_name %>

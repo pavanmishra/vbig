@@ -41,7 +41,6 @@ class OrganizationsController < ApplicationController
   # POST /organizations.xml
   def create
     @organization = Organization.new(params[:organization])
-
     respond_to do |format|
       if @organization.save
         flash[:notice] = 'Organization was successfully created.'

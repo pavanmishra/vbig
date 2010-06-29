@@ -53,8 +53,10 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.xml
   def create
+    process_params_for_tags 'event', 'cause'
+    process_params_for_tags 'event', 'skill'
     @event = Event.new(params[:event])
-
+    #raise
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'
@@ -95,4 +97,6 @@ class EventsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+
 end

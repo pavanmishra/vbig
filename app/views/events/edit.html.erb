@@ -32,11 +32,11 @@
   </p>
   <p>
     <%= f.label :skills %><br />
-    <%= f.text_field :skill_list %>
+	<%= render :partial => 'common/tag_checkboxes', :locals => {:items => default_skills, :item_name => 'skills'}%>
   </p>
   <p>
     <%= f.label :causes %><br />
-    <%= f.text_field :cause_list %>
+	<%= render :partial => 'common/tag_checkboxes', :locals => {:items => default_causes, :item_name => 'causes'}%>
   </p>
   <p>
     <%= f.label :address %><br />
