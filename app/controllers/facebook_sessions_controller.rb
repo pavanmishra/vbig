@@ -6,18 +6,12 @@ class FacebookSessionsController < ApplicationController
       user_info = get_user_info
      
       logger.debug "redirecting to join_with_facebook_account_and_email to create a new user"
-       
-      redirect_to :controller => :join, :action => :join_with_facebook_account_and_email, 
-      :user => {:email => user_info['email'], :fb_uid => user_info['uid']},
-            :method => :post
+      flash[:notice] = 'Messed up' 
+      redirect_to '/'
     else
       logger.debug "couldn't verify the fb cookies; redirecting back - user must have clicked on don't allow"
       redirect_to :back
     end
-  end
-  
-  def create
-    
   end
   
   private
