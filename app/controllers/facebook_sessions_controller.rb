@@ -10,7 +10,7 @@ class FacebookSessionsController < ApplicationController
       redirect_to '/'
     else
       logger.debug "couldn't verify the fb cookies; redirecting back - user must have clicked on don't allow"
-      redirect_to :back
+      redirect_to '/'
     end
   end
   
