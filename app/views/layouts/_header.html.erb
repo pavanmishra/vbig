@@ -96,6 +96,11 @@
             
         </ul> 
         <ul id='account-links'> 
+		<% @oauth_url = MiniFB.oauth_url('131541183544567', # your Facebook App ID (NOT API_KEY)
+		                              "http://cvb.socialsync.org/facebook_sessions/create", # redirect url
+		                              :scope=>MiniFB.scopes.join(",")) # This asks for all permissions
+		%>
+			<%= link_to 'fb', @oauth_url %>
 			<% if logged_in? %>
 			<li> <%= link_to current_user.name, current_user %>
 			<% else %>
