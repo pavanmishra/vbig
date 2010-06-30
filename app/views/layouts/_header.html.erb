@@ -1,5 +1,6 @@
 <!doctype html> 
-<html lang="en" dir="ltr"> 
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://www.facebook.com/2008/fbml"> 
     <head> 
         <title>Volunteer BIG - Do good, have fun, win prizes</title> 
         <link rel="shortcut icon" href="/favicon.ico" />
@@ -96,11 +97,29 @@
             
         </ul> 
         <ul id='account-links'> 
-		<% @oauth_url = MiniFB.oauth_url('131541183544567', # your Facebook App ID (NOT API_KEY)
-		                              "http://cvb.socialsync.org/facebook_sessions/create", # redirect url
-		                              :scope=>MiniFB.scopes.join(",")) # This asks for all permissions
-		%>
-			<%= link_to 'fb', @oauth_url %>
+			<%= fboauth_connect_async_js('131541183544567') %>
+			<%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login Naar', :perms => 'email'} -%>
+			<button id="fb-login"> Signup </button>
+			<script>
+			function login_call() {
+			window.location.href="http://ideeli.socialsync.org/fb/connect_oauth";
+			}
+
+			document.getElementById('fb-login').onclick = function() {
+			FB.login(function(response) {
+			  if (response.session) {
+			    if (response.perms) {
+			      // user is logged in and granted some permissions.
+			      // perms is a comma separated list of granted permissions
+			    } else {
+			      // user is logged in, but did not grant any permissions
+			    }
+			  } else {
+			    // user is not logged in
+			  }
+			}, {perms:'email'});
+			};
+			</script>
 			<% if logged_in? %>
 			<li> <%= link_to current_user.name, current_user %>
 			<% else %>
