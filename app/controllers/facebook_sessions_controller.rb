@@ -1,10 +1,15 @@
 class FacebookSessionsController < ApplicationController
   before_filter :set_fb_info
+  include AuthenticatedSystem
   def create
     if verify_fb_cookie_signature
       logger.debug "verified fb cookie signature"
+
       user_info = get_user_info
-     
+      #user = User.find_facebook_user(user_info)
+      #user = User.create_facebook_user(user_info) unless user
+      #logout_keeping_session!
+      #self.current_user = user
       logger.debug "redirecting to join_with_facebook_account_and_email to create a new user"
       flash[:notice] = user_info.inspect 
       redirect_to '/'
