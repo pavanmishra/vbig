@@ -8,6 +8,7 @@ class FacebookSessionsController < ApplicationController
       logger.debug "redirecting to join_with_facebook_account_and_email to create a new user"
       flash[:notice] = 'Messed up' 
       logger.error params.inspect
+      raise params.inspect
       redirect_to '/'
     else
       logger.debug "couldn't verify the fb cookies; redirecting back - user must have clicked on don't allow"
