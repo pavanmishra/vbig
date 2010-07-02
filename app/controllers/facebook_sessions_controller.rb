@@ -1,5 +1,5 @@
 class FacebookSessionsController < ApplicationController
-  
+  before_filter :set_fb_info
   def create
     if verify_fb_cookie_signature
       logger.debug "verified fb cookie signature"
