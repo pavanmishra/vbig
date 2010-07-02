@@ -31,7 +31,7 @@ class FacebookSessionsController < ApplicationController
   end
     
   def get_user_info
-    MiniFB.call('131541183544567', '563b67ef41a8570e12d66e3f1a16cc58', "Users.getInfo", "session_key"=>@fb_info['session_key'], "uids"=>@fb_info['uid'], "fields"=>"email").first
+    MiniFB.call('131541183544567', '563b67ef41a8570e12d66e3f1a16cc58', "Users.getInfo", "session_key"=>@fb_info['session_key'], "uids"=>@fb_info['uid'], "fields"=>"first_name,last_name,gender,location,hometown,email").first
   end
   
 end
