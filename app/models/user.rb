@@ -107,6 +107,7 @@ class User < ActiveRecord::Base
     user = User.create :email => user_info['email'], :facebook_user_id => user_info['uid'], :login => user_info['email'], :first_name => user_info['first_name'], :last_name => user_info['last_name'], :address => 'U.S.A',  :password => random_string, :password_confirmation => random_string
     # this is also a hook to send out mailer for user who signed up from facebook
     UserMailer.deliver_welcome_facebook_user user
+    return user
   end
   
   protected
