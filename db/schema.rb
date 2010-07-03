@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100618053231) do
+ActiveRecord::Schema.define(:version => 20100702103241) do
 
   create_table "badge_users", :force => true do |t|
     t.integer  "badge_id"
@@ -128,6 +128,8 @@ ActiveRecord::Schema.define(:version => 20100618053231) do
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
+    t.integer  "facebook_user_id"
+    t.integer  "facebook_access_token"
   end
 
 end

@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills
   
-  validates_presence_of :first_name, :last_name, :address
+  validates_presence_of :first_name, :last_name#, :address
   WithinDistance = 10
 
   validates_presence_of     :login
@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :first_name, :last_name, :password, :password_confirmation, :address
+  attr_accessible :login, :email, :first_name, :last_name, :password, :password_confirmation, :address, :facebook_user_id, :facebook_access_token
 
 
 
@@ -94,6 +94,21 @@ class User < ActiveRecord::Base
   def participate(event)
     self.events << event
   end
+  
+  def self.find_facebook_user(user_info)
+    self.find_by_facebook_user_id(user_info['uid'])
+  end
+  
+  def self.create_facebook_user(user_info)
+    o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten;  
+    random_string  =  (0..16).map{ o[rand(o.length)]  }.join;
+    # do remember the generic U.S.A is given here for the hack,
+    # need to use facebook api to get the address or ask user himself.
+    user = User.create :email => user_info['email'], :facebook_user_id => user_info['uid'], :login => user_info['email'], :first_name => user_info['first_name'], :last_name => user_info['last_name'], :address => 'U.S.A',  :password => random_string, :password_confirmation => random_string
+    # this is also a hook to send out mailer for user who signed up from facebook
+    UserMailer.deliver_welcome_facebook_user user
+  end
+  
   protected
     
 
