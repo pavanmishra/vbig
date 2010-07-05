@@ -99,6 +99,12 @@ class User < ActiveRecord::Base
     self.find_by_facebook_user_id(user_info['uid'])
   end
   
+  def get_points_for point_name
+    # fetch are used on arrays to raise exceptions and not return nil
+    self.points += Points::References.fetch(point_name).fetch(:value)
+    self.save
+  end
+  
   def self.create_facebook_user(user_info)
     o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten;  
     random_string  =  (0..16).map{ o[rand(o.length)]  }.join;

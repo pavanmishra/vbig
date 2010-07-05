@@ -7,11 +7,15 @@ class FacebookSessionsController < ApplicationController
 
       user_info = get_user_info
       user = User.find_facebook_user(user_info)
-      user = User.create_facebook_user(user_info) unless user
+      unless user
+        user = User.create_facebook_user(user_info) 
+        Invitation.update_invite(cookies[:invite_code], user_info[:email]) and cookies.delete(:invite_code) if cookies[:invite_code]
+      end
       logout_keeping_session!
       self.current_user = user
       logger.debug "redirecting to join_with_facebook_account_and_email to create a new user"
       flash[:notice] = user_info.inspect 
+      
       redirect_to '/'
     else
       logger.debug "couldn't verify the fb cookies; redirecting back - user must have clicked on don't allow"

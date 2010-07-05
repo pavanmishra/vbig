@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100702103241) do
+ActiveRecord::Schema.define(:version => 20100705191045) do
 
   create_table "badge_users", :force => true do |t|
     t.integer  "badge_id"
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(:version => 20100702103241) do
   end
 
   add_index "events", ["lat", "lng"], :name => "index_events_on_lat_and_lng"
+
+  create_table "invitations", :force => true do |t|
+    t.string   "code"
+    t.integer  "by"
+    t.string   "email"
+    t.boolean  "used"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "message_copies", :force => true do |t|
     t.integer  "recipient_id"
@@ -130,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20100702103241) do
     t.integer  "image_file_size"
     t.integer  "facebook_user_id"
     t.integer  "facebook_access_token"
+    t.integer  "points",                                                                  :default => 0
   end
 
 end
