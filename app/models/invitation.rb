@@ -1,6 +1,6 @@
 class Invitation < ActiveRecord::Base
   
-  belongs_to :by, :class_name => 'User'
+  belongs_to :by, :class_name => 'User', :foreign_key => 'by'
   
   def self.invite( emails, by )
     emails.each do |email|
@@ -12,7 +12,7 @@ class Invitation < ActiveRecord::Base
   def self.update_invite(code, email)
     invite = self.find_by_code_and_email(code, email)
     invite.by.get_points_for(:invite_accepted)
-    invite.update_attributes(:used, true)
+    invite.update_attribute(:used, true)
   end
   
   def self.random_code

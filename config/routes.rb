@@ -8,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.profile 'profile', :controller => :users, :action => :edit
   map.help_organization '/help/:id', :controller => :organization_users, :action => :help
   map.participate_event '/participate/:id', :controller => :event_users, :action => :participate
+  map.join_by_invitation '/join/:invitation_code', :controller => :event_users, :action => :join_by_invitation
   map.resources :users
   
 

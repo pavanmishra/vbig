@@ -1,3 +1,3 @@
-InvitationMailer#invite
+Use the following link to join us.
 
-Find me in app/views/invitation_mailer/invite.erb
+<%= link_to 'Join', join_by_invitation_url( :invitation_code => @invite.code )%>

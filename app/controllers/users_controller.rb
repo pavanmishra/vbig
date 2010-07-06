@@ -50,6 +50,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+
         flash[:notice] = 'User was successfully created.'
         format.html { redirect_to(@user) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
@@ -97,6 +98,7 @@ class UsersController < ApplicationController
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
+    Invitation.update_invite(cookies[:invite_code], @user.email) and cookies.delete(:invite_code) if cookies[:invite_code]
     success = @user && @user.save
     if success && @user.errors.empty?
             # Protects against session fixation attacks, causes request forgery
