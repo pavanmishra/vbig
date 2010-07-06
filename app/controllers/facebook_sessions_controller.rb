@@ -9,7 +9,7 @@ class FacebookSessionsController < ApplicationController
       user = User.find_facebook_user(user_info)
       unless user
         user = User.create_facebook_user(user_info) 
-        Invitation.update_invite(cookies[:invite_code], user_info[:email]) and cookies.delete(:invite_code) if cookies[:invite_code]
+        Invitation.update_invite(cookies[:invite_code], user.email) and cookies.delete(:invite_code) if cookies[:invite_code]
       end
       logout_keeping_session!
       self.current_user = user

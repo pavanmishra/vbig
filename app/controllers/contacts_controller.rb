@@ -17,7 +17,7 @@ class ContactsController < ApplicationController
     invite = Invitation.find_by_code params[:invite_code]
     if invite
       cookies[:invite_code] = {:value => params[:invite_code], :expires => 1.hour.from_now}
-      redirect_to :controller => :users, :action => :new
+      #redirect_to :controller => :users, :action => :new
     else
       flash[:notice] = 'Looks like you clicked an expired link. No issues, go ahead you can still VolunteerBig'
     end
