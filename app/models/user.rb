@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many  :events, :through => :event_users
   has_many  :sent_messages, :class_name => 'Message', :foreign_key => :author_id
   has_many  :received_messages, :class_name => 'MessageCopy', :foreign_key  => :recipient_id
+  has_one   :twitter_invitation, :foreign_key => :by
+  has_one   :facebook_invitation, :foreign_key => :by
   
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills
@@ -118,6 +120,9 @@ class User < ActiveRecord::Base
   
   protected
     
-
+  def after_create
+    TwitterInvitation.create :code => Invitation.random_code, :by => self
+    FacebookInvitation.create :code => Invitation.random_code, :by => self
+  end
 
 end

@@ -16,7 +16,7 @@ class ContactsController < ApplicationController
   def join_by_invitation
     invite = Invitation.find_by_code params[:invite_code]
     if invite
-      cookies[:invite_code] = {:value => params[:invite_code], :expires => 1.hour.from_now}
+      cookies[:invite_code] = params[:invite_code]   
     else
       flash[:notice] = 'Looks like you clicked an expired link. No issues, go ahead you can still VolunteerBig'
     end

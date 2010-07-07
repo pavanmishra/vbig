@@ -1,0 +1,3 @@
+class FacebookInvitation < Invitation
+  
+end

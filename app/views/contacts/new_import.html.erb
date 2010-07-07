@@ -14,3 +14,12 @@ function onABCommComplete() {
 
 	<input type="submit" value="Invite"/>
 <% end %>
+
+<h2> Post Invite Link on Twitter </h2>
+<p>
+	Click <%=  join_by_invitation_url(current_user.twitter_invitation.code) %> to post invite on Twitter.
+</p>
+<h2> Post Invite Link on Facebook </h2>
+<p>
+	Click <%=  join_by_invitation_url(current_user.facebook_invitation.code) %> to post invite on Facebook.
+</p>

@@ -1,0 +1,3 @@
+class TwitterInvitation < Invitation
+  
+end

@@ -133,4 +133,9 @@ class UsersController < ApplicationController
   
   def select_skills_causes
   end
+  
+  def leaders 
+    @users = User.all :order => 'points desc'
+    render :action => :index
+  end
 end
