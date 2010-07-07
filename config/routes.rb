@@ -9,8 +9,8 @@ ActionController::Routing::Routes.draw do |map|
   map.help_organization '/help/:id', :controller => :organization_users, :action => :help
   map.participate_event '/participate/:id', :controller => :event_users, :action => :participate
   map.join_by_invitation '/join/:invite_code', :controller => :contacts, :action => :join_by_invitation
-  map.resources :users
-  
+  map.signup_step_two '/signup-2/', :controller => :users, :action => :select_skills_causes
+  map.leader_board  '/leaders/', :controller => :users, :action => :leaders
 
   map.resource :session
 

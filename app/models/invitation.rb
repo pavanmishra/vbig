@@ -1,16 +1,10 @@
 class Invitation < ActiveRecord::Base
-  
+  validates_presence_of :by
+  validates_presence_of :code
   belongs_to :by, :class_name => 'User', :foreign_key => 'by'
   
-  def self.invite( emails, by )
-    emails.each do |email|
-      invite = Invitation.create :code => self.random_code, :email => email, :by => by
-      InvitationMailer.deliver_invite invite
-    end
-  end
-  
   def self.update_invite(code, email)
-    invite = self.find_by_code_and_email(code, email)
+    invite = self.find_by_code(code)
     invite.by.get_points_for(:invite_accepted)
     invite.update_attribute(:used, true)
   end

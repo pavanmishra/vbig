@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many  :events, :through => :event_users
   has_many  :sent_messages, :class_name => 'Message', :foreign_key => :author_id
   has_many  :received_messages, :class_name => 'MessageCopy', :foreign_key  => :recipient_id
+  has_one   :twitter_invitation, :foreign_key => :by
+  has_one   :facebook_invitation, :foreign_key => :by
   
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills
@@ -44,7 +46,7 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :first_name, :last_name, :password, :password_confirmation, :address, :facebook_user_id, :facebook_access_token
+  attr_accessible :login, :email, :first_name, :last_name, :password, :password_confirmation, :address, :facebook_user_id, :facebook_access_token, :skill_list, :cause_list
 
 
 
@@ -118,6 +120,9 @@ class User < ActiveRecord::Base
   
   protected
     
-
+  def after_create
+    TwitterInvitation.create :code => Invitation.random_code, :by => self
+    FacebookInvitation.create :code => Invitation.random_code, :by => self
+  end
 
 end

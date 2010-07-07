@@ -78,6 +78,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_tags
+    @user = current_user
+    params[:user] = {}
+    params[:user][:skill_list] = params[:skills]
+    params[:user][:cause_list] = params[:causes]
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        flash[:notice] = 'User was successfully updated.'
+        format.html { redirect_to(:controller => :contacts, :action => :new_import) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+    
+  end
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
@@ -112,5 +129,13 @@ class UsersController < ApplicationController
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       render :action => 'new'
     end
+  end
+  
+  def select_skills_causes
+  end
+  
+  def leaders 
+    @users = User.all :order => 'points desc'
+    render :action => :index
   end
 end
