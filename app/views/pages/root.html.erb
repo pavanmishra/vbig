@@ -1,4 +1,28 @@
-<h1> hey welcome to volunteer big</h1>
-<p>
-You can checkout cool <%= link_to 'Volunteer Opportunities', events_path %>
-</p>
+<div id='content'>
+<div id='left' style="width:97%"> 
+
+<table width="100%">
+<tbody>
+<tr valign="top">
+<td width="30%">
+<h3>What is VolunteerBIG?</h3>
+<p>Our network and tools are designed to empower individuals, businesses &amp; nonprofits to be more effective in their community while increasing reward for participation. (Learn More)</p></td>
+<td width="30%">
+<h3>How Can We Help You?</h3>
+<p>Nothing feels better than helping a person or cause in need, but reward &amp; recognition certainly don’t hurt. We help you <strong>give</strong><strong> more while getting more<span style="font-weight: normal;"> </span></strong>so that everyone wins!</p></td>
+<td width="33%">
+<h3>What Can You Do Now?</h3>
+<p>Sign Up Now  &ndash;  Grow the grassroots volunteer movement in your community, PLUS, you’ll be eligible to win a VolunteerBIG Organic Cotton T-shirt for your efforts!</p></td>
+</tr>
+</tbody>
+</table>
+
+<br/>
+<%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
+<br/>
+<br/>
+
+<div id="fbbox">
+		  <fb:like-box profile_id="103293829712779" width="955" height="260" connections="34" stream="false" header="false"></fb:like-box>
+		  <p id="page-info" style="text-align:right">Visit our new <a style="color:red;text-decoration:underline" href="http://blog.volunteerbig.com">Blog</a> to keep updated!</p>
+  </div>

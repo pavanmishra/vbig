@@ -16,7 +16,6 @@
 	  	<%= javascript_include_tag "prototype-date-extensions.js" %>	
 	  	<%= javascript_include_tag "datepicker.js" %>
 
-        <%= stylesheet_link_tag 'scaffold' %>
         <style type='text/css'> /*<![CDATA[*/
             @import url(/stylesheets/vbighatch.css);
             body { 
@@ -82,88 +81,45 @@
 
 </head> 
 
-<body id='project' class='two_columns'> 
+<body id='project' class='two_columns'>
+<%= fboauth_connect_async_js('131541183544567') %>
         <div id='outermost'> 
  
             <div id='penoutermost'> 
  
 <div id='nav'> 
     <div class="inner"> 
-        <h2><a href='/'><img src='/images/logo_colour.jpg' width='87'alt='VBig' /></a></h2>
+        <h2><a href='/'><img src='/images/logo_colour.jpg' width='150'alt='VBig' /></a></h2>
+        <!--
         <ul id='topnavlinks'> 
             <li><a href='/events/'>volunteer opportunities</a></li> 
             <li><a href='/organizations/'> projects</a></li> 
             <li><a href='/users/'> people</a></li> 
             
         </ul> 
+        -->
         <ul id='account-links'> 
-			<%= fboauth_connect_async_js('131541183544567') %>
-			<%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login Yaar', :perms => 'email,user_location,read_friendlists'} -%>
-			<button id="fb-login"> Signup </button>
-			<script>
-			function login_call() {
-			window.location.href="http://ideeli.socialsync.org/fb/connect_oauth";
-			}
-
-			document.getElementById('fb-login').onclick = function() {
-			FB.login(function(response) {
-			  if (response.session) {
-			    if (response.perms) {
-			      // user is logged in and granted some permissions.
-			      // perms is a comma separated list of granted permissions
-			    } else {
-			      // user is logged in, but did not grant any permissions
-			    }
-			  } else {
-			    // user is not logged in
-			  }
-			}, {perms:'email'});
-			};
-			</script>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/about'>About</a></li>
+        <li><a href='/users'>People</a></li>
+        <li><a href='http://blog.volunteerbig.com'>Blog</a></li>        
+        <li><a href='/contact_us'>Contact Us</a></li>
+			<li> 
 			<% if logged_in? %>
-			<li> <%= link_to current_user.name, current_user %>
+			<%= link_to current_user.name, current_user %>
 			<% else %>
-			<li> <%= link_to 'log in / <strong>sign up</strong>', login_path %></li>
+			<%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
 			<% end %>
-        </ul> 
+			</li>
+      </ul> 
     </div><!-- /.inner --> 
 </div><!-- /#nav --> 
  
 <div id='page-top'> 
+		<% if flash[:notice] %>
 		<div id='greeting'> 
 				<div id='about-openhatch'> 
-						Hi! OpenHatch is a community of free/open source
-						software supporters.
-						You might like to:
-				</div> 
-				<div id='next-steps'> 
-						<ul> 
-								<li> 
-										<strong>Learn below</strong> about how you can help accountsdialog
-								</li>
-								<li>
-										<a href='/search/?q=&amp;toughness=bitesize'>Find a <strong>bite-sized volunteer opportunity</strong></a> 
-								</li>
-								<li>
-								<a href='/+me'> 
-										List your <strong>interests and involvement</strong> 
-								</a> 
-								</li> 
-								<li> 
-								<a href='/people/'> 
-										<strong> 
-												Find FLOSS supporters
-										</strong> 
-										in your neighborhood
-								</a> 
-								</li>
-						</ul> 
+				  <%= flash[:notice] -%>
 				</div> 
 		</div>
-    <h3 class='supertitle'><a href='/+projects/'>Projects</a></h3>
-    <h1><%= @title %></h1>
- 
- 
-<div id='content'>
-
-<div id='left'> 
+		<% end %>
