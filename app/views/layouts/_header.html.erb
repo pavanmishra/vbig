@@ -97,6 +97,10 @@
             
         </ul> 
         <ul id='account-links'> 
+			
+			<% if logged_in? %>
+			<li> <%= link_to current_user.name, current_user %>
+			<% else %>
 			<%= fboauth_connect_async_js('131541183544567') %>
 			<%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login Yaar', :perms => 'email,user_location,read_friendlists'} -%>
 			<button id="fb-login"> Signup </button>
@@ -120,9 +124,6 @@
 			}, {perms:'email'});
 			};
 			</script>
-			<% if logged_in? %>
-			<li> <%= link_to current_user.name, current_user %>
-			<% else %>
 			<li> <%= link_to 'log in / <strong>sign up</strong>', login_path %></li>
 			<% end %>
         </ul> 
