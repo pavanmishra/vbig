@@ -6,7 +6,6 @@ class FacebookSessionsController < ApplicationController
       logger.debug "verified fb cookie signature"
 
       user_info = get_user_info
-      flash[:notice] = user_info.inspect
       user = User.find_facebook_user(user_info)
       unless user
         user = User.create_facebook_user(user_info) 
