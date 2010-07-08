@@ -25,14 +25,8 @@
 	<%= f.label :image, "Photo" %>
 	<%= f.file_field :image %>
   </p>
-  <p>
-    <%= f.label :skills %><br />
-    <%= f.text_field :skill_list %>
-  </p>
-  <p>
-    <%= f.label :causes %><br />
-    <%= f.text_field :cause_list %>
-  </p>
+  <%= render :partial => 'skill_select', :locals => {:checked => @user.skills.collect{|skill| skill.name }}%>
+  <%= render :partial => 'cause_select', :locals => {:checked => @user.causes.collect{|cause| cause.name }}%>
   <p>
     <%= f.label :address %><br />
     <%= f.text_field :address %>

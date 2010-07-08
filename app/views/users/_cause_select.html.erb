@@ -1,0 +1,45 @@
+<%
+	cause_sets = [
+		[
+			'Animal Care / Protection',
+		'Aging Populations',
+		'Community Involvement',
+		'Crime / Justice',
+		'Disaster Relief'],
+		[
+			'Education / Literacy / Economic Literacy',
+			'Energy',
+			'Environmental Sustainability / Agriculture',
+			'Health',
+			'Homelessness',
+			],
+		[
+			'Human Rights',
+			'Hunger',
+			'Individual Equality / Rights',
+			'Job Creation',
+			'Poverty'
+			],
+		[
+			'Politics',
+			'Religious Equality',
+			'Social Entrepreneurship',
+			'Sex and Slavery',
+			'Youth Activities'
+			]	
+			
+		]	
+%>
+
+<h3> Causes </h3>
+<table>
+	<tr>
+	<% for cause_set in cause_sets %>
+		<td valign="top" style="border:1px solid #666;margin:0;border-left:0;font-size:0.9em">
+			<% for cause in cause_set %>
+			<%= check_box_tag 'causes[]', cause, checked.include?(cause) %> <%= cause %><br />
+			<% end %>
+		</td>
+	<% end %>
+	</tr>
+</table>
