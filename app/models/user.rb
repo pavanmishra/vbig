@@ -110,10 +110,9 @@ class User < ActiveRecord::Base
   def self.create_facebook_user(user_info)
     o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten;  
     random_string  =  (0..16).map{ o[rand(o.length)]  }.join;
-    # do remember the generic U.S.A is given here for the hack,
-    # need to use facebook api to get the address or ask user himself.
-    user_info['current_location'] ||= {}
-    user = User.create :email => user_info['email'], :facebook_user_id => user_info['uid'], :login => user_info['email'], :first_name => user_info['first_name'], :last_name => user_info['last_name'], :address => (user_info['current_location']['name'] or 'U.S.A'),  :password => random_string, :password_confirmation => random_string, :name => user_info['name'], :sex => user_info['male'], :profile_url => user_info['profile_url'], :pic_square => user_info['pic_square'], :locale => user_info['locale'], :city => user_info['city'], :state => user_info['state'], :country => user_info['country'], :zip => user_info['current_location']['zip']
+    # setting the default location to generic country U.S.A
+    user_info['current_location'] ||= {'name' => 'U.S.A'}
+    user = User.create :email => user_info['email'], :facebook_user_id => user_info['uid'], :login => user_info['email'], :first_name => user_info['first_name'], :last_name => user_info['last_name'], :address => user_info['current_location']['name'] ,  :password => random_string, :password_confirmation => random_string, :name => user_info['name'], :sex => user_info['sex'], :profile_url => user_info['profile_url'], :pic_square => user_info['pic_square'], :locale => user_info['locale'], :city => user_info['current_location']['city'], :state => user_info['current_location']['state'], :country => user_info['current_location']['country'], :zip => user_info['current_location']['zip'], :middle_name => user_info['middle_name']
     # this is also a hook to send out mailer for user who signed up from facebook
     UserMailer.deliver_welcome_facebook_user user
     return user
