@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100707130532) do
+ActiveRecord::Schema.define(:version => 20100708153012) do
 
   create_table "badge_users", :force => true do |t|
     t.integer  "badge_id"
@@ -141,6 +141,16 @@ ActiveRecord::Schema.define(:version => 20100707130532) do
     t.integer  "facebook_user_id"
     t.integer  "facebook_access_token"
     t.integer  "points",                                                                  :default => 0
+    t.string   "name"
+    t.string   "sex"
+    t.string   "profile_url"
+    t.string   "pic_square"
+    t.string   "locale"
+    t.string   "middle_name"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip"
   end
 
 end

@@ -112,7 +112,8 @@ class User < ActiveRecord::Base
     random_string  =  (0..16).map{ o[rand(o.length)]  }.join;
     # do remember the generic U.S.A is given here for the hack,
     # need to use facebook api to get the address or ask user himself.
-    user = User.create :email => user_info['email'], :facebook_user_id => user_info['uid'], :login => user_info['email'], :first_name => user_info['first_name'], :last_name => user_info['last_name'], :address => 'U.S.A',  :password => random_string, :password_confirmation => random_string
+    user_info['current_location'] ||= {}
+    user = User.create :email => user_info['email'], :facebook_user_id => user_info['uid'], :login => user_info['email'], :first_name => user_info['first_name'], :last_name => user_info['last_name'], :address => (user_info['current_location']['name'] or 'U.S.A'),  :password => random_string, :password_confirmation => random_string, :name => user_info['name'], :sex => user_info['male'], :profile_url => user_info['profile_url'], :pic_square => user_info['pic_square'], :locale => user_info['locale'], :city => user_info['city'], :state => user_info['state'], :country => user_info['country'], :zip => user_info['current_location']['zip']
     # this is also a hook to send out mailer for user who signed up from facebook
     UserMailer.deliver_welcome_facebook_user user
     return user
