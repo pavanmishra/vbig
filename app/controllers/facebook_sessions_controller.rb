@@ -6,6 +6,7 @@ class FacebookSessionsController < ApplicationController
       logger.debug "verified fb cookie signature"
 
       user_info = get_user_info
+      flash[:notice] = user_info.inspect
       user = User.find_facebook_user(user_info)
       unless user
         user = User.create_facebook_user(user_info) 
@@ -34,7 +35,7 @@ class FacebookSessionsController < ApplicationController
   end
     
   def get_user_info
-    MiniFB.call('131541183544567', '563b67ef41a8570e12d66e3f1a16cc58', "Users.getInfo", "session_key"=>@fb_info['session_key'], "uids"=>@fb_info['uid'], "fields"=>"first_name,last_name,email").first
+    MiniFB.call('131541183544567', '563b67ef41a8570e12d66e3f1a16cc58', "Users.getInfo", "session_key"=>@fb_info['session_key'], "uids"=>@fb_info['uid'], "fields"=>"first_name,last_name,email,middle_name,name,locale,current_location,affiliations,pic_square,profile_url,sex").first
   end
   
 end
