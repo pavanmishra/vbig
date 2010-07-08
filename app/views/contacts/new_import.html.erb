@@ -7,19 +7,40 @@ function onABCommComplete() {
 }
 //--></script>
 
-<% form_tag '/contacts/import/', :method => :post do %>
-	<textarea id="recipient_list" name="recipients"></textarea>
+<div id='content'>
+<div id='left'> 
 
-	<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>
+<div class='module'> 
+    <div class='head'> 
+        <h3>Invite your Friends</h3> 
+    </div> 
+    <div class='body'>
+	<% form_tag '/contacts/import/', :method => :post do %>
+		<textarea id="recipient_list" name="recipients"></textarea>
 
-	<input type="submit" value="Invite"/>
-<% end %>
+		<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>
 
-<h2> Post Invite Link on Twitter </h2>
-<p>
-	Click <%=  join_by_invitation_url(current_user.twitter_invitation.code) %> to post invite on Twitter.
-</p>
-<h2> Post Invite Link on Facebook </h2>
-<p>
-	Click <%=  join_by_invitation_url(current_user.facebook_invitation.code) %> to post invite on Facebook.
-</p>
+		<input type="submit" value="Invite"/>
+	<% end %>
+	<% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
+	<h5> Invite on Twitter</h5>
+	<div>
+		<p>
+			<%= twitter_message = "Follow #{ bitly.shorten(join_by_invitation_url(current_user.twitter_invitation.code)).short_url} to join VolunteerBig, do good, have fun and win prizes." %>
+			
+		</p>
+		<p>
+			<a href="http://twitter.com/?status=<%= URI.escape(twitter_message)%>" target="_blank">Share on Twitter</a>
+		</p>
+	</div>
+	<h3> Invite on Facebook </h3>
+	<div>
+		<p>
+			Click <%= bitly.shorten(join_by_invitation_url(current_user.facebook_invitation.code)).short_url  %> to post invite on Facebook.
+		</p>
+		<p>
+			<a href="">Share on Facebook</a>
+		</p>
+	</div>
+	</div>
+</div>

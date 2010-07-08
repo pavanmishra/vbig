@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  require 'bitly'
   layout 'events'
   def plaxo_cb
     render :layout => false

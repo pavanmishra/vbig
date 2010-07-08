@@ -24,6 +24,9 @@ Rails::Initializer.run do |config|
   config.gem  'will_paginate'
   config.gem  'hashie'
   config.gem  'mini_fb'
+  config.gem  'bitly'
+  config.gem  'crack'
+  config.gem  'httparty'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
