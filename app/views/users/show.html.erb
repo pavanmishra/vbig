@@ -8,6 +8,9 @@
         <h3></h3> 
     </div> 
     <div class='body'>
+	<% if @user.pic_square %>
+	<img src="<%= @user.pic_square %>" alt="facebook profile picture"/>
+	<% end %>
 <p>
   <b>First name:</b>
   <%=h @user.first_name %>
@@ -17,6 +20,41 @@
   <b>Last name:</b>
   <%=h @user.last_name %>
 </p>
+<p>
+  <b>VBits:</b>
+  <%=h @user.points %>
+</p>
+
+<% if @user.sex %>
+<p>
+  <b>Sex:</b>
+  <%=h @user.sex %>
+</p>
+<% end %>
+<% if @user.city %>
+<p>
+  <b>City:</b>
+  <%=h @user.city %>
+</p>
+<% end %>
+<% if @user.state %>
+<p>
+  <b>State:</b>
+  <%=h @user.state %>
+</p>
+<% end %>
+<% if @user.country %>
+<p>
+  <b>Country:</b>
+  <%=h @user.country %>
+</p>
+<% end %>
+<% if @user.zip %>
+<p>
+  <b>Zip:</b>
+  <%=h @user.zip %>
+</p>
+<% end %>
 <div id="map" style="width:100%;height:300px">
 	
 </div>
