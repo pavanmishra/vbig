@@ -15,7 +15,7 @@ class FacebookSessionsController < ApplicationController
       logout_keeping_session!
       self.current_user = user
       logger.debug "redirecting to join_with_facebook_account_and_email to create a new user"
-      user_signup ? redirect_to(:controller => :users, :action => :select_skills_causes) : redirect_to(:back)
+      user_signup ? redirect_to(:controller => :users, :action => :select_skills_causes) : redirect_to(user_path(user))
     else
       logger.debug "couldn't verify the fb cookies; redirecting back - user must have clicked on don't allow"
       flash[:notice] = 'Could not verify the cookie information'
