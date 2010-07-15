@@ -106,7 +106,7 @@
         <li><a href='/contact_us'>Contact Us</a></li>
 			<li> 
 			<% if logged_in? %>
-			<%= link_to current_user.name, current_user %>
+			<%= link_to "(#{current_user.name})", current_user %>
 			<% else %>
 			<%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
 			<% end %>
