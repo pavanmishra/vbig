@@ -16,4 +16,9 @@ class Event < ActiveRecord::Base
         :large =>   "400x400>"
   }
   
+  def get_or_create_invite_links_for(user)
+    invitations = Invitation.find(:all, :conditions => {:event_id => self, :by => user, :type => ['TwitterInvitation', 'FacebookInvitation']})
+    invitations = Invitation.create_social_invites_for_event_user(self, user) if invitations.blank?
+    return invitations
+  end
 end
