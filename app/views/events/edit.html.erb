@@ -16,6 +16,11 @@
     <%= f.text_field :title %>
   </p>
   <p>
+	<%= f.label :oranization %> <br />
+	<%= f.select :organization_id, Organization.all.collect{|organization| [organization.name, organization.id]}, {:include_blank => 'None'}%>
+  </p>
+
+  <p>
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </p>

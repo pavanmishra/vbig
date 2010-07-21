@@ -13,4 +13,7 @@ class Organization < ActiveRecord::Base
         :large =>   "400x400>"
   }
   
+  def to_s
+    name 
+  end
 end

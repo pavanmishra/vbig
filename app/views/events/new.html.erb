@@ -11,11 +11,15 @@
 <% form_for(@event, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
 
-	<%= f.hidden_field :organization_id, :value => params[:organization_id]%>
+	<% @event.organization_id = params[:organization_id] %>
 
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
+  </p>
+  <p>
+	<%= f.label :oranization %> <br />
+	<%= f.select :organization_id, Organization.all.collect{|organization| [organization.name, organization.id]}, {:include_blank => 'None'}%>
   </p>
   <p>
 	<%= f.label :from %><br />

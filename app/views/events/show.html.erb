@@ -13,7 +13,10 @@
   <b>Title:</b>
   <%=h @event.title %>
 </p>
-
+<p>
+	<b> Organization: </b>
+	<%= link_to @event.organization, @event.organization %>
+</p>
 <p>
   <b>Description:</b>
   <%=h @event.description %>

@@ -60,6 +60,7 @@
 <% @events.each do |event| %>
 	<div>
     <h2><%=link_to event.title, event %></h2>
+	<p> <%= h event.organization %> </p>
     <p><%=h event.description %></p>
     <p><%=h event.address %></p>
 	</div>
