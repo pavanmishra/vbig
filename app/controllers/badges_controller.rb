@@ -40,7 +40,8 @@ class BadgesController < ApplicationController
   # POST /badges
   # POST /badges.xml
   def create
-    @badge = Badge.new(params[:badge])
+    klass = params[:badge][:type].constantize
+    @badge = klass.new(params[:badge])
 
     respond_to do |format|
       if @badge.save
@@ -57,7 +58,8 @@ class BadgesController < ApplicationController
   # PUT /badges/1
   # PUT /badges/1.xml
   def update
-    @badge = Badge.find(params[:id])
+    klass = params[:badge][:type].constantize    
+    @badge = klass.find(params[:id])
 
     respond_to do |format|
       if @badge.update_attributes(params[:badge])
