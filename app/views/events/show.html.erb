@@ -48,6 +48,7 @@
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+
 <% if logged_in? and !current_user.participating?(@event) %>| <%= link_to 'Participate', participate_event_path(@event), :method => :post %>	<% end %>	
     </div>
 </div><!-- /.module #requests -->
@@ -63,44 +64,13 @@
 		</ul>
 	</div>
 </div><!-- /.module #requests -->	
-<% if logged_in? %>
 <div class='module'> 
     <div class='head'> 
-        <h3>Invite Others</h3> 
+        <h3>Invites</h3> 
     </div> 
     <div class='body'>
-		<p>
-			Use the following links to invite other interested people to this event.
+		<p> 
+			<%= link_to 'Invite', invite_to_event_path(@event) %> interested people and earn points.
 		</p>
-		<% form_tag '/contacts/import/', :method => :post do %>
-			<textarea id="recipient_list" name="recipients"></textarea>
-
-			<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>
-
-			<input type="submit" value="Invite"/>
-		<% end %>
-		<% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
-		<h3> Invite on Twitter</h3>
-		<div>
-			<p>
-				<%= twitter_message = "Follow #{link_to bitly.shorten(join_by_invitation_url(@invites.first.code)).short_url,  bitly.shorten(join_by_invitation_url(@invites.first.code)).short_url} to attend '#{@event.title}' at VolunteerBig, do good, have fun and win prizes." %>
-
-			</p>
-			<p>
-				<a href="http://twitter.com/?status=<%= URI.escape(twitter_message)%>" target="_blank">Share on Twitter</a>
-			</p>
-		</div>
-		<h3> Invite on Facebook </h3>
-		<div>
-			<p>
-				<%= facebook_message = "Attend a VolunteerBig event '#{@event.title}' by following the url #{link_to bitly.shorten(join_by_invitation_url(@invites.last.code)).short_url, bitly.shorten(join_by_invitation_url(@invites.last.code)).short_url  }" %>
-				
-			</p>
-			<p>
-				<a target="_blank" href="http://www.facebook.com/sharer.php?u=<%= URI.escape(join_by_invitation_url(@invites.last.code)) -%>&t=Attend <%= @event.title %> at VolunteerBig, do good, have fun and win prizes">Share on Facebook</a>
-			</p>
-		</div>
 	</div>
-</div><!-- /.module share links -->	
-<% end %>
-	
+</div><!-- /.module #invites -->

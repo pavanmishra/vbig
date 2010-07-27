@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
   end
 
   def awarded?(badge)
-    badges.count(:conditions => { :type => badge }) > 0
+    badges.count(:conditions => { :type => badge.to_s }) > 0
   end
     
   def name
@@ -121,6 +121,7 @@ class User < ActiveRecord::Base
   protected
     
   def after_create
+    Badges::FoundingMember.check_conditions_for(self)
     TwitterInvitation.create :code => Invitation.random_code, :by => self
     FacebookInvitation.create :code => Invitation.random_code, :by => self
   end

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :badges
+
   map.root :controller => :pages, :action => 'root'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
@@ -11,6 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.join_by_invitation '/join/:invite_code', :controller => :contacts, :action => :join_by_invitation
   map.signup_step_two '/signup-2/', :controller => :users, :action => :select_skills_causes
   map.leader_board  '/leaders/', :controller => :users, :action => :leaders
+  map.invite_to_event '/events/:event_id/invite', :controller => :contacts, :action => :invite_to_event
 
   map.resource :session
 
