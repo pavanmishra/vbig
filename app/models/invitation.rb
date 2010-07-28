@@ -1,13 +1,13 @@
 class Invitation < ActiveRecord::Base
-  validates_presence_of :by
+  
   validates_presence_of :code
-  belongs_to :by, :class_name => 'User', :foreign_key => 'by'
+  belongs_to :user
   belongs_to :event
   
   def self.update_invite(code, email)
     invite = self.find_by_code(code)
     raise invite.inspect
-    invite.by.get_points_for(:invite_accepted)
+    invite.user.get_points_for(:invite_accepted)
     invite.update_attribute(:used, true)
   end
   
@@ -20,8 +20,8 @@ class Invitation < ActiveRecord::Base
   end
   
   def self.create_social_invites_for_event_user(event, user)
-    twitter_invite = TwitterInvitation.create :code => self.random_code, :by => user, :event => event
-    facebook_invite = FacebookInvitation.create :code => self.random_code, :by => user, :event => event
+    twitter_invite = TwitterInvitation.create :code => self.random_code, :user => user, :event => event
+    facebook_invite = FacebookInvitation.create :code => self.random_code, :user => user, :event => event
     return [twitter_invite, facebook_invite]
   end
   
