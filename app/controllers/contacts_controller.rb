@@ -21,7 +21,7 @@ class ContactsController < ApplicationController
     redirect_to params.key?(:event_id) ? {:action => :invite_to_event, :event_id => params[:event_id] } : {:action => :new_import}
   end
   
-  def participate_event_by_participation
+  def participate_event_by_invitation
     invite = Invitation.find_by_code params[:invite_code]
     if invite
       if logged_in?
