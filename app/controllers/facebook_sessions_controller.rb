@@ -7,7 +7,7 @@ class FacebookSessionsController < ApplicationController
 
       user_info = get_user_info
       user = User.find_facebook_user(user_info)
-      redirect_path = cookies[:invite_event].nil? ? user_path(user) : event_path(Invite.find_by_code(cookies[:invite_code]).event_id)
+      redirect_path = cookies[:invite_event].nil? ? user_path(user) : event_path(Invitation.find_by_code(cookies[:invite_code]).event_id)
       unless user
         user = User.create_facebook_user(user_info) 
         user_signup = true
