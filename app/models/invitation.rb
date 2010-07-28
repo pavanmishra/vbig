@@ -6,6 +6,7 @@ class Invitation < ActiveRecord::Base
   
   def self.update_invite(code, email)
     invite = self.find_by_code(code)
+    raise invite.inspect
     invite.by.get_points_for(:invite_accepted)
     invite.update_attribute(:used, true)
   end
