@@ -6,7 +6,7 @@ class ContactsController < ApplicationController
   end
 
   def new_import
-    
+    @invite_event = Event.find(cookies[:invite_event]) unless cookies[:invite_event].nil?
   end
   
   def invite_to_event
@@ -19,6 +19,23 @@ class ContactsController < ApplicationController
     event = Event.find_by_id(params[:event_id])
     PersonalInvitation.invite(params[:recipients].split(',').collect {|recipient| recipient.split('<').last.sub('>', '') }, current_user, event)
     redirect_to params.key?(:event_id) ? {:action => :invite_to_event, :event_id => params[:event_id] } : {:action => :new_import}
+  end
+  
+  def participate_event_by_participation
+    invite = Invitation.find_by_code params[:invite_code]
+    if invite
+      if logged_in?
+        redirect_to invite.event
+      else
+        flash[:notice] = 'Please signup, before participating in the invited event.'
+        cookies[:invite_code] = params[:invite_code]
+        cookies[:invite_event] = invite.event_id
+        redirect_to root_path
+      end
+    else
+      flash[:notice] = 'Thats not a valid link.'
+      redirect_to root_path
+    end
   end
   
   def join_by_invitation

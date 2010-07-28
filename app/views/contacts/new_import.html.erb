@@ -33,7 +33,7 @@ function onABCommComplete() {
 			<a href="http://twitter.com/?status=<%= URI.escape(twitter_message)%>" target="_blank">Share on Twitter</a>
 		</p>
 	</div>
-	<h3> Invite on Facebook </h3>
+	<h5> Invite on Facebook </h5>
 	<div>
 		<p>
 			Click <%= bitly.shorten(join_by_invitation_url(current_user.facebook_invitation.code)).short_url  %> to post invite on Facebook.
@@ -42,5 +42,13 @@ function onABCommComplete() {
 			<a target="_blank" href="http://www.facebook.com/sharer.php?u=<%= URI.escape(join_by_invitation_url(current_user.facebook_invitation.code))%>&t=Join VolunteerBig, do good, have fun and win prizes">Share on Facebook</a>
 		</p>
 	</div>
+	<% if @invite_event %>
+	<h5> Join Event </h5>
+	<div>
+		<p>
+			You have been invited to participate in the event <%= link_to event.title, event %>
+		</p>
+	</div>
+	<% end %>
 	</div>
 </div>
