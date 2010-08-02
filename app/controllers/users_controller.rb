@@ -93,9 +93,6 @@ class UsersController < ApplicationController
           unless cookies[:invite_event]
             redirect_to(:controller => :contacts, :action => :new_import) 
           else
-            flash[:notice] = "You have been invited to join this event. Click on participate to do so."
-            cookies.delete(:invite_code)
-            cookies.delete(:invite_event)            
             redirect_to(event_path(cookies[:invite_event]))
           end
           }
