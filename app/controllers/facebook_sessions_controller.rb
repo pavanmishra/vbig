@@ -11,6 +11,7 @@ class FacebookSessionsController < ApplicationController
         user_signup = true
         Invitation.update_invite(cookies[:invite_code], user.email) and cookies.delete(:invite_code) if cookies[:invite_code]
       end
+      raise cookies[:invite_code]
       redirect_path = cookies[:invite_event].nil? ? user_path(user) : event_path(Invitation.find_by_code(cookies[:invite_code]).event_id)      
       logout_keeping_session!
       self.current_user = user
