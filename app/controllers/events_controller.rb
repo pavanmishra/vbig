@@ -25,6 +25,11 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.xml
   def show
+    if cookies[:invite_event] and cookies[:invite_event].to_i.eql?(params[:id])
+      flash[:notice] = "You have been invited to this event. Click on participate to join the event."
+      cookies.delete(:invite_event)
+      cookies.delete(:invite_code)
+    end
     @event = Event.find(params[:id])
     @title = @event.title
     respond_to do |format|
