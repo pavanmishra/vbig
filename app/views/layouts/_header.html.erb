@@ -105,14 +105,14 @@
 	</div>
     <div class="inner"> 
         <h2><a href='/'><img src='/images/logo_colour.jpg' width='150'alt='VBig' /></a></h2>
-        <!--
+
         <ul id='topnavlinks'> 
             <li><a href='/events/'>volunteer opportunities</a></li> 
             <li><a href='/organizations/'> projects</a></li> 
             <li><a href='/users/'> people</a></li> 
             
         </ul> 
-        -->
+
 			<%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
         <ul id='account-links'> 
         	<li><%= link_to 'Home', root_path %></li>
