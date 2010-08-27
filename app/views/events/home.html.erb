@@ -1,0 +1,12 @@
+<div id="events" style="border:1px solid #ddd">	
+	<h2> Featured Participations </h2>
+	<div class="section-body">
+	<%= render :partial => 'event', :collection => @events %>	
+	</div>
+</div>
+<div id="badges">
+	<%= render :partial => 'badges/badge_small', :collection => @badges %>
+</div>
+<div id="users">
+	<%= render :partial => 'users/user_small', :collection => @users %>
+</div>	

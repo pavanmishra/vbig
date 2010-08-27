@@ -1,12 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :badges
 
-  map.root :controller => :pages, :action => 'root'
+  map.root :controller => :events, :action => :home
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
-  map.connect 'events/featured', :controller => :events, :action => :featured
   map.profile 'profile', :controller => :users, :action => :edit
   map.help_organization '/help/:id', :controller => :organization_users, :action => :help
   map.participate_event '/participate/:id', :controller => :event_users, :action => :participate
@@ -14,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.participate_event_by_invitation '/join/event/:invite_code', :controller => :contacts, :action => :participate_event_by_invitation
   map.signup_step_two '/signup-2/', :controller => :users, :action => :select_skills_causes
   map.leader_board  '/leaders/', :controller => :users, :action => :leaders
-  map.invite_to_event '/events/:event_id/invite', :controller => :contacts, :action => :invite_to_event
+  map.invite_to_event '/events/:id/invite', :controller => :contacts, :action => :invite_to_event
 
   map.resource :session
 

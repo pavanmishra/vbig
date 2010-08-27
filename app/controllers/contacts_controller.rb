@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
   end
   
   def invite_to_event
-    @event = Event.find params[:event_id]
+    @event = Event.find params[:id]
     @invites = @event.get_or_create_invite_links_for(current_user) if logged_in?
   end
   

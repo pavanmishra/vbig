@@ -12,6 +12,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def home
+    @events = Event.featured.find :all, :limit => 5, :order => 'events.from'
+    @badges = @users = []
+  end
+  
   def featured
     @title = 'Featured Events'
     @events = Event.featured

@@ -3,7 +3,7 @@ class EventUsersController < ApplicationController
 
   def participate
     @event = Event.find(params[:id])
-    current_user.participate(@event)
+    current_user.participate(@event) unless current_user.participating?(@event)
     redirect_to @event
   end
 

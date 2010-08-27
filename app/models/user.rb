@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
   # paperclip image attachment
-  has_attached_file :image, :styles => {
+  has_attached_file :photo, :styles => {
         :thumb=> "100x100#",
         :small  => "150x150>",
         :medium => "300x300>",

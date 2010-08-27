@@ -88,6 +88,21 @@
             <div id='penoutermost'> 
  
 <div id='nav'> 
+	<div>
+		<ul id="bar-links">
+			<li><a href='/about'>About Us</a></li>
+	        <li><a href='http://blog.volunteerbig.com'>Blog</a></li>        
+			<li><a href='/faqs'>FAQs</a></li>
+			<li><a href='/contact_us'>Contact Us</a></li>
+			<li>
+			<% if logged_in? %>
+			
+			<%= link_to "( #{current_user.name} &nbsp;&nbsp;&nbsp;/", current_user %><%= link_to 'Logout )', logout_path %>
+
+			<% end %>
+			
+		</ul>
+	</div>
     <div class="inner"> 
         <h2><a href='/'><img src='/images/logo_colour.jpg' width='150'alt='VBig' /></a></h2>
         <!--
@@ -98,21 +113,13 @@
             
         </ul> 
         -->
-        <ul id='account-links'> 
-        <li><a href='/'>Home</a></li>
-        <li><a href='/about'>About</a></li>
-        <li><a href='/users'>People</a></li>
-        <li><a href='http://blog.volunteerbig.com'>Blog</a></li>        
-        <li><a href='/contact_us'>Contact Us</a></li>
-			<li> 
-			<% if logged_in? %>
-			
-			<%= link_to "( #{current_user.name} &nbsp;&nbsp;&nbsp;/", current_user %><%= link_to 'Logout )', logout_path %>
-			<% else %>
 			<%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
-			<% end %>
-			</li>
-      </ul> 
+        <ul id='account-links'> 
+        	<li><%= link_to 'Home', root_path %></li>
+			<li><%= link_to 'Take Action', events_path %></li>
+			<li><%= link_to 'Meet Volunteers', users_path %></li>
+        	<li><%= link_to 'Non-Profits', organizations_path %></li>
+	    </ul> 
     </div><!-- /.inner --> 
 </div><!-- /#nav --> 
  
