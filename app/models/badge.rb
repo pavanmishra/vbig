@@ -2,6 +2,14 @@ class Badge < ActiveRecord::Base
   has_many :badge_users
   has_many :users, :through => :badge_users
   
+  # paperclip image attachment
+  has_attached_file :photo, :styles => {
+        :thumb=> "100x100#",
+        :small  => "150x150>",
+        :medium => "300x300>",
+        :large =>   "400x400>"
+  }
+  
   def self.check_conditions_for(user)
     if ! user.awarded?(self)
       user.award(self) 

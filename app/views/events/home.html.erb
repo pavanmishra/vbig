@@ -1,12 +1,17 @@
 <div id="events" style="border:1px solid #ddd">	
 	<h2> Featured Participations </h2>
+	<%= link_to 'View All', events_path %>
 	<div class="section-body">
-	<%= render :partial => 'event', :collection => @events %>	
+		<%= render :partial => 'event', :collection => @events %>	
 	</div>
 </div>
+<h3>Badges </h3>
+<%= link_to 'View All', badges_path %>
 <div id="badges">
 	<%= render :partial => 'badges/badge_small', :collection => @badges %>
 </div>
+<h3>Recent Signups</h3>
+<%= link_to 'View All', users_path %>
 <div id="users">
 	<%= render :partial => 'users/user_small', :collection => @users %>
 </div>	
