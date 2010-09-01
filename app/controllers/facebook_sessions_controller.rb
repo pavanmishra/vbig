@@ -22,7 +22,7 @@ class FacebookSessionsController < ApplicationController
     else
       raise params.inspect
       logger.debug "couldn't verify the fb cookies; redirecting back - user must have clicked on don't allow"
-      flash[:notice] = 'Could not verify the cookie information'
+      flash[:notice] = 'TO USE VOLUNTEERBIG, YOU MUST ALLOW ACCESS TO YOUR FACEBOOK ACCOUNT'
       redirect_to :back
     end
   end
