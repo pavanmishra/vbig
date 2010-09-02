@@ -16,10 +16,8 @@ function onABCommComplete() {
     </div> 
     <div class='body'>
 	<% form_tag '/contacts/import/', :method => :post do %>
-		<textarea id="recipient_list" name="recipients"></textarea>
-
 		<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>
-
+		<textarea id="recipient_list" name="recipients" ></textarea>
 		<input type="submit" value="Invite"/>
 	<% end %>
 	<% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
