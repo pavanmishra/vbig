@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_one   :facebook_invitation
   
   acts_as_mappable :auto_geocode => true
-  acts_as_taggable_on :causes, :skills
+  acts_as_taggable_on :causes, :skills, :others
   
   validates_presence_of :first_name, :last_name#, :address
   WithinDistance = 10
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :first_name, :last_name, :password, :password_confirmation, :address, :facebook_user_id, :facebook_access_token, :skill_list, :cause_list, :name, :profile_url, :sex, :pic_square, :locale, :middle_name, :city, :state, :country, :zip
+  attr_accessible :login, :email, :first_name, :last_name, :password, :password_confirmation, :address, :facebook_user_id, :facebook_access_token, :skill_list, :cause_list, :name, :profile_url, :sex, :pic_square, :locale, :middle_name, :city, :state, :country, :zip, :other_list, :about_me, :fighting_for
 
 
 
@@ -116,6 +116,10 @@ class User < ActiveRecord::Base
     # this is also a hook to send out mailer for user who signed up from facebook
     UserMailer.deliver_welcome_facebook_user user
     return user
+  end
+
+  def suggested_events
+    Event.all(:origin=> self.address, :within => 25)
   end
   
   protected

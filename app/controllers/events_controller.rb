@@ -14,8 +14,7 @@ class EventsController < ApplicationController
   end
 
   def home
-    
-    @events = Event.featured.find :all, :limit => 5, :order => 'events.from'
+    @events = logged_in? ? current_user.suggested_events : Event.featured.find(:all, :limit => 5, :order => 'events.from')
     @badges = Badge.all(:limit => 9)
     @users = User.all(:limit => 10, :order => 'created_at desc')
   end

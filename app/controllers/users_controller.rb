@@ -81,8 +81,9 @@ class UsersController < ApplicationController
   end
 
   def update_tags
+    # code duplication need to fix
     @user = current_user
-    params[:user] = {}
+    #params[:user] = {}
     params[:user][:skill_list] = params[:skills]
     params[:user][:cause_list] = params[:causes]
     respond_to do |format|
@@ -140,7 +141,7 @@ class UsersController < ApplicationController
     end
   end
   
-  def select_skills_causes
+  def signup_step_two
   end
   
   def leaders 

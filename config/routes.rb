@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.participate_event '/participate/:id', :controller => :event_users, :action => :participate
   map.join_by_invitation '/join/:invite_code', :controller => :contacts, :action => :join_by_invitation
   map.participate_event_by_invitation '/join/event/:invite_code', :controller => :contacts, :action => :participate_event_by_invitation
-  map.signup_step_two '/signup-2/', :controller => :users, :action => :select_skills_causes
+  map.signup_step_two '/signup-2/', :controller => :users, :action => :signup_step_two
   map.leader_board  '/leaders/', :controller => :users, :action => :leaders
   map.invite_to_event '/events/:id/invite', :controller => :contacts, :action => :invite_to_event
 

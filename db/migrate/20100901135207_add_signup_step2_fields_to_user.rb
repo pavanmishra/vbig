@@ -2,7 +2,7 @@ class AddSignupStep2FieldsToUser < ActiveRecord::Migration
   def self.up
     change_table(:users) do |t|
       t.column  :about_me,      :text
-      t.column  :fighting_for,  :string
+      t.column  :fighting_for,  :text
     end
   end
 

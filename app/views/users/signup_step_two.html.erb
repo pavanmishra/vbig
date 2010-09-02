@@ -12,7 +12,17 @@
 <% form_for :user, :url => {:controller => :users, :action => :update_tags} do |f| %>
 	<%= render :partial => 'skill_select', :locals => {:checked => []} %>
 	<%= render :partial => 'cause_select', :locals => {:checked => []}%>
-<input type="submit" value="Update">
+	
+	<h3> Other </h3>
+	<p> Please list hobbies, instruments you play and any other specialized skill that doesn't quite fall into an above category</p>
+	<%= f.text_area :other_list %>
+	
+	<h4> About Me</h4>
+	<%= f.text_area :about_me %>
+	
+	<h4>I am fighting for</h4>
+	<%= f.text_area :fighting_for %>	
+	<input type="submit" value="Update">
 <% end %>
 	</div>
 </div>
