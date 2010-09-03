@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100901135207) do
+ActiveRecord::Schema.define(:version => 20100903064747) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20100901135207) do
     t.string   "zip"
     t.text     "about_me"
     t.string   "fighting_for"
+    t.boolean  "is_admin"
   end
 
 end

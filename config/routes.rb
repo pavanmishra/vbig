@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.profile 'profile', :controller => :users, :action => :edit
   map.help_organization '/help/:id', :controller => :organization_users, :action => :help
   map.participate_event '/participate/:id', :controller => :event_users, :action => :participate
+  map.feature_event '/feature/event/:id', :controller => :events, :action => :feature  
   map.join_by_invitation '/join/:invite_code', :controller => :contacts, :action => :join_by_invitation
   map.participate_event_by_invitation '/join/event/:invite_code', :controller => :contacts, :action => :participate_event_by_invitation
   map.signup_step_two '/signup-2/', :controller => :users, :action => :signup_step_two

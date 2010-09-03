@@ -11,6 +11,14 @@ class ApplicationController < ActionController::Base
   
   protected
   
+  def admin_required
+    unless current_user.is_admin?
+      flash[:notice] = 'You need to be admin, to perform this action'
+      redirect_to root_path and return
+    end
+    return true
+  end
+  
   def process_params_for_tags item_name, tag_name
     tag_name_plural = tag_name.pluralize
     params[tag_name_plural] ||= []

@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
+  
+  before_filter :admin_required, :only => [:feature]
   def index
     @title = 'Events'
     params[:near] = params[:near].blank? ? 'unknown island' : params[:near]
@@ -112,5 +114,13 @@ class EventsController < ApplicationController
     end
   end
   
-
+  def feature
+    @event = Event.find(params[:id])
+    @event.feature
+    flash[:notice] = 'Event sucessfully featured.'
+    respond_to do |format|
+      format.html {redirect_to(@event)}
+      format.xml  {head :ok}
+    end
+  end
 end

@@ -50,6 +50,7 @@
 <%= link_to 'Back', events_path %>
 
 <% if logged_in? and !current_user.participating?(@event) %>| <%= link_to 'Participate', participate_event_path(@event), :method => :post %>	<% end %>	
+<% if logged_in? and current_user.is_admin? and !@event.featured? %>| <%= link_to 'Feature', feature_event_path(@event), :method => :post %>	<% end %>	
     </div>
 </div><!-- /.module #requests -->
 <div class='module'> 
