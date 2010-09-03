@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100903064747) do
+ActiveRecord::Schema.define(:version => 20100903092652) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -142,22 +142,22 @@ ActiveRecord::Schema.define(:version => 20100903064747) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "address"
-    t.decimal  "lat",                                      :precision => 10, :scale => 7
-    t.decimal  "lng",                                      :precision => 10, :scale => 7
+    t.decimal  "lat",                                       :precision => 10, :scale => 7
+    t.decimal  "lng",                                       :precision => 10, :scale => 7
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "login",                     :limit => 40
-    t.string   "email",                     :limit => 100
-    t.string   "salt",                      :limit => 40
-    t.string   "crypted_password",          :limit => 40
-    t.string   "remember_token",            :limit => 40
+    t.string   "login",                      :limit => 40
+    t.string   "email",                      :limit => 100
+    t.string   "salt",                       :limit => 40
+    t.string   "crypted_password",           :limit => 40
+    t.string   "remember_token",             :limit => 40
     t.datetime "remember_token_expires_at"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.integer  "facebook_user_id"
     t.integer  "facebook_access_token"
-    t.integer  "points",                                                                  :default => 0
+    t.integer  "points",                                                                   :default => 0
     t.string   "name"
     t.string   "sex"
     t.string   "profile_url"
@@ -171,6 +171,9 @@ ActiveRecord::Schema.define(:version => 20100903064747) do
     t.text     "about_me"
     t.string   "fighting_for"
     t.boolean  "is_admin"
+    t.boolean  "send_message_notifications"
+    t.boolean  "send_weekly_updates"
+    t.boolean  "send_newsletter"
   end
 
 end

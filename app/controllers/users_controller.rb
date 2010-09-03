@@ -65,21 +65,32 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
-    params[:user][:skill_list] = params[:skills]
-    params[:user][:cause_list] = params[:causes]
-
+    params[:user][:skill_list] = params[:skills] if params[:skills]
+    params[:user][:cause_list] = params[:causes] if params[:causes]
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
       else
+        
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end
 
+  def update_address_and_preferences
+    @user = User.find(params[:id])
+    @user.update_attributes(params[:user])
+    if  @user.proper_address? 
+      redirect_to(signup_step_two_path)
+    else 
+      flash[:notice] = 'Its important that you complete this step, by providing your complete address'
+      render(:action => :set_address_and_preferences)
+    end
+  end
+  
   def update_tags
     # code duplication need to fix
     @user = current_user
@@ -142,6 +153,10 @@ class UsersController < ApplicationController
   end
   
   def signup_step_two
+  end
+  
+  def set_address_and_preferences
+    @user = current_user
   end
   
   def leaders 

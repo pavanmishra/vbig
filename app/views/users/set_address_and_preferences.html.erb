@@ -1,0 +1,33 @@
+<p>Provide your shipping information so that we can send you prizes and register you for volunteer events. This information will only be 
+shared with our partners for matters that you have chosen to complete.</p>
+<hr />
+
+<% form_for @user, :url => {:controller => :users, :action => :update_address_and_preferences} do |f| %>
+	<%= f.error_messages %>
+	<%= hidden_field_tag :step_1, true %>
+	<%= hidden_field_tag :id, @user.id %>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </p>
+  <p>
+    <%= f.label :zip %><br />
+    <%= f.text_field :zip %>
+  </p>
+  
+  <hr />
+
+  <%= f.check_box :send_message_notifications %> Send Message Notifications<br />	
+  <%= f.check_box :send_weekly_updates %> Send Tailored Weekly Updates<br />	
+  <%= f.check_box :send_newsletter %> Send VolunteerBig Newsletter<br />	
+
+  <%= f.submit 'Next'%>
+<% end %>

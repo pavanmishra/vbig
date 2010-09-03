@@ -12,6 +12,8 @@ ActionController::Routing::Routes.draw do |map|
   map.feature_event '/feature/event/:id', :controller => :events, :action => :feature  
   map.join_by_invitation '/join/:invite_code', :controller => :contacts, :action => :join_by_invitation
   map.participate_event_by_invitation '/join/event/:invite_code', :controller => :contacts, :action => :participate_event_by_invitation
+  map.signup_step_one '/signup-1/', :controller => :users, :action => :set_address_and_preferences
+  map.update_address  '/update-address/', :controller => :users, :action => :update_address_and_preferences
   map.signup_step_two '/signup-2/', :controller => :users, :action => :signup_step_two
   map.leader_board  '/leaders/', :controller => :users, :action => :leaders
   map.invite_to_event '/events/:id/invite', :controller => :contacts, :action => :invite_to_event

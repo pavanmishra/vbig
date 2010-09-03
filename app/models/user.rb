@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :first_name, :last_name, :password, :password_confirmation, :address, :facebook_user_id, :facebook_access_token, :skill_list, :cause_list, :name, :profile_url, :sex, :pic_square, :locale, :middle_name, :city, :state, :country, :zip, :other_list, :about_me, :fighting_for
+  attr_accessible :login, :email, :first_name, :last_name, :password, :password_confirmation, :address, :facebook_user_id, :facebook_access_token, :skill_list, :cause_list, :name, :profile_url, :sex, :pic_square, :locale, :middle_name, :city, :state, :country, :zip, :other_list, :about_me, :fighting_for, :send_message_notifications, :send_weekly_updates, :send_newsletter
 
 
 
@@ -120,6 +120,10 @@ class User < ActiveRecord::Base
 
   def suggested_events
     Event.all(:origin=> self.address, :within => 25)
+  end
+  
+  def proper_address?
+     not (self.address.empty? or self.city.empty? or self.state.empty? or self.zip.empty?)
   end
   
   protected
