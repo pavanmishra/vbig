@@ -70,7 +70,7 @@ class EventsController < ApplicationController
     process_params_for_tags 'event', 'cause'
     process_params_for_tags 'event', 'skill'
     @event = Event.new(params[:event])
-
+    @event.user = current_user
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'

@@ -22,6 +22,10 @@ class Event < ActiveRecord::Base
     self.update_attribute :featured, true
   end
   
+  def related_events
+    Event.tagged_with(self.causes + self.skills).find(:all, :origin => self.address, :within => 10, :conditions => "events.id != #{self.id}")
+  end
+  
   def get_or_create_invite_links_for(user)
     invitations = Invitation.find(:all, :conditions => {:event_id => self, :user_id => user, :type => ['TwitterInvitation', 'FacebookInvitation']})
     invitations = Invitation.create_social_invites_for_event_user(self, user) if invitations.blank?
@@ -32,6 +36,6 @@ class Event < ActiveRecord::Base
     matching_condition = "match(title) against ('#{new_event.title}')"
     matching_condition += " and date(from_date) = date(#{new_event.from_date})" unless new_event.from_date.nil?
     matching_condition += " and date(to) = date(#{new_event.to})" unless new_event.to.nil?
-    self.find(:all, :conditions => matching_condition, :limit => 25, :within => 5)
+    self.find(:all, :conditions => matching_condition, :limit => 25)
   end
 end

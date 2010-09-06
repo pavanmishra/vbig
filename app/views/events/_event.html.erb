@@ -1,7 +1,7 @@
 <div style="border:1px solid #ddd">
 	<%= image_tag event.image.url, :align=> 'left'%>
 	<h3><%= event.title %></h3>
-	<div><%= time_ago_in_words(event.from)%> | <%= event.address %> | <%= event.users.count %> Activists</div>
+	<div><%= time_ago_in_words(event.from_date) rescue ''%> | <%= event.address %> | <%= event.users.count %> Activists</div>
 	<hr />
 	<div>
 	<% event.users.each do |participant| %>
