@@ -1,17 +1,5 @@
-
-<h1><%= @title %></h1>
-<div id='content'>
-<div id='left'> 
-
-<div class='module'> 
-    <div class='head'> 
-        <h3></h3> 
-    </div> 
-    <div class='body'>
-<% form_for(@event, :url => {:action => :match}, :html => {:multipart => true}) do |f| %>
+<% form_for(@event, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
-
-	<% @event.organization_id = params[:organization_id] %>
 
   <p>
     <%= f.label :title %><br />
@@ -20,6 +8,11 @@
   <p>
 	<%= f.label :oranization %> <br />
 	<%= f.select :organization_id, Organization.all.collect{|organization| [organization.name, organization.id]}, {:include_blank => 'None'}%>
+  </p>
+
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
   </p>
   <p>
 	<%= f.label :from_date, 'From' %><br />
@@ -33,32 +26,23 @@
 	var from_picker = new Control.DatePicker('event_from', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
 	var to_picker = new Control.DatePicker('event_to', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
   </script>
-
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
   <p>
 	<%= f.label :image, "Photo" %>
 	<%= f.file_field :image %>
   </p>
   <p>
     <%= f.label :skills %><br />
-	<%= render :partial => 'common/tag_checkboxes', :locals => {:items => default_skills, :item_name => 'skills', :object_items=>[]}%>
+	<%= render :partial => 'common/tag_checkboxes', :locals => {:items => default_skills, :item_name => 'skills', :object_items => @event.skills.collect{|skill| skill.name}}%>
   </p>
   <p>
     <%= f.label :causes %><br />
-	<%= render :partial => 'common/tag_checkboxes', :locals => {:items => default_causes, :item_name => 'causes', :object_items=>[]}%>
+	<%= render :partial => 'common/tag_checkboxes', :locals => {:items => default_causes, :item_name => 'causes', :object_items => @event.causes.collect{|cause| cause.name}}%>
   </p>
   <p>
     <%= f.label :address %><br />
     <%= f.text_field :address %>
   </p>
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Update' %>
   </p>
 <% end %>
-
-<%= link_to 'Back', events_path %>
-    </div>
-</div><!-- /.module #requests -->

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100903092652) do
+ActiveRecord::Schema.define(:version => 20100906151823) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -63,11 +63,13 @@ ActiveRecord::Schema.define(:version => 20100903092652) do
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
-    t.datetime "from"
+    t.datetime "from_date"
     t.datetime "to"
+    t.integer  "user_id"
   end
 
   add_index "events", ["lat", "lng"], :name => "index_events_on_lat_and_lng"
+  add_index "events", ["title"], :name => "title"
 
   create_table "invitations", :force => true do |t|
     t.string   "code"

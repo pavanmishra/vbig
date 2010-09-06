@@ -123,4 +123,13 @@ class EventsController < ApplicationController
       format.xml  {head :ok}
     end
   end
+  
+  def match
+    @event = Event.new(params[:event])
+    if @event.valid?
+      @events = Event.find_matching_events_to(Event.new(params[:event]))
+    else
+      render :action => :new
+    end
+  end
 end
