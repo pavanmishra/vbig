@@ -2,7 +2,7 @@ class Organization < ActiveRecord::Base
   has_many  :events
   has_many :organization_users
   has_many  :users, :through => :organization_users
-  
+
   acts_as_taggable_on :causes, :skills
   
   # paperclip image attachment

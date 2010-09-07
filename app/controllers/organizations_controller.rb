@@ -14,6 +14,9 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1.xml
   def show
     @organization = Organization.find(params[:id])
+    # following query uses the mysql current function
+    @recent_events = @organization.events.find(:all, :conditions => "date(from_date) < current_date() ")
+    @upcoming_events = @organization.events.find(:all, :conditions => "date(from_date) > current_date() ")
     @title = @organization.name
     respond_to do |format|
       format.html # show.html.erb

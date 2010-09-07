@@ -30,3 +30,36 @@
 		</ul>
 	</div>
 </div>
+<div class="module">
+	<div class="head">
+		<h3>Recent Events </h3>
+	</div>
+	
+	<div class="body">
+		<ul>
+			<%= render :partial => 'events/summary', :collection => @recent_events %>
+		</ul>
+	</div>
+</div>
+<div class="module">
+	<div class="head">
+		<h3>Upcoming Events </h3>
+	</div>
+	
+	<div class="body">
+		<ul>
+			<%= render :partial => 'events/summary', :collection => @upcoming_events %>
+		</ul>
+	</div>
+</div>
+<div class="module">
+	<div class="head">
+		<h3> Volunteers Helping </h3>
+	</div>
+	
+	<div class="body">
+		<ul>
+			<%= render :partial => 'users/user_small', :collection => @organization.users %>
+		</ul>
+	</div>
+</div>
