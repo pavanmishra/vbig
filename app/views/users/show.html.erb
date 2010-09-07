@@ -81,16 +81,18 @@
 		<li> <%= event.title %></li>
 	<% end %>
 </ul>
-<p>
-  <b>Lat:</b>
-  <%=h @user.lat %>
-</p>
-
-<p>
-  <b>Lng:</b>
-  <%=h @user.lng %>
-</p>
-
+<h2> Events Created</h2>
+<ul>
+	<% for event in @user.events_created %>
+		<li> <%= event.title %></li>
+	<% end %>
+</ul>	
+<h2> Associated with Non-Profits </h2>
+<ul>
+	<% for organization in @user.organizations %>
+	<li> <%= link_to organization %> </li>
+	<% end %>
+</ul>	
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

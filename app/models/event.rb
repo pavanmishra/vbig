@@ -36,6 +36,6 @@ class Event < ActiveRecord::Base
     matching_condition = "match(title) against ('#{new_event.title}')"
     matching_condition += " and date(from_date) = date(#{new_event.from_date})" unless new_event.from_date.nil?
     matching_condition += " and date(to) = date(#{new_event.to})" unless new_event.to.nil?
-    self.find(:all, :conditions => matching_condition, :limit => 25)
+    self.find(:all, :conditions => matching_condition, :limit => 25, :origin => new_event.address, :within => 5)
   end
 end
