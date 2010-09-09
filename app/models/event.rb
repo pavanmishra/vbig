@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
         :large =>   "400x400>"
   }
   
-  def feature
+  def feature!
     self.update_attribute :featured, true
   end
   

@@ -116,7 +116,7 @@ class EventsController < ApplicationController
   
   def feature
     @event = Event.find(params[:id])
-    @event.feature
+    @event.feature!
     flash[:notice] = 'Event sucessfully featured.'
     respond_to do |format|
       format.html {redirect_to(@event)}
