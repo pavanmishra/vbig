@@ -5,10 +5,11 @@ class Event < ActiveRecord::Base
   belongs_to  :user
   named_scope :featured, :conditions => {:featured => true}
   
-  
   acts_as_mappable :auto_geocode => true
-  validates_presence_of :title, :description, :address
   acts_as_taggable_on :causes, :skills
+  
+  validates_presence_of :title, :description, :address
+  validate  :must_be_either_ongoing_or_dated
   
   # paperclip image attachment
   has_attached_file :image, :styles => {
@@ -38,5 +39,11 @@ class Event < ActiveRecord::Base
     matching_condition += " and date(from_date) = date(#{new_event.from_date})" unless new_event.from_date.nil?
     matching_condition += " and date(to) = date(#{new_event.to})" unless new_event.to.nil?
     self.find(:all, :conditions => matching_condition, :limit => 25, :origin => new_event.address, :within => 5)
+  end
+  
+  protected
+  
+  def must_be_either_ongoing_or_dated
+    errors.add_to_base("Event must either be ongoing or have fixed time interval") unless self.ongoing or (self.from_date and self.to)
   end
 end

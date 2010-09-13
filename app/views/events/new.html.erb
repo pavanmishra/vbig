@@ -21,6 +21,11 @@
 	<%= f.label :oranization %> <br />
 	<%= f.select :organization_id, Organization.all.collect{|organization| [organization.name, organization.id]}, {:include_blank => 'None'}%>
   </p>
+
+  <p>
+	<%= f.label :ongoing, 'Ongoing' %><br />
+	<%= f.check_box :ongoing %>
+  </p>
   <p>
 	<%= f.label :from_date, 'From' %><br />
 	<%= f.text_field :from_date %>

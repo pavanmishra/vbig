@@ -15,6 +15,10 @@
     <%= f.text_area :description %>
   </p>
   <p>
+	<%= f.label :ongoing, 'Ongoing' %><br />
+	<%= f.check_box :ongoing %>
+  </p>
+  <p>
 	<%= f.label :from_date, 'From' %><br />
 	<%= f.text_field :from_date %>
   </p>
@@ -23,7 +27,7 @@
 	<%= f.text_field :to %>
   </p>
   <script>
-	var from_picker = new Control.DatePicker('event_from', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
+	var from_picker = new Control.DatePicker('event_from_date', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
 	var to_picker = new Control.DatePicker('event_to', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
   </script>
   <p>

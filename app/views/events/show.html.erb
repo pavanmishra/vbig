@@ -13,6 +13,15 @@
   <b>Title:</b>
   <%=h @event.title %>
 </p>
+<% if @event.ongoing? %>
+	<b> Type: </b>
+	<p> Ongoing</p>
+<% else %>
+	<b> Start Date: </b>
+	<p> <%= @event.from_date %></p>
+	<b> End Date: </b>
+	<p> <%= @event.to %></p>
+<% end %>
 <p>
 	<b> Organization: </b>
 	<%= link_to @event.organization, @event.organization %>
