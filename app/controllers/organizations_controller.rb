@@ -47,6 +47,7 @@ class OrganizationsController < ApplicationController
     process_params_for_tags 'organization', 'skill'
     
     @organization = Organization.new(params[:organization])
+    @organization.user = current_user
     respond_to do |format|
       if @organization.save
         flash[:notice] = 'Organization was successfully created.'
