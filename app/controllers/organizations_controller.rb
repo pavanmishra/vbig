@@ -1,15 +1,24 @@
 class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.xml
+  before_filter :login_required, :only => [:suggested]
+  
   def index
-    @organizations = params[:search].blank? ? Organization.all : Organization.all(:conditions => "name like '%#{params[:search]}%'")
-    @title = "NGO's"
+    @organizations = params[:search].blank? ? Organization.all(:order => 'created_at DESC') : Organization.all(:conditions => "name like '%#{params[:search]}%'")
+    @title = "Recent NGO's"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @organizations }
     end
   end
 
+  def suggested
+    @organizations = current_user.suggested_organizations
+    @title = 'Organizations Suggested to You'
+    render :template => 'organizations/index'
+  end
+  
+  
   # GET /organizations/1
   # GET /organizations/1.xml
   def show
