@@ -21,14 +21,24 @@
     	<%= f.label :description %><br />
     	<%= f.text_area :description %>
   	</p>
-  	<p>
-    	<%= f.label :causes %><br />
-    	<%= f.text_field :cause_list %>
-  	</p>
-  	<p>
-    	<%= f.label :skill_list, "Skills Required" %><br />
-    	<%= f.text_field :skill_list %>
-  	</p>
+  <p>
+    <%= f.label :skills %><br />
+	<%#= render :partial => 'common/tag_checkboxes', :locals => {:items => default_skills, :item_name => 'skills', :object_items => @event.skills.collect{|skill| skill.name}}%>
+	<%= render :partial => 'users/skill_select', :locals => {:checked => @organization.skills.collect{|skill| skill.name} }%>
+
+	Others(comma separated) <br />
+	<%= text_field_tag 'other_skills' %>
+
+  </p>
+  <p>
+    <%= f.label :causes %><br />
+	<%#= render :partial => 'common/tag_checkboxes', :locals => {:items => default_causes, :item_name => 'causes', :object_items => @event.causes.collect{|cause| cause.name}}%>
+	<%= render :partial => 'users/cause_select', :locals => {:checked => @organization.causes.collect{|skill| skill.name} }%>
+
+	Others(comma separated) <br />
+	<%= text_field_tag 'other_causes' %>
+
+  </p>
   	<p>
 		<%= f.label :image, "Photo" %>
 		<%= f.file_field :image %>

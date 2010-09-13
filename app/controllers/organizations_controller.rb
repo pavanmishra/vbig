@@ -43,6 +43,9 @@ class OrganizationsController < ApplicationController
   # POST /organizations
   # POST /organizations.xml
   def create
+    process_params_for_tags 'organization', 'cause'
+    process_params_for_tags 'organization', 'skill'
+    
     @organization = Organization.new(params[:organization])
     respond_to do |format|
       if @organization.save
@@ -60,7 +63,9 @@ class OrganizationsController < ApplicationController
   # PUT /organizations/1.xml
   def update
     @organization = Organization.find(params[:id])
-
+    process_params_for_tags 'organization', 'cause'
+    process_params_for_tags 'organization', 'skill'
+    
     respond_to do |format|
       if @organization.update_attributes(params[:organization])
         flash[:notice] = 'Organization was successfully updated.'
