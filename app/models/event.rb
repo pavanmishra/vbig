@@ -41,6 +41,10 @@ class Event < ActiveRecord::Base
     self.find(:all, :conditions => matching_condition, :limit => 25, :origin => new_event.address, :within => 5)
   end
   
+  # used by the activity logging system
+  def name 
+    self.title
+  end
   protected
   
   def must_be_either_ongoing_or_dated

@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
         :medium => "300x300>",
         :large =>   "400x400>"
   }
-  
+  cattr_accessor :current_user
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
