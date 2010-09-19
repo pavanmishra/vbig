@@ -1,18 +1,37 @@
-<%= link_to 'Get Started', {:controller => :tutorial, :action => :step_one}, :class => 'lbOn' %>
-<div id="events" style="border:1px solid #ddd">	
-	<h2> Featured Participations </h2>
-	<%= link_to 'View All', events_path %>
-	<div class="section-body">
-		<%= render :partial => 'event', :collection => @events %>	
-	</div>
+<div class="t">&nbsp;</div>
+<div class="c">
+	<div class="title">
+		<h2>recent participation</h2>
+		<%= link_to 'view all', events_path, :class => "view" %>
+	</div><!--title-->
+	<%= render :partial => 'event', :collection => @events %>
 </div>
-<h3>Badges </h3>
-<%= link_to 'View All', badges_path %>
-<div id="badges">
-	<%= render :partial => 'badges/badge_small', :collection => @badges %>
-</div>
-<h3>Recent Signups</h3>
-<%= link_to 'View All', users_path %>
-<div id="users">
-	<%= render :partial => 'users/user_small', :collection => @users %>
-</div>	
+<div class="b">&nbsp;</div>					
+<% content_for :sidebar do %>
+	<div class="box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<div class="title">
+				<h3>badges</h3>
+				<%= link_to 'view all', badges_path, :class => 'view' %>
+			</div>
+			<ul class="badges">
+				<%= render :partial => 'badges/badge_small', :collection => @badges %>
+			</ul>
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+	<div class="box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<div class="title cutd">
+				<h3>recent signups</h3>
+			</div>
+			<ul class="users">
+				<%= render :partial => 'users/user_small', :collection => @users %>
+			</ul>
+			<div class="all"><a href="#">view all </a></div>
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+<% end %>

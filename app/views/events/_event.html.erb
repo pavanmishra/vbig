@@ -1,18 +1,42 @@
-<div style="border:1px solid #ddd">
-	<%= image_tag event.image.url, :align=> 'left'%>
-	<h3><%= event.title %></h3>
-	<div><%= time_ago_in_words(event.from_date) rescue ''%> | <%= event.address %> | <%= event.users.count %> Activists</div>
-	<hr />
-	<div>
-	<% event.users.each do |participant| %>
-		<%= image_tag participant.photo.url(:thumb) %> 
-	<% end %>
-	</div>
-	<div >
-		<ul>
-			<li><%= link_to 'Recruit', invite_to_event_path(event) %></li>
-			<li><%= link_to 'Share', invite_to_event_path(event)%></li>
-			<li><%= link_to 'Participate', participate_event_path(event) %></li>
-		</ul>
-	</div>	
-</div>
+<div class="post">
+	<div class="visual"><%= image_tag event.image.url %></div>
+	<div class="text">
+		<h3><%= event.title %><span><%= event.organization %></span></h3>
+		<ul class="cat">
+			<li class="active"><a href="#">Today</a></li>
+			<li><a href="#"><%= event.address %></a></li>
+			<li><a href="#">3 Comments</a></li>
+			<li><%= link_to 'View Details', event %></li>
+		</ul><!--cat-->
+		<div class="skils">
+			<div class="row">
+				<h4>causes: </h4>
+				<span> <%= event.causes.join(', ') %> (<a href="#">See All</a>)</span>
+			</div>
+			<div class="row">
+				<h4>skills needed: </h4>
+				<span> <%= event.skills.join(', ') %> (<a href="#">See All</a>)</span>
+			</div>
+		</div><!--skils-->
+		<ul class="photos">
+			<li><img src="images/img02.jpg" alt="" width="79" height="75" /></li>
+			<li><img src="images/img03.jpg" alt="" width="79" height="75" /></li>
+			<li><img src="images/img04.jpg" alt="" width="79" height="75" /></li>
+			<li><img src="images/img05.jpg" alt="" width="79" height="75" /></li>
+			<li><a href="#" class="all">(see all...)</a></li>
+		</ul><!--photos-->
+		<ul class="buttons">
+			<li><a href="#">recruit!</a></li>
+			<li><a href="#">share!</a></li>
+			<li><a href="#">participate!</a></li>
+		</ul><!--buttons-->
+		<div class="invite">
+			<div class="plus-box">+1</div>
+			<div class="text-info">
+				<p>Jordan Sent 5 Invitations to First Philly Project</p>
+				<p><a href="#">2 Friends Accepted!</a></p>
+			</div>
+			<div class="widget"><a href="#"><img src="images/btn-facebook-like.gif" alt="" /></a><span>28K</span></div>
+		</div><!--invite-->
+	</div><!--text-->
+</div><!--post-->

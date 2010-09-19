@@ -1,0 +1,5 @@
+body {width:expression(document.documentElement.clientWidth < 980 ? "980px" : "auto");}
+#nav li{background-image: expression( (this===this.parentNode.childNodes[0]) ? "none" : "auto");}
+.quick-block .holder li{border: expression( (this===this.parentNode.childNodes[0]) ? "none" : "auto");}
+
+

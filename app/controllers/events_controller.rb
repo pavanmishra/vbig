@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
-  
   before_filter :admin_required, :only => [:feature]
   def index
     @title = 'Events'
@@ -19,6 +18,7 @@ class EventsController < ApplicationController
     @events = logged_in? ? current_user.suggested_events : Event.featured.find(:all, :limit => 5, :order => 'events.from_date')
     @badges = Badge.all(:limit => 9)
     @users = User.all(:limit => 10, :order => 'created_at desc')
+    render :layout => 'home'
   end
   
   def featured

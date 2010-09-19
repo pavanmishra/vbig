@@ -37,7 +37,7 @@ module ApplicationHelper
 
    text = options.delete(:text)
    
-   content_tag("fb:login-button",text,options.merge(:onlogin=>js))
+   content_tag("fb:login-button",content_tag(:a, 'signup', {:class => 'sign-up'}),options.merge(:onlogin=>js))
  end
     
 end

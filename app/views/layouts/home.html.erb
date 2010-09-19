@@ -1,0 +1,37 @@
+<%= render :partial => 'layouts/header' -%>
+<div class="main-block">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="three-col">
+			<div class="holder">
+				<div class="col">
+					<h2>what is volunteer big?</h2>
+					<p>Our network and tools are designed to empower individuals, businesses &amp; nonprofits to be more effective in their community while increasing reward for participation... <a href="#">More</a></p>
+				</div>
+				<div class="col orange">
+					<h2>how can we help you?</h2>
+					<p>Nothing feels better than helping a person or cause in need, but reward &amp; recognition cetainly don’t hurt. We help you give more while getting more so that everyone wins!</p>
+				</div>
+				<div class="col green">
+					<h2>what can you do now?</h2>
+					<p>Sign Up Now - Grow the grassroots, volunteer movement in your community, PLUS, you’ll be eligible to win a VolunteerBIG Organic Cotton T-shirt for your efforts!</p>
+				</div>
+			</div>
+		</div>
+		<div class="buttons-box">
+			<div>	
+							<%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%><a href="#" class="more">learn more</a><h2>do good, have fun, win prizes</h2>
+			</div>
+		</div>
+	</div>
+	<div class="b">&nbsp;</div>
+</div><!--main-block-->
+<div id="two-columns">
+	<div id="content">
+	<%= yield %>
+	</div>
+	<div id="sidebar">
+		<%= yield(:sidebar) %>
+	</div>	
+</div>	
+<%= render :partial => 'layouts/footer' -%>

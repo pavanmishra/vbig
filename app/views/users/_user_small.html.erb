@@ -1,7 +1,11 @@
-<div style="width:100%">
-	<a href="<%= user_path(user_small) %>"><img align="left" src="<%= user_small.pic_square or 'http://profile.ak.fbcdn.net/profile-ak-ash1/profile5/15/113/q528345620_8217.jpg' %>"></a>
-	<h4>
-		<%= user_small.name %>
-	</h4>		
-	<div> Points <%= user_small.points %> | Badges: <%= user_small.badges.count %></div>
-</div>	
+<li>
+<div class="visual"><%= link_to image_tag((user_small.pic_square or '/images/img24.jpg')), user_small %></div>
+<div class="info">
+	<span class="name"><%= link_to user_small.name, user_small %></span>
+	<p><%= user_small.address %></p>
+	<ul class="points">
+		<li><%= user_small.points %> points</li>
+		<li>5 badges</li>
+	</ul>
+</div>
+</li>
