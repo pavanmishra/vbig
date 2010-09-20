@@ -9,7 +9,7 @@ module ApplicationHelper
     status = opts[:status]
     xfbml = opts[:xfbml]
     js = <<-JAVASCRIPT
-      <div id="fb-root"></div>
+
       <script>
         window.fbAsyncInit = function() {
           FB.init({
