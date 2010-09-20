@@ -71,6 +71,11 @@
 <% if logged_in? and current_user.is_admin? and !@event.featured? %>| <%= link_to 'Feature', feature_event_path(@event), :method => :post %>	<% end %>	
     </div>
 </div><!-- /.module #requests -->
+<h3>Comments </h3>
+<div id="comments_container">
+   <%= render_threaded_comments(@event.comments) -%>
+   <%= render_comment_form(@new_comment) -%>
+ </div>
 <div class='module'> 
     <div class='head'> 
         <h3>Participants</h3> 

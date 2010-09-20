@@ -5,6 +5,7 @@ class Organization < ActiveRecord::Base
   has_many  :users, :through => :organization_users
 
   acts_as_taggable_on :causes, :skills
+  has_threaded_comments
   
   # paperclip image attachment
   has_attached_file :image, :styles => {

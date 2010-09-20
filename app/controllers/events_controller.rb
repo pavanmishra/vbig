@@ -39,7 +39,8 @@ class EventsController < ApplicationController
       cookies.delete(:invite_event)
       cookies.delete(:invite_code)
     end
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:id], :include => {:comments => []})
+    @new_comment = @event.comments.new(:name => current_user.name, :email => current_user.email)
     @title = @event.title
     respond_to do |format|
       format.html # show.html.erb

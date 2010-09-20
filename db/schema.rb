@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100913090353) do
+ActiveRecord::Schema.define(:version => 20100920044303) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -140,6 +140,20 @@ ActiveRecord::Schema.define(:version => 20100913090353) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "threaded_comments", :force => true do |t|
+    t.string   "name",                              :default => ""
+    t.text     "body"
+    t.integer  "rating",                            :default => 0
+    t.integer  "flags",                             :default => 0
+    t.integer  "parent_id",                         :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email",                             :default => ""
+    t.boolean  "notifications",                     :default => true
+    t.integer  "threaded_comment_polymorphic_id"
+    t.string   "threaded_comment_polymorphic_type"
   end
 
   create_table "users", :force => true do |t|

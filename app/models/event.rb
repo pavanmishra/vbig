@@ -7,6 +7,7 @@ class Event < ActiveRecord::Base
   
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills
+  has_threaded_comments
   
   validates_presence_of :title, :description, :address
   validate  :must_be_either_ongoing_or_dated
