@@ -24,7 +24,14 @@
 			<li><a href="#">Blog</a></li>
 			<li><a href="#">FAQ</a></li>
 			<li><a href="#">Contact Us</a></li>
-			<li><a href="#">Logout</a></li>
+			<li>
+			<% if logged_in? %>	
+			 <%= link_to 'Logout', logout_path %>
+			<% else %>
+			 <%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
+			        <ul id='account-links'>
+			<% end %>
+			</li>
 		</ul>
 	</div>
 	<div class="wrapper">
