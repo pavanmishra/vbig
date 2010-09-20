@@ -1,26 +1,16 @@
+<div class="t">&nbsp;</div>
+<div class="c">
+	<div class="title">
+		<h2><%= @title %></h2>
+		<%= link_to 'featured', featured_events_path, :class => "view" %> 
+		<%= link_to 'suggested', suggested_events_path, :class => "view" %> 				
+		<%= link_to 'view all', events_path, :class => "view" %>
+	</div><!--title-->
+	<%= render :partial => 'event', :collection => @events %>
+</div>
+<div class="b">&nbsp;</div>
 
-<h1><%= @title %></h1>
-<div id='content'>
-<div id='left'> 
+<% content_for :sidebar do %>
 
-<div class='module'> 
-    <div class='head'> 
-        <h3></h3> 
-		<h3><%= link_to 'Create New Event', new_event_path %></h3>
-    </div> 
-    <div class='body'>
-
-<% @events.each do |event| %>
-	<div>
-    <h2><%=link_to event.title, event %></h2>
-	<p> <%= h event.organization %> </p>
-    <p><%=h event.description %></p>
-    <p><%=h event.address %></p>
-	</div>
+	<%= render :partial => 'filter_by_tags' %>
 <% end %>
-
-<br />
-
-
-    </div>
-</div><!-- /.module #requests -->

@@ -1,76 +1,89 @@
-
-<h1><%= @title %></h1>
-<div id='content'>
-<div id='left'> 
-
-
-<div class='module'> 
-    <div class='head'> 
-        <h3></h3> 
-    </div> 
-    <div class='body'>
-<p>
-  <b>Title:</b>
-  <%=h @event.title %>
-</p>
-<% if @event.ongoing? %>
-	<b> Type: </b>
-	<p> Ongoing</p>
-<% else %>
-	<b> Start Date: </b>
-	<p> <%= @event.from_date %></p>
-	<b> End Date: </b>
-	<p> <%= @event.to %></p>
-<% end %>
-<p>
-	<b> Organization: </b>
-	<%= link_to @event.organization, @event.organization %>
-</p>
-<p>
-  <b>Description:</b>
-  <%=h @event.description %>
-</p>
-
-<p>
-  <b>Address:</b>
-  <%=h @event.address %>
-</p>
-<p>
-  <b>Causes:</b>
-  <%=h @event.causes %>
-</p>
-<p>
-  <b>Skills:</b>
-  <%=h @event.skills %>
-</p>
-
-<div id="map" style="width:100%;height:300px">
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2>participation</h2>
+			<a href="#" class="view">view all</a>
+		</div><!--title-->
+		<div class="post">
+			<div class="visual"><img src="images/img01.jpg" alt="" /></div>
+			<div class="text">
+				<h3><%= @event.title %></h3>
+				<ul class="cat">
+					<li class="active"><a href="#"><%= time_ago_in_words(@event.from_date)%></a></li>
+					<li><a href="#"><%= @event.address %></a></li>
+					<li><a href="#"><%= @event.comments.count %> Comments</a></li>
+					<li><a href="#">View Details</a></li>
+				</ul><!--cat-->
+				<div class="skils">
+					<div class="row">
+						<h4>causes: </h4>
+						<span><%= @event.causes.collect{|cause| cause.name.titleize}.join(', ')%></span>
+					</div>
+					<div class="row">
+						<h4>skills needed: </h4>
+						<span> <%= @event.skills.collect{|skill| skill.name.titleize}.join(', ')%></span>
+					</div>
+				</div><!--skils-->
+				<ul class="photos">
+					<li><img src="images/img02.jpg" alt="" /></li>
+					<li><img src="images/img03.jpg" alt="" /></li>
+					<li><img src="images/img04.jpg" alt="" /></li>
+					<li><img src="images/img05.jpg" alt="" /></li>
+					<li><img src="images/img27.jpg" alt="" /></li>
+				</ul><!--photos-->
+				<ul class="buttons">
+					<li><a href="#">recruit!</a></li>
+					<li><a href="#">share!</a></li>
+					<li><a href="#">participate!</a></li>
+				</ul><!--buttons-->
+				<div class="invite">
+					<div class="plus-box">+1</div>
+					<div class="text-info">
+						<p>Jordan Sent 5 Invitations to First Philly Project</p>
+						<p><a href="#">2 Friends Accepted!</a></p>
+					</div>
+					<div class="widget"><a href="#"><img src="images/btn-facebook-like.gif" alt="" /></a><span>28K</span></div>
+				</div><!--invite-->
+			</div><!--text-->
+		</div><!--post-->
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">about</h2>
+		</div><!--title-->
+		<div class="about-info"><p><%= @event.description %></p></div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">discussion</h2>
+		</div><!--title-->
+		<div id="comments_container">
+		   <%= render_threaded_comments(@event.comments) -%>
+		   <%= render_comment_form(@new_comment) -%>
+		 </div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	
+<% content_for :sidebar do %>
+	<%= render :partial => 'participant_box', :locals => {:users => @event.users.all(:limit => 9)} %>
+	<%= render :partial => 'event_box', :locals => {:events => @event.related_events}  %>
 	
-</div>
-<script type="text/javascript">
-    var latlng = new google.maps.LatLng(<%= @event.lat %>, <%= @event.lng %>);
-    var myOptions = {
-      zoom: 10,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    var map = new google.maps.Map(document.getElementById("map"), myOptions);
-    var latlng = new google.maps.LatLng(<%= @event.lat %>, <%= @event.lng %>);
-	var marker = new google.maps.Marker({
-	      position: latlng,
-	      title:"Hello World!",
-		  map: map
-	  });
-
-</script>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<% end %>
+<!--
 
 <% if logged_in? and !current_user.participating?(@event) %>| <%= link_to 'Participate', participate_event_path(@event), :method => :post %>	<% end %>	
 <% if logged_in? and current_user.is_admin? and !@event.featured? %>| <%= link_to 'Feature', feature_event_path(@event), :method => :post %>	<% end %>	
     </div>
-</div><!-- /.module #requests -->
+</div>
 <h3>Comments </h3>
 <div id="comments_container">
    <%= render_threaded_comments(@event.comments) -%>
@@ -116,4 +129,6 @@
 			<%= link_to 'Invite', invite_to_event_path(@event) %> interested people and earn points.
 		</p>
 	</div>
-</div><!-- /.module #invites -->
+</div>
+-->
+<!-- /.module #invites -->

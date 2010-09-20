@@ -18,7 +18,8 @@ ActionController::Routing::Routes.draw do |map|
   map.leader_board  '/leaders/', :controller => :users, :action => :leaders
   map.invite_to_event '/events/:id/invite', :controller => :contacts, :action => :invite_to_event
   map.suggested_organizations '/suggested/organizations', :controller => :organizations, :action => :suggested
-
+  map.featured_events 'featured/events', :controller => :events, :action => :featured
+  map.suggested_events 'suggested/events', :controller => :events, :action => :suggested
   map.resource :session
 
   map.resources :pages

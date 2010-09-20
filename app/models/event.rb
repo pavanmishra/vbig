@@ -25,8 +25,12 @@ class Event < ActiveRecord::Base
   end
   
   def related_events
-    tagged_events_scope = Event.tagged_with(self.causes + self.skills)
-    tagged_events_scope.blank? ? [] : tagged_events_scope.find(:all, :conditions => "events.id != #{self.id}", :origin => self.address, :within => 10)
+    begin
+      tagged_events_scope = Event.tagged_with(self.causes + self.skills)
+      tagged_events_scope.blank? ? [] : tagged_events_scope.find(:all, :conditions => "events.id != #{self.id}", :origin => self.address, :within => 10)
+    rescue Geokit::Geocoders::GeocodeError
+      []
+    end
   end
   
   def get_or_create_invite_links_for(user)

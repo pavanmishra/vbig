@@ -1,0 +1,18 @@
+<div class="box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h3>related events</h3>
+		</div>
+		<% if events.empty? %>
+		<p>
+			Events are matched using skills, causes and addresses. If you think you can add some more information. Go <a href='#' >here</a> and edit.
+		</p>
+		<% else %>
+			<ul class="users">
+				<%= render :partial => 'event_card', :collection => events %>
+			</ul>	
+		<% end %>
+	</div>
+	<div class="b">&nbsp;</div>
+</div><!--box-->

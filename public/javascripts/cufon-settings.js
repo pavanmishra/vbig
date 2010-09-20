@@ -6,7 +6,7 @@ function initCufon() {
 	Cufon.replace('.main-block .buttons-box .more', { fontFamily: 'YUFuturaB', hover: true });
 	Cufon.replace('#content h2', { fontFamily: 'YUFuturaB' });
 	Cufon.replace('#content .title .view', { fontFamily: 'YUFuturaB', hover: true });
-	Cufon.replace('#content .post .text h3', { fontFamily: 'YUFuturaB' });
+	Cufon.replace('#content .post .text h3 a', { fontFamily: 'YUFuturaB' });
 	Cufon.replace('#content .post .skils .row h4', { fontFamily: 'YUFuturaB' });
 	Cufon.replace('#content .post .buttons li a', { fontFamily: 'YUFuturaB', hover: true });
 	Cufon.replace('#content .post .invite .plus-box', { fontFamily: 'YUFuturaB' });
