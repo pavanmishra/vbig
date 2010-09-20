@@ -42,6 +42,12 @@ function initCufon() {
 	Cufon.replace('.quick-block .btn-holder li a', { fontFamily: 'YUFuturaB', hover: true  })
 }
 
+Event.observe(window, 'load', function() { 
+	initCufon();
+});
+
+/*
 $(document).ready(function(){
 	initCufon();
 });
+*/

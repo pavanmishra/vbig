@@ -1,0 +1,9 @@
+<%= h @comment.name %> created the following comment:
+
+Name: <%= h @comment.name %>
+Email: <%= h @comment.email %>
+
+<%= h @comment.body %>
+
+See the comment in it's original context:
+<%= __send__(@comment.owner_item.class.table_name.singularize + "_url", @comment.owner_item, :host => THREADED_COMMENTS_CONFIG[:notifications][:site_domain]) + "#threaded_comment_#{@comment.id}" %>

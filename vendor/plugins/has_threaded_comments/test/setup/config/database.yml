@@ -1,0 +1,21 @@
+sqlite:
+  :adapter: sqlite
+  :database: vendor/plugins/has_threaded_comments/test/has_threaded_comments_plugin.sqlite.db
+
+sqlite3:
+  :adapter: sqlite3
+  :database: vendor/plugins/has_threaded_comments/test/has_threaded_comments_plugin.sqlite3.db
+
+postgresql:
+  :adapter: postgresql
+  :username: postgres
+  :password: postgres
+  :database: has_threaded_comments_plugin_test
+  :min_messages: ERROR
+
+mysql:
+  :adapter: mysql
+  :host: localhost
+  :username: root
+  :password: password
+  :database: has_threaded_comments_plugin_test
