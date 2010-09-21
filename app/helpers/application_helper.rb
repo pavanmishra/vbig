@@ -31,9 +31,7 @@ module ApplicationHelper
   end
   
   def fboauth_login_and_redirect(url, options = {})
-    js = update_page do |page|
-      page.redirect_to url
-   end
+    js = "window.location.href='#{url}';"
 
    text = options.delete(:text)
    
