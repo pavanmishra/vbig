@@ -1,4 +1,4 @@
-
+<!doctype html> 
 <html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:fb="http://www.facebook.com/2008/fbml"> 
     <head>
@@ -12,6 +12,8 @@
 		<%= javascript_include_tag 'cufon.js' %>		
 		<%= javascript_include_tag 'cufon-fonts.js' %>		
 		<%= javascript_include_tag 'cufon-settings.js' %>		
+		<!--[if lt IE 7]><script src="javascripts/png-fix.js" type="text/javascript"></script>
+			<link rel="stylesheet" type="text/css" href="stylesheets/lt7.css" media="screen"/><![endif]-->
 		<%= fboauth_connect_async_js('131541183544567') %>
 			
 	</head>
