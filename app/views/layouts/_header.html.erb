@@ -16,7 +16,7 @@
 			
 	</head>
 <body id='project' class='two_columns'>
-<div id="fb-root"></div> 
+<div id="fb-root"></div>
 	<div class="top-nav">
 		<ul>
 			<li><a href="#">About Us</a></li>
@@ -27,7 +27,7 @@
 			<% if logged_in? %>	
 			 <%= link_to 'Logout', logout_path %>
 			<% else %>
-			 <%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:perms => 'email'} -%>
+			 <%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
 			<% end %>
 			</li>
 		</ul>
