@@ -2,7 +2,7 @@
 	<div class="t">&nbsp;</div>
 	<div class="c">
 		<div class="title">
-			<h3>related events</h3>
+			<h3><%= defined?(section_title) ? section_title : 'related events' %> </h3>
 		</div>
 		<% if events.empty? %>
 		<p>
@@ -10,7 +10,7 @@
 		</p>
 		<% else %>
 			<ul class="users">
-				<%= render :partial => 'event_card', :collection => events %>
+				<%= render :partial => 'events/event_card', :collection => events %>
 			</ul>	
 		<% end %>
 	</div>

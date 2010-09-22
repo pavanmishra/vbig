@@ -20,10 +20,10 @@
 <%= fboauth_connect_async_js('131541183544567') %>
 	<div class="top-nav">
 		<ul>
-			<li><a href="#">About Us</a></li>
-			<li><a href="#">Blog</a></li>
-			<li><a href="#">FAQ</a></li>
-			<li><a href="#">Contact Us</a></li>
+			<li><a href="/about">About Us</a></li>
+			<li><a href="http://blog.volunteerbig.com/">Blog</a></li>
+			<li><a href="/faq">FAQ</a></li>
+			<li><a href="/contact-us">Contact Us</a></li>
 			<li>
 			<% if logged_in? %>	
 			 <%= link_to 'Logout', logout_path %>
@@ -35,65 +35,14 @@
 	</div>
 	<div class="wrapper">
 		<div id="header">
-			<h1 class="logo"><a href="#">Volunteer BIG</a></h1>
+			<h1 class="logo"><%= link_to 'Volunteer BIG', root_path %></h1>
 			<div class="nav-holder">
 				<ul id="nav">
 					<li class="active"><%= link_to 'home', root_path %></li>
 					<li><%= link_to 'take action', events_path %></li>
-					<li><a href="#">meet volunteers</a></li>
-					<li><a href="#">non-profits</a></li>
+					<li><%= link_to 'meet volunteers', users_path %></li>
+					<li><%= link_to 'non-profits', organizations_path %></li>
 				</ul>
 			</div>
 		</div><!--header-->
 		<div id="main">
-<!--
-        <div id='outermost'> 
- 
-            <div id='penoutermost'> 
- 
-<div id='nav'> 
-	<div>
-		<ul id="bar-links">
-			<li><a href='/about'>About Us</a></li>
-	        <li><a href='http://blog.volunteerbig.com'>Blog</a></li>        
-			<li><a href='/faqs'>FAQs</a></li>
-			<li><a href='/contact_us'>Contact Us</a></li>
-			<li>
-			<% if logged_in? %>
-			
-			<%= link_to "( #{current_user.name} &nbsp;&nbsp;&nbsp;/", current_user %><%= link_to 'Logout )', logout_path %>
-
-			<% end %>
-			
-		</ul>
-	</div>
-    <div class="inner"> 
-        <h2><a href='/'><img src='/images/logo_colour.jpg' width='150'alt='VBig' /></a></h2>
-
-        <ul id='topnavlinks'> 
-            <li><a href='/events/'>volunteer opportunities</a></li> 
-            <li><a href='/organizations/'> projects</a></li> 
-            <li><a href='/users/'> people</a></li> 
-            
-        </ul> 
-
-			<%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
-        <ul id='account-links'> 
-        	<li><%= link_to 'Home', root_path %></li>
-			<li><%= link_to 'Take Action', events_path %></li>
-			<li><%= link_to 'Meet Volunteers', users_path %></li>
-        	<li><%= link_to 'Non-Profits', organizations_path %></li>
-	    </ul> 
-    </div><!-- /.inner --> 
-
-<!--</div><!-- /#nav --> 
-<!--
-<div id='page-top'> 
-		<% if flash[:notice] %>
-		<div id='greeting'> 
-				<div id='about-openhatch'> 
-				  <%= flash[:notice] -%>
-				</div> 
-		</div>
-		<% end %>
--->

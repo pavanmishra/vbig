@@ -1,4 +1,11 @@
 <%= render :partial => 'layouts/header' -%>
-<%= yield %>
-<%= render :partial => 'layouts/sidebar' -%>
+
+<div id="two-columns">
+	<div id="content">
+	<%= yield %>
+	</div>
+	<div id="sidebar">
+		<%= yield(:sidebar) %>
+	</div>	
+</div>	
 <%= render :partial => 'layouts/footer' -%>

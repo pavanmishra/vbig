@@ -1,65 +1,81 @@
-
-<h1><%= @title %></h1>
-<div id='content'>
-<div id='left'> 
-
-<div class='module'> 
-    <div class='head'> 
-        <h3>About</h3> 
-    </div> 
-    <div class='body'>
-		<p>
-  			<%=h @organization.description %>
-		</p>
-
-
-		<%= link_to 'Edit', edit_organization_path(@organization) %> |
-		<%= link_to 'Back', organizations_path %> 
-		<% if logged_in? and !current_user.helping?(@organization) %>| <%= link_to 'Help', help_organization_path(@organization), :method => :post %>	<% end %>	
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">non profit</h2>
+		</div><!--title-->
+		<div class="cart-info">
+			<div class="holder">
+				<div class="visual"><img src="/images/img32.jpg" alt="" /></div>
+				<div class="cart-text">
+					<h3><%= @organization.name %></h3>
+					<div class="dc"><%= @organization.address %></div>
+					<ul class="social">
+						<li class="facebook"><a href="#">www.facebook.com/kofman.foundation</a></li>
+						<li class="twitter"><a href="#">@ koufmanfoundation</a></li>
+					</ul>
+					<div class="row"><strong class="even"><%= @organization.events.count %> events</strong><a href="#" class="suggest-btn">suggest a skill</a></div>
+				</div>
+			</div>
+			<ul class="effected">
+				<li><strong>causes effected:</strong> <%= @organization.causes.collect{|cause_tag| cause_tag.name.titleize}.join(', ') %></li>
+				<li><strong>skills sought:</strong>   <%= @organization.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
+			</ul>
+		</div>
 	</div>
-</div>
-<div class="module">
-	<div class="head">
-		<h3> Events </h3>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">about</h2>
+		</div><!--title-->
+		<div class="about-info"><p><%= @organization.description %></p></div>
+		<div class="promo-buttons">
+			<a href="#" class="btn">recruit!</a>
+			<a href="#" class="facebook-like"><img src="images/btn-facebook-like.gif" alt="" /></a>
+			<span><a href="#">Jason Wisdom</a>, <a href="#">Alessandra Nicole</a>, and 32 other like this.</span>
+		</div>
 	</div>
-	
-	<div class="body">
-		<%= link_to 'New', new_organization_event_path(@organization)%>
-		<ul>
-			<%= render :partial => 'events/summary', :collection => @organization.events %>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2>opportunities</h2>
+			<a href="#" class="view orang-link">view all</a>
+		</div><!--title-->
+		<%= render :partial => 'events/event', :collection => @organization.events %>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->
+
+<% content_for :sidebar do %>
+<div class="box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h3>big volunteers</h3>
+		</div>
+		<ul class="badges">
+			<%= render :partial => 'users/user_shot', :collection => @organization.users %>
 		</ul>
 	</div>
-</div>
-<div class="module">
-	<div class="head">
-		<h3>Recent Events </h3>
-	</div>
-	
-	<div class="body">
-		<ul>
-			<%= render :partial => 'events/summary', :collection => @recent_events %>
-		</ul>
-	</div>
-</div>
-<div class="module">
-	<div class="head">
-		<h3>Upcoming Events </h3>
-	</div>
-	
-	<div class="body">
-		<ul>
-			<%= render :partial => 'events/summary', :collection => @upcoming_events %>
-		</ul>
-	</div>
-</div>
-<div class="module">
-	<div class="head">
-		<h3> Volunteers Helping </h3>
-	</div>
-	
-	<div class="body">
-		<ul>
-			<%= render :partial => 'users/user_small', :collection => @organization.users %>
-		</ul>
-	</div>
-</div>
+	<div class="b">&nbsp;</div>
+	</div><!--box-->
+
+	<div class="box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<div class="title cutd">
+				<h3>past opportunities</h3>
+			</div>
+			<ul class="users activity">
+				<%= render :partial => 'events/event_card', :collection => @organization.events %>
+			</ul>
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+<% end %>

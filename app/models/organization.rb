@@ -4,6 +4,8 @@ class Organization < ActiveRecord::Base
   has_many :organization_users
   has_many  :users, :through => :organization_users
 
+  
+  acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills
   has_threaded_comments
   

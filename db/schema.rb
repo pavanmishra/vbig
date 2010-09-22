@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100920044303) do
+ActiveRecord::Schema.define(:version => 20100922112131) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20100920044303) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.integer  "user_id"
+    t.string   "address"
   end
 
   create_table "pages", :force => true do |t|

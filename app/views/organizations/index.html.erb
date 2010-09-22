@@ -1,33 +1,60 @@
-
-<h1><%= @title %></h1>
-<div id='content'>
-<div id='left'> 
-
-<div class='module'> 
-    <div class='head'> 
-        <h3></h3> 
-    </div> 
-    <div class='body'>
-		<ul>
-			<li><%= link_to 'Recent', organizations_path %></li>
-			<li><%= link_to 'Suggested', suggested_organizations_path %></li>			
-		</ul>	
-		<form>
-			<ul>
-				<li>
-					Search For<br />
-					<%= text_field_tag 'search', '' %>
-				</li>
-			</ul>
-			<br />
-			<%= submit_tag 'Search' %>
-		</form>
-		<% @organizations.each do |organization| %>
-		<div> 
-			<h2><%=link_to organization.name, organization %></h2>
-			<p> <%= organization.cause_list %></p>
+<div class="t">&nbsp;</div>
+<div class="c">
+	<div class="title">
+		<h2><%= @title %></h2>
+		<%= link_to 'recent', organizations_path, :class => "view" %> 
+		<%= link_to 'suggested', suggested_organizations_path, :class => "view" %> 				
+		<%= link_to 'view all', organizations_path, :class => "view" %>
+	</div><!--title-->
+	<div class="content-box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<%= render :partial => 'organization', :collection => @organizations %>
 		</div>
-		<% end %>
-		<%= link_to 'New organization', new_organization_path %>
+		<div class="b">&nbsp;</div>		
+	</div><!--content-box-->
+</div>
+<div class="b">&nbsp;</div>
+
+<% content_for :sidebar do %>
+<div class="box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h3>search</h3>								
+		</div>
+		<div class="search-form">
+			<form action="">
+				<fieldset>
+					<div class="row">
+						<label for="lb01">name</label><span class="text"><input type="text" id="lb01"/></span>
+					</div>
+					<div class="row">
+						<label for="lb02">location</label><span class="text"><input type="text" id="lb02"/></span>
+					</div>
+					<div class="row">
+						<label for="lb03">skills</label><span class="text"><input type="text" id="lb03"/></span>
+					</div>
+					<div class="row causes">
+						<label for="lb04">causes of interest</label><span class="text"><input type="text" id="lb04"/></span>
+					</div>
+					<div class="row">
+						<label for="lb05">points</label><span class="text"><input type="text" id="lb05"/></span>
+					</div>
+					<div class="row">
+						<label for="lb06">age</label><span class="text"><input type="text" id="lb06"/></span>
+					</div>
+					<div class="row">
+						<label for="lb07">sex</label><span class="text"><input type="text" id="lb07"/></span>
+					</div>
+					<div class="button-holder">
+						<input type="submit" value="search"/>
+					</div>
+				</fieldset>
+			</form>
+		</div><!--search-form-->
 	</div>
-</div>	
+	<div class="b">&nbsp;</div>
+</div><!--box-->
+
+<% end %>

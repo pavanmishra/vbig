@@ -1,5 +1,40 @@
-<%= render :partial => 'layouts/header' -%>
+<!doctype html> 
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://www.facebook.com/2008/fbml"> 
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Volunteer BIG</title>
+		<%= stylesheet_link_tag("all") %>
+		<%#= javascript_include_tag 'input.js' %>
+		<%#= javascript_include_tag 'jquery-1.4.2.min.js' %>	
+		<%= javascript_include_tag :defaults %>				
+		<%= javascript_include_tag 'cufon.js' %>		
+		<%= javascript_include_tag 'cufon-fonts.js' %>		
+		<%= javascript_include_tag 'cufon-settings.js' %>		
 
+			
+	</head>
+	<body id='project' class='two_columns'>
+		<div class="top-nav">
+			<ul>
+				<li><a href="/about">About Us</a></li>
+				<li><a href="http://blog.volunteerbig.com/">Blog</a></li>
+				<li><a href="/faq">FAQ</a></li>
+				<li><a href="/contact-us">Contact Us</a></li>
+				<li>
+				<% if logged_in? %>	
+				 <%= link_to 'Logout', logout_path %>
+				<% else %>
+				 <%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
+				<% end %>
+				</li>
+			</ul>
+		</div>
+		<div class="wrapper">
+			<div id="header">
+				<h1 class="logo"><%= link_to 'Volunteer BIG', root_path %></h1>
+			</div><!--header-->
+			<div id="main" class="profile-page">
+		
 <%= yield %>
-<%= render :partial => 'layouts/sidebar' -%>
 <%= render :partial => 'layouts/footer' -%>

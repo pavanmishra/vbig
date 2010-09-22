@@ -1,112 +1,71 @@
-
-<h1><%= @title %></h1>
-<div id='content'>
-<div id='left'> 
-
-<div class='module'> 
-    <div class='head'> 
-        <h3></h3> 
-    </div> 
-    <div class='body'>
-	<% if @user.pic_square %>
-	<img src="<%= @user.pic_square %>" alt="facebook profile picture"/>
-	<% end %>
-<p>
-  <b>First name:</b>
-  <%=h @user.first_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%=h @user.last_name %>
-</p>
-<p>
-  <b>VBits:</b>
-  <%=h @user.points %>
-</p>
-
-<% if @user.sex %>
-<p>
-  <b>Sex:</b>
-  <%=h @user.sex %>
-</p>
-<% end %>
-<% if @user.city %>
-<p>
-  <b>City:</b>
-  <%=h @user.city %>
-</p>
-<% end %>
-<% if @user.state %>
-<p>
-  <b>State:</b>
-  <%=h @user.state %>
-</p>
-<% end %>
-<% if @user.country %>
-<p>
-  <b>Country:</b>
-  <%=h @user.country %>
-</p>
-<% end %>
-<% if @user.zip %>
-<p>
-  <b>Zip:</b>
-  <%=h @user.zip %>
-</p>
-<% end %>
-<div id="map" style="width:100%;height:300px">
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">Volunteer</h2>
+		</div><!--title-->
+		<div class="cart-info">
+			<div class="holder">
+				<div class="visual"><img src="/images/img32.jpg" alt="" /></div>
+				<div class="cart-text">
+					<h3><%= @user.name %></h3>
+					<div class="dc"><%= @user.address %></div>
+					<ul class="social">
+						<li class="facebook"><a href="#">www.facebook.com/kofman.foundation</a></li>
+						<li class="twitter"><a href="#">@ koufmanfoundation</a></li>
+					</ul>
+					<div class="row"><strong class="even"><%= @user.badges.count %> badges</strong><a href="#" class="suggest-btn">Suggest a skill</a></div>
+				</div>
+			</div>
+			<ul class="effected">
+				<li><strong>causes effected:</strong> <%= @user.causes.collect{|cause_tag| cause_tag.name.titleize}.join(', ') %></li>
+				<li><strong>skills sought:</strong>  <%= @user.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
+			</ul>
+		</div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">about</h2>
+		</div><!--title-->
+		<div class="about-info"><%= @user.about_me %></div>
+		<div class="promo-buttons">
+			<a href="#" class="btn">recruit!</a>
+			<a href="#" class="facebook-like"><img src="/images/btn-facebook-like.gif" alt="" /></a>
+			<span><a href="#">Jason Wisdom</a>, <a href="#">Alessandra Nicole</a>, and 32 other like this.</span>
+		</div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2>Participating in opportunities</h2>
+			<a href="#" class="view orang-link">view all</a>
+		</div><!--title-->
+		<%= render :partial => 'events/event', :collection => @user.events%>
+			
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->
+<% content_for :sidebar do %>
+	<div class="box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<div class="title">
+				<h3>badges</h3>
+				<%= link_to 'view all', badges_path, :class => 'view' %>
+			</div>
+			<ul class="badges">
+				<%= render :partial => 'badges/badge_small', :collection => @user.badges.find(:all, :limit => 9) %>
+			</ul>
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+	<%= render :partial => 'events/event_box', :locals => {:events => @user.events_created, :section_title => 'Past Participation'}  %>
 	
-</div>
-<script type="text/javascript">
-    var latlng = new google.maps.LatLng(<%= @user.lat %>,<%= @user.lng %>);
-    var myOptions = {
-      zoom: 10,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    var map = new google.maps.Map(document.getElementById("map"), myOptions);
-    var latlng = new google.maps.LatLng(<%= @user.lat %>, <%= @user.lng %>);
-	var marker = new google.maps.Marker({
-	      position: latlng,
-	      title:"<%= @user.name %>",
-		  map: map
-	  });
-
-</script>
-
-<h2> Recommended Events</h2>
-<ul>
-	<% for event in @recommended_events %>
-		<li> <%= event.title %></li>
-	<% end %>
-</ul>
-<h2> Events Created</h2>
-<ul>
-	<% for event in @user.events_created %>
-		<li> <%= event.title %></li>
-	<% end %>
-</ul>	
-<h2> Associated with Non-Profits </h2>
-<ul>
-	<% for organization in @user.organizations %>
-	<li> <%= link_to organization %> </li>
-	<% end %>
-</ul>	
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-    </div>
-</div><!-- /.module #requests -->
-<div class='module'> 
-    <div class='head'> 
-        <h3>Participating in </h3> 
-    </div> 
-    <div class='body'>
-	<ul>
-	<% for event in @user.events %>
-		<li> <%= link_to event.title, event %></li>
-	<% end %>
-	</ul>
-    </div>
-</div><!-- /.module #requests -->
+<% end %>
