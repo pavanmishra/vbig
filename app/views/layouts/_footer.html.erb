@@ -1,13 +1,13 @@
 		</div><!--main-->
 		<div id="footer">
 			<div class="holder">
-				<strong class="logo1"><a href="#"><img src="images/logo1.gif" alt="" /></a></strong>
+				<strong class="logo1"><a href="#"><img src="/images/logo1.gif" alt="" /></a></strong>
 				<div class="box">
 					<ul class="nav">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Take Action</a></li>
-						<li><a href="#">Meet Volunteers</a></li>
-						<li><a href="#">Non-Profits</a></li>
+						<li><%= link_to 'Home', root_path %></li>
+						<li><%= link_to 'Take Action', events_path %></li>
+						<li><%= link_to 'Meet Volunteers', users_path %></li>
+						<li><%= link_to 'Non-Profits', organizations_path %></li>
 					</ul>
 					<p class="copy">Volunteer BIG Copyright 2010. All Rights Reserved</p>
 				</div>

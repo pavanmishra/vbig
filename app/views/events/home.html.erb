@@ -1,7 +1,7 @@
 <div class="t">&nbsp;</div>
 <div class="c">
 	<div class="title">
-		<h2>recent participation</h2>
+		<h2><%= @title %></h2>
 		<%= link_to 'view all', events_path, :class => "view" %>
 	</div><!--title-->
 	<%= render :partial => 'event', :collection => @events %>

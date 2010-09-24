@@ -33,8 +33,28 @@
 		<div class="wrapper">
 			<div id="header">
 				<h1 class="logo"><%= link_to 'Volunteer BIG', root_path %></h1>
-			</div><!--header-->
-			<div id="main" class="profile-page">
-		
-<%= yield %>
+			</div>
+			<div id="main">
+		<div id="two-columns">
+			<div id="content">
+			<%= yield %>
+			</div>
+			<div id="sidebar">
+				<div class="box">
+					<div class="t">&nbsp;</div>
+					<div class="c">
+						<div class="title cutd">
+							<h3>pages</h3>
+						</div>
+						<ul class="users" style="font-size:1.2em">
+							<li><a href="/about">About Us</a></li>
+							<li><a href="http://blog.volunteerbig.com/">Blog</a></li>
+							<li><a href="/faq">FAQ</a></li>
+							<li><a href="/contact-us">Contact Us</a></li>
+						</ul>
+					</div>
+					<div class="b">&nbsp;</div>
+				</div><!--box-->
+			</div>	
+		</div>		
 <%= render :partial => 'layouts/footer' -%>

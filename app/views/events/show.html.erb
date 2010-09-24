@@ -33,9 +33,9 @@
 					<li><img src="images/img27.jpg" alt="" /></li>
 				</ul><!--photos-->
 				<ul class="buttons">
-					<li><a href="#">recruit!</a></li>
-					<li><a href="#">share!</a></li>
-					<li><a href="#">participate!</a></li>
+					<li><%= link_to 'recruit!',  invite_to_event_path(@event) %></li>
+					<li><%= link_to 'share!',  invite_to_event_path(@event) %></li>
+					<li><%= link_to 'participate!', participate_event_path(@event) %></li>
 				</ul><!--buttons-->
 				<div class="invite">
 					<div class="plus-box">+1</div>
@@ -68,7 +68,9 @@
 		</div><!--title-->
 		<div id="comments_container">
 		   <%= render_threaded_comments(@event.comments) -%>
-		   <%= render_comment_form(@new_comment) -%>
+		<% if logged_in? %>
+		   <%= render_comment_form(@new_comment)  -%>
+		<% end %>
 		 </div>
 	</div>
 	<div class="b">&nbsp;</div>		
@@ -76,7 +78,6 @@
 <% content_for :sidebar do %>
 	<%= render :partial => 'participant_box', :locals => {:users => @event.users.all(:limit => 9)} %>
 	<%= render :partial => 'event_box', :locals => {:events => @event.related_events}  %>
-	
 <% end %>
 <!--
 
@@ -86,8 +87,6 @@
 </div>
 <h3>Comments </h3>
 <div id="comments_container">
-   <%= render_threaded_comments(@event.comments) -%>
-   <%= render_comment_form(@new_comment) -%>
  </div>
 <div class='module'> 
     <div class='head'> 

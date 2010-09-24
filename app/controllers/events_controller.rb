@@ -16,6 +16,7 @@ class EventsController < ApplicationController
 
   def home
     @events = logged_in? ? current_user.suggested_events : Event.featured.find(:all, :limit => 5, :order => 'events.from_date')
+    @title = logged_in? ? 'Suggested Participation' : 'Featured Participation'
     @badges = Badge.all(:limit => 9)
     @users = User.all(:limit => 10, :order => 'created_at desc')
     render :layout => 'home'
@@ -46,7 +47,7 @@ class EventsController < ApplicationController
       cookies.delete(:invite_code)
     end
     @event = Event.find(params[:id], :include => {:comments => []})
-    @new_comment = @event.comments.new(:name => current_user.name, :email => current_user.email)
+    @new_comment = @event.comments.new(:name => current_user.name, :email => current_user.email) if logged_in?
     @title = @event.title
     respond_to do |format|
       format.html # show.html.erb
