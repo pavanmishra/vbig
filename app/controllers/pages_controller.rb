@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   # GET /pages
   # GET /pages.xml
+  layout 'organizations'
+  
   def root
     
   end
