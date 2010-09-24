@@ -10,7 +10,7 @@
 			<div class="text">
 				<h3><%= @event.title %></h3>
 				<ul class="cat">
-					<li class="active"><a href="#"><%= time_ago_in_words(@event.from_date)%></a></li>
+					<li class="active"><a href="#"><%= 'Today' or time_ago_in_words(@event.from_date)%></a></li>
 					<li><a href="#"><%= @event.address %></a></li>
 					<li><a href="#"><%= @event.comments.count %> Comments</a></li>
 					<li><a href="#">View Details</a></li>
