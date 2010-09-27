@@ -1,0 +1,32 @@
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">pledges</h2>
+		</div><!--title-->
+		<ul>
+			<% for pledge in current_user.pledges %>
+			<li>
+			<div>
+				<span><%= time_ago_in_words(pledge.created_at) %></span>
+				<%= format_pledge(pledge) %>
+			</div>	
+			</li>
+			<% end %>
+		</ul>	
+	</div>	
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	
+<% content_for :sidebar do %>
+	<div class="box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h3>new pledge</h3>
+		</div>
+		<%= link_to 'Take New Pledge', :action => :new %>
+	</div>
+	<div class="b">&nbsp;</div>
+	</div><!--box-->
+	
+<% end %>

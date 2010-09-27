@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100922112131) do
+ActiveRecord::Schema.define(:version => 20100927134941) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(:version => 20100922112131) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "hours"
+    t.boolean  "attended"
+    t.text     "comment"
   end
 
   create_table "events", :force => true do |t|
@@ -67,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20100922112131) do
     t.datetime "to"
     t.integer  "user_id"
     t.boolean  "ongoing"
+    t.string   "status"
   end
 
   add_index "events", ["lat", "lng"], :name => "index_events_on_lat_and_lng"
@@ -122,6 +126,18 @@ ActiveRecord::Schema.define(:version => 20100922112131) do
     t.string   "name"
     t.string   "title"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pledges", :force => true do |t|
+    t.string   "type"
+    t.float    "time"
+    t.float    "money"
+    t.string   "other"
+    t.integer  "pledgeable_id"
+    t.string   "pledgeable_type"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

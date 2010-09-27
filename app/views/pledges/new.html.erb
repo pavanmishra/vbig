@@ -1,0 +1,38 @@
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">new pledge</h2>
+		</div><!--title-->
+		<div class="about-info">
+			<h3> Time </h3>
+			<% form_for @pledge do |f|%>
+			<% @pledge.info = Pledge::PledgeType[:volunteer_hour][:type] %>
+			<p> To Volunteer <%= f.text_field :time %> hours in the next year (expires) <%= f.hidden_field	:info %><%= submit_tag 'Pledge' %></p>
+			<% end %>
+			
+			<h3> Raise Money </h3>
+			<% form_for @pledge do |f|%>
+			<% @pledge.info = Pledge::PledgeType[:raise_fund][:type] %>
+			<p> To raise <%= f.text_field('money') %>$ <%= f.hidden_field	:info %><%= submit_tag 'Pledge' %></p>
+			<% end %>
+			
+			<h3> Recruit Friends </h3>
+			<% form_for @pledge do |f|%>
+			<% @pledge.info = Pledge::PledgeType[:recruit_friends][:type] %>
+			<p> To recruit <%= f.text_field('number') %> of friends <%= f.hidden_field	:info %><%= submit_tag 'Pledge' %></p>
+			<% end %>
+			
+			<h3> Any thing </h3>
+			<% form_for @pledge do |f|%>
+			<% @pledge.info = Pledge::PledgeType[:other][:type] %>
+			<p>
+			<%= f.text_area 'other'%><%= f.hidden_field	:info %> <%= submit_tag 'Pledge' %>	
+			e.g 'I want to reduce my carbon footprint.'
+			</p>
+			<% end %>
+				
+		</div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	

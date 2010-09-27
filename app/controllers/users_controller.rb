@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-  before_filter :login_required, :only => [:edit]
+  before_filter :login_required, :only => [:edit, :profile]
   # GET /users
   # GET /users.xml
   def index
@@ -25,6 +25,10 @@ class UsersController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @user }
     end
+  end
+  
+  def profile
+    @user = current_user
   end
 
   # GET /users/new

@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many  :events_created, :class_name => 'Event'
   has_many  :sent_messages, :class_name => 'Message', :foreign_key => :author_id
   has_many  :received_messages, :class_name => 'MessageCopy', :foreign_key  => :recipient_id
+  has_many  :pledges, :order => 'created_at DESC'
   has_one   :twitter_invitation
   has_one   :facebook_invitation
   

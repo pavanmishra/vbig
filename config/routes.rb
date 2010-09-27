@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
-  map.profile 'profile', :controller => :users, :action => :edit
+  map.profile 'profile', :controller => :users, :action => :profile
   map.help_organization '/help/:id', :controller => :organization_users, :action => :help
   map.participate_event '/participate/:id', :controller => :event_users, :action => :participate
   map.feature_event '/feature/event/:id', :controller => :events, :action => :feature  
@@ -20,8 +20,9 @@ ActionController::Routing::Routes.draw do |map|
   map.suggested_organizations '/suggested/organizations', :controller => :organizations, :action => :suggested
   map.featured_events 'featured/events', :controller => :events, :action => :featured
   map.suggested_events 'suggested/events', :controller => :events, :action => :suggested
+#  map.new_pledge  '/pledges/new/', :controller  =>  :pledges, :action =>  :new
   map.resource :session
-
+  map.resources  :pledges
   map.resources :pages
 
   map.resources :organizations do |organizations|
