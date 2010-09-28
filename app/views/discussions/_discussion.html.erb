@@ -1,0 +1,11 @@
+<div class="post">
+	<div>
+		<h3><%= link_to discussion.title, discussion %><span><%= discussion.organization %></span></h3>
+		<ul class="cat">
+			<li class="active"><a href="#">Today</a></li>
+			<li><a href="#"><%= discussion.address %></a></li>
+			<li><a href="#"><%= discussion.comments.count %> Comments</a></li>
+			<li><%= link_to 'View Details', discussion %></li>
+		</ul><!--cat-->
+	</div>
+</div>	 	

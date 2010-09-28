@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100927134941) do
+ActiveRecord::Schema.define(:version => 20100928141909) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -40,6 +40,19 @@ ActiveRecord::Schema.define(:version => 20100927134941) do
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
+  end
+
+  create_table "discussions", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "address"
+    t.integer  "user_id"
+    t.integer  "organization_id"
+    t.boolean  "featured"
+    t.decimal  "lat",             :precision => 10, :scale => 7
+    t.decimal  "lng",             :precision => 10, :scale => 7
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "event_users", :force => true do |t|
@@ -140,6 +153,8 @@ ActiveRecord::Schema.define(:version => 20100927134941) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "number"
+    t.string   "info"
   end
 
   create_table "taggings", :force => true do |t|

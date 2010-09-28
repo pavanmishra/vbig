@@ -26,7 +26,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session
   map.resource  :event_user
   map.resources  :pledges
-  map.resources :pages
+  map.resources   :pages
+  map.resources   :discussions
 
   map.resources :organizations do |organizations|
     organizations.resources :events

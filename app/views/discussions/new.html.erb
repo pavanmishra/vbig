@@ -1,0 +1,27 @@
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">new discussion</h2>
+		</div><!--title-->
+		<div class="about-info">
+			<% form_for @discussion do |f| %>
+			<%= f.error_messages %>
+			<p>
+			Title<br/>
+			<%= f.text_field :title %>	
+			</p>	
+			<p>
+			Description<br/>
+			<%= f.text_area :description %>	
+			</p>
+			<p>
+			Address<br/>
+			<%= f.text_field :address %>	
+			</p>	
+			<%= f.submit 'Create' %>					
+			<% end %>
+		</div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	
