@@ -1,6 +1,7 @@
 class EventUsersController < ApplicationController
   before_filter :login_required
   layout  'events'
+  # need to make this secure
   def participate
     @event = Event.find(params[:id])
     current_user.participate(@event) unless current_user.participating?(@event)
@@ -16,9 +17,9 @@ class EventUsersController < ApplicationController
     @event_user.update_attributes(params[:event_user])
     if @event_user.save
       flash[:notice] = 'Your feedback has been recieved'
-#      redirect_to 
+      redirect_to @event_user.event
     else
-      
+      render :action => :new
     end
   end
   
