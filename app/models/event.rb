@@ -21,7 +21,17 @@ class Event < ActiveRecord::Base
   }
   
   def feature!
-    self.update_attribute :featured, true
+    self.update_attribute :featured, !self.featured
+  end
+  
+  def complete!
+    self.update_attribute :status,  'completed'
+    # send out emails to participating users about the completion of the event and the can provide us the valuable feedback
+    # self.users
+  end
+  
+  def completed?
+    self.status.eql?('completed')
   end
   
   def related_events

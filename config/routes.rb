@@ -10,6 +10,8 @@ ActionController::Routing::Routes.draw do |map|
   map.help_organization '/help/:id', :controller => :organization_users, :action => :help
   map.participate_event '/participate/:id', :controller => :event_users, :action => :participate
   map.feature_event '/feature/event/:id', :controller => :events, :action => :feature  
+  map.complete_event '/complete/event/:id', :controller => :events, :action => :complete
+#  map.feedback_event '/event/:id/feedback', :controller => :event_users, :action => :new      
   map.join_by_invitation '/join/:invite_code', :controller => :contacts, :action => :join_by_invitation
   map.participate_event_by_invitation '/join/event/:invite_code', :controller => :contacts, :action => :participate_event_by_invitation
   map.signup_step_one '/signup-1/', :controller => :users, :action => :set_address_and_preferences
@@ -22,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   map.suggested_events 'suggested/events', :controller => :events, :action => :suggested
 #  map.new_pledge  '/pledges/new/', :controller  =>  :pledges, :action =>  :new
   map.resource :session
+  map.resource  :event_user
   map.resources  :pledges
   map.resources :pages
 

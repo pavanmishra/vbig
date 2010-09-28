@@ -14,6 +14,11 @@
 					<li><a href="#"><%= @event.address %></a></li>
 					<li><a href="#"><%= @event.comments.count %> Comments</a></li>
 					<li><a href="#">View Details</a></li>
+					<% if logged_in? and current_user.is_admin? %>
+					<li>
+					<%= link_to (@event.featured? ? 'Unfeature' : 'Feature'), feature_event_path(@event)%></li>
+					<li><%= link_to 'Complete', complete_event_path(@event)%></li>					
+					<% end %>					
 				</ul><!--cat-->
 				<div class="skils">
 					<div class="row">
@@ -33,9 +38,13 @@
 					<li><img src="images/img27.jpg" alt="" /></li>
 				</ul><!--photos-->
 				<ul class="buttons">
+					<% unless @event.completed? %>
 					<li><%= link_to 'recruit!',  invite_to_event_path(@event) %></li>
 					<li><%= link_to 'share!',  invite_to_event_path(@event) %></li>
 					<li><%= link_to 'participate!', participate_event_path(@event) %></li>
+					<% else %>
+					<li><%= link_to 'Give Feedback',  event_feedback_path(@event) %></li>
+					<% end %>
 				</ul><!--buttons-->
 				<div class="invite">
 					<div class="plus-box">+1</div>

@@ -59,7 +59,7 @@
 			<div class="title">
 				<h3>pledges</h3>
 				<%= link_to 'all', {:controller => :pledges, :action => :index}, :class => 'view'%>				
-				<%= link_to 'take new', '#', :class => 'view'%>
+				<%= link_to 'take new', {:controller => :pledges, :action => :new}, :class => 'view'%>
 			</div>
 			<ul class="badges">
 				<%= render :partial => 'badges/badge_small', :collection => @user.badges.find(:all, :limit => 9) %>

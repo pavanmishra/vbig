@@ -131,6 +131,16 @@ class EventsController < ApplicationController
       format.xml  {head :ok}
     end
   end
+
+  def complete
+    @event = Event.find(params[:id])
+    @event.complete!
+    flash[:notice] = 'Event sucessfully completed.'
+    respond_to do |format|
+      format.html {redirect_to(@event)}
+      format.xml  {head :ok}
+    end
+  end
   
   def match
     @event = Event.new(params[:event])
