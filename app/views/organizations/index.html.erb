@@ -6,6 +6,7 @@
 		<%= link_to 'suggested', suggested_organizations_path, :class => "view" %> 				
 		<%= link_to 'view all', organizations_path, :class => "view" %>
 	</div><!--title-->
+	<%= will_paginate(@organizations) rescue nil%>
 	<div class="content-box">
 		<div class="t">&nbsp;</div>
 		<div class="c">
@@ -13,6 +14,7 @@
 		</div>
 		<div class="b">&nbsp;</div>		
 	</div><!--content-box-->
+	<%= will_paginate(@organizations) rescue nil %>	
 </div>
 <div class="b">&nbsp;</div>
 

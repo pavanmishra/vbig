@@ -4,7 +4,7 @@ class OrganizationsController < ApplicationController
   before_filter :login_required, :only => [:suggested]
   
   def index
-    @organizations = params[:search].blank? ? Organization.all(:order => 'created_at DESC') : Organization.all(:conditions => "name like '%#{params[:search]}%'")
+    @organizations = params[:search].blank? ? Organization.paginate(:order => 'created_at DESC', :page => params[:page]) : Organization.paginate(:conditions => "name like '%#{params[:search]}%'", :page => params[:page])
     @title = "Recent NGO's"
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class OrganizationsController < ApplicationController
   end
 
   def suggested
-    @organizations = current_user.suggested_organizations
+    @organizations = current_user.suggested_organizations(params[:page])
     @title = 'Organizations Suggested to You'
     render :template => 'organizations/index'
   end

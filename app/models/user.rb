@@ -131,9 +131,9 @@ class User < ActiveRecord::Base
      not (self.address.empty? or self.city.empty? or self.state.empty? or self.zip.empty?)
   end
   
-  def suggested_organizations
+  def suggested_organizations(page_number)
     tagged_organization_scope = Organization.tagged_with(self.causes + self.skills)
-    tagged_organization_scope.blank? ? [] : tagged_organization_scope
+    tagged_organization_scope.blank? ? [] : tagged_organization_scope.paginate(:page => page_number)
   end
   
   protected
