@@ -2,16 +2,17 @@
 <div class="c">
 	<div class="title">
 		<h2 class="blue-title"><%= @title %></h2>
-		<%= link_to 'leader board', '#', :class => "view" %> 
-		<%= link_to 'active', '#', :class => "view" %> 				
-		<%= link_to 'view all', '#', :class => "view" %>
+		<%= link_to 'leader board', {:action => :leaders}, :class => "view" %> 
+		<%= link_to 'view all', {:action => :index}, :class => "view" %>
 		
 	</div><!--title-->
+		<%= will_paginate(@users)%>
 		<div class="sort-holder">
 			<ul class="results">
 				<%= render :partial => 'user', :collection => @users %>
 			</ul>
 		</div>
+		<%= will_paginate(@users)%>
 		<div class="b">&nbsp;</div>
 </div>
 

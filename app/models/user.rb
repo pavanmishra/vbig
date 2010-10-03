@@ -44,6 +44,9 @@ class User < ActiveRecord::Base
         :large =>   "400x400>"
   }
   cattr_accessor :current_user
+  cattr_reader :per_page
+  @@per_page = 10
+  
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation

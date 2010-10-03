@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def index
     params[:near] = params[:near].blank? ? 'unknown island' : params[:near]
     @users = !params[:search].blank? ? User.tagged_with(params[:search].split(','), :any => true).find(:all, :origin=> params[:near], :within => 25) : User.find(:all, :origin => params[:near], :within => 25)
-    @users = User.all if @users.blank?
+    @users = User.paginate(:page => params[:page]) if @users.blank?
     @title = 'People'
     respond_to do |format|
       format.html # index.html.erb
@@ -167,7 +167,7 @@ class UsersController < ApplicationController
   end
   
   def leaders 
-    @users = User.all :order => 'points desc'
+    @users = User.paginate :order => 'points desc', :page => params[:page]
     render :action => :index
   end
 end
