@@ -4,7 +4,7 @@ class DiscussionsController < ApplicationController
   before_filter :login_required,  :only => [:new, :create]
   
   def index
-    @recent_discussions = @popular_discussions = @discussions = Discussion.find(:all, :limit => 25)
+   @discussions = Discussion.paginate(:all, :limit => 25, :page => params[:page])
   end
   
   def new

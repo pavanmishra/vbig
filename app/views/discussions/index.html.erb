@@ -2,11 +2,12 @@
 <div class="c">
 	<div class="title">
 		<h2>Discussions</h2>
-		<%= link_to 'new', new_discussion_path , :class => 'view'%>
 		<%= link_to 'featured', '#', :class => "view" %> 
 		<%= link_to 'view all', discussions_path, :class => "view" %>
 	</div><!--title-->
+	<%= will_paginate @discussions %>
 	<%= render :partial => 'discussion', :collection => @discussions %>
+	<%= will_paginate @discussions %>	
 </div>
 <div class="b">&nbsp;</div>
 

@@ -16,6 +16,8 @@ class Organization < ActiveRecord::Base
         :medium => "300x300>",
         :large =>   "400x400>"
   }
+  cattr_reader :per_page
+  @@per_page = 10
   
   def to_s
     name 
