@@ -20,6 +20,11 @@
     	<%= f.label :description %><br />
     	<%= f.text_area :description %>
   	</p>
+  	<p>
+    	<%= f.label :address %><br />
+    	<%= f.text_field :address %>
+  	</p>
+
   <p>
     <%= f.label :skills %><br />
 	<%#= render :partial => 'common/tag_checkboxes', :locals => {:items => default_skills, :item_name => 'skills', :object_items => @event.skills.collect{|skill| skill.name}}%>
