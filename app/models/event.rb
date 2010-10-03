@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
   validate  :must_be_either_ongoing_or_dated
   
   # paperclip image attachment
-  has_attached_file :image, :path => ':rails_root/public/event_images/:attachment/:id/:style/:filename', :styles => {
+  has_attached_file :image, :path => ':rails_root/public/system/images/events/:attachment/:id/:style/:filename', :styles => {
         :thumb=> "100x100#",
         :small  => "150x150>",
         :medium => "300x300>",
