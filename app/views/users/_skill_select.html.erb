@@ -1,5 +1,6 @@
 <%
 	skill_sets = [
+		[
 		['Business', 
 				['Leadership',
 				'communication',
@@ -31,8 +32,8 @@
 			'photography',
 			'editor',
 			'newsletter writing'
-			]],
-		['Food Service', [
+			]]],
+		[['Food Service', [
 			'Food Service',
 			'Meal preperation',
 			'Food Sorting',
@@ -60,24 +61,26 @@
 			'filing',
 			'mailing'
 			]],				
-		]
+		]]
 %>
-<h3> Select Skills to Share </h3>
-<p> The more we know about how you would like to help, the better we can match opportunities to suit you</p>
-<table>
-	<tr>
-		<% for skill_set in skill_sets %>
-		<th style="border:1px solid #666;margin:0;border-left:0;border-bottom:0;font-size:0.8em"> <%= skill_set.first %></th>
-		<% end %>
-	</tr>
-	
-	<tr>
-		<% for skill_set in skill_sets %>
-		<td valign="top" style="border:1px solid #666;margin:0;border-left:0;font-size:0.9em"> 
+<% for row in skill_sets %>
+<div class="blocks-holder wheding">
+	<div class="holder">
+		<div class="holder-t">
+			<div class="holder-b">
+
+<% for skill_set in row %>
+<div class="box">
+	<div class="heading"><strong><%= skill_set.first.capitalize %></strong></div>
+	<ul class="list">
 		<% for item in skill_set.last %>
-			<%= check_box_tag 'skills[]', item, checked.include?(item) %> <%= item %><br />
+			<li><a href="#"><%= check_box_tag 'skills[]', item, checked.include?(item) %> <%= item %></a></li>
 		<% end %>
-		</td>
-		<% end %>
-	</tr>
-</table>
+	</ul>
+</div><!-- /box end -->
+<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<% end %>

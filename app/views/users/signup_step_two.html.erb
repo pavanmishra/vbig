@@ -1,28 +1,76 @@
-
-<h1>Sign Up</h1>
-<div id='content'>
-<div id='left'> 
-
-<div class='module'> 
-    <div class='head'> 
-        <h3>Step 2/2</h3> 
-    </div> 
-    <div class='body'>
-
-<% form_for :user, :url => {:controller => :users, :action => :update_tags} do |f| %>
-	<%= render :partial => 'skill_select', :locals => {:checked => []} %>
-	<%= render :partial => 'cause_select', :locals => {:checked => []}%>
+<div class="steps-area">
+	<div class="steps-block">
+		<div class="holder">
+			<ul>
+				<li >
+					<div class="box">
+						<strong>STEP1</strong>
+						<span>FACEBOOK INTEGRATION</span>
+					</div>
+				</li>
+				<li class="active">
+					<div class="box">
+						<strong>STEP2</strong>
+						<span>PROFILE CREATION</span>
+					</div>
+				</li>
+				<li>
+					<div class="box">
+						<strong>STEP3</strong>
+						<span>TUTORIAL</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div><!-- /steps-block end -->
+	<div class="select-block">
+		<h3>SELECT CAUSES OF INTEREST</h3>
+		<p>We'll help you find opportunities that match your interests and design challenges and awards just for you</p>
+		<% form_for :user, :url => {:controller => :users, :action => :update_tags} do |f| %>
+		<div class="blocks-holder">
+			<div class="holder">
+				<div class="holder-t">
+					<div class="holder-b">
+							<%= render :partial => 'cause_select', :locals => {:checked => []}%>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- /select-block end -->
 	
-	<h3> Other </h3>
-	<p> Please list hobbies, instruments you play and any other specialized skill that doesn't quite fall into an above category</p>
-	<%= f.text_area :other_list %>
+	<div class="select-block">
+		<h3 class="marked">SELECT SKILLS TO SHARE</h3>
+		<p class="cb">The more we know about how you'd like to help, the better we can match opportunties to suit you.</p>
+		
+		<%= render :partial => 'skill_select', :locals => {:checked => []} %>						
+	</div><!-- /select-block end -->
+
+	<div class="form-notice">
+			<fieldset>
+				<h3>OTHER</h3>
+				<p>Please list hobbies, instruments you play and any other specialized skill that doesn't quite fall into an above category.</p>
+				<div class="row">
+					<div class="textarea">
+							<%= f.text_area :other_list, :cols => 30, :rows => 10 %>
+					</div>
+				</div>
+				<div class="row">
+					<label for="lb01">ABOUT ME</label>
+					<div class="textarea">
+						<%= f.text_area :about_me, :cols => 30, :rows => 10 %>
+					</div>
+				</div>
+				<div class="row">
+					<label for="lb02">I AM FIGHTING FOR</label>
+					<div class="textarea">
+						<%= f.text_area :fighting_for, :cols => 30, :rows => 10 %>	
+					</div>
+				</div>
+				<div class="row">
+				<input type="submit" value="Update">
+				</div>
+			</fieldset>
+	</div><!-- /form-notice end -->
+	<% end %>
 	
-	<h4> About Me</h4>
-	<%= f.text_area :about_me %>
-	
-	<h4>I am fighting for</h4>
-	<%= f.text_area :fighting_for %>	
-	<input type="submit" value="Update">
-<% end %>
-	</div>
-</div>
+</div><!-- /steps-area end -->

@@ -91,7 +91,7 @@ class UsersController < ApplicationController
       redirect_to(signup_step_two_path)
     else 
       flash[:notice] = 'Its important that you complete this step, by providing your complete address'
-      render(:action => :set_address_and_preferences)
+      render(:action => :set_address_and_preferences, :layout => 'signup')
     end
   end
   
@@ -157,10 +157,13 @@ class UsersController < ApplicationController
   end
   
   def signup_step_two
+    @user = current_user
+    render :layout => 'signup'
   end
   
   def set_address_and_preferences
     @user = current_user
+    render :layout => 'signup'
   end
   
   def leaders 

@@ -1,33 +1,67 @@
-<p>Provide your shipping information so that we can send you prizes and register you for volunteer events. This information will only be 
-shared with our partners for matters that you have chosen to complete.</p>
-<hr />
+<div class="steps-area">
+	<div class="steps-block">
+		<div class="holder">
+			<ul>
+				<li class="active">
+					<div class="box">
+						<strong>STEP1</strong>
+						<span>FACEBOOK INTEGRATION</span>
+					</div>
+				</li>
+				<li >
+					<div class="box">
+						<strong>STEP2</strong>
+						<span>PROFILE CREATION</span>
+					</div>
+				</li>
+				<li>
+					<div class="box">
+						<strong>STEP3</strong>
+						<span>TUTORIAL</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<p>Provide your shipping information so that we can send you prizes and register you for volunteer events. This information will only be 
+		shared with our partners for matters that you have chosen to complete.</p>
 
-<% form_for @user, :url => {:controller => :users, :action => :update_address_and_preferences} do |f| %>
-	<%= f.error_messages %>
-	<%= hidden_field_tag :step_1, true %>
-	<%= hidden_field_tag :id, @user.id %>
-  <p>
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </p>
-  <p>
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </p>
-  <p>
-    <%= f.label :state %><br />
-    <%= f.text_field :state %>
-  </p>
-  <p>
-    <%= f.label :zip %><br />
-    <%= f.text_field :zip %>
-  </p>
-  
-  <hr />
+	</div><!-- /steps-block end -->
+	<div class="form-notice">
+		<% form_for @user, :url => {:controller => :users, :action => :update_address_and_preferences} do |f| %>
+			<fieldset>
+			<%= f.error_messages %>
+			<%= hidden_field_tag :step_1, true %>
+			<%= hidden_field_tag :id, @user.id %>
+		  <div class="row">
+		    <%= f.label :address, 'ADDRESS' %><br />
+		    <%= f.text_field :address, :size => 80  %>
+		  </div>
+		  <div class="row">
+		    <%= f.label :city %><br />
+		    <%= f.text_field :city, :size => 80 %>
+		  </div>
+		  <div class="row">
+		    <%= f.label :state %><br />
+		    <%= f.text_field :state, :size => 80 %>
+		  </div>
+		  <div class="row">
+		    <%= f.label :zip %><br />
+		    <%= f.text_field :zip, :size => 80 %>
+		  </div>
 
-  <%= f.check_box :send_message_notifications %> Send Message Notifications<br />	
-  <%= f.check_box :send_weekly_updates %> Send Tailored Weekly Updates<br />	
-  <%= f.check_box :send_newsletter %> Send VolunteerBig Newsletter<br />	
-
-  <%= f.submit 'Next'%>
-<% end %>
+		  <hr />
+		  <h3> Notification Settings </h3>	
+		<div class="row" >
+		  <%= f.check_box :send_message_notifications %> Send Message Notifications<br />	
+		  <%= f.check_box :send_weekly_updates %> Send Tailored Weekly Updates<br />	
+		  <%= f.check_box :send_newsletter %> Send VolunteerBig Newsletter<br />	
+		</div>
+		<div class="row">
+		  <%= f.submit 'Next'%>
+			
+		</div>	
+		</fieldset>
+		<% end %>
+	</div><!-- /form-notice end -->
+</div><!-- /steps-area end -->
+<!--

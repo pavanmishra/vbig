@@ -5,44 +5,39 @@
 		'Aging Populations',
 		'Community Involvement',
 		'Crime / Justice',
-		'Disaster Relief'],
+		'Disaster Relief',
+		'Politics',
+		'Religious Equality',
+		],
 		[
 			'Education / Literacy / Economic Literacy',
 			'Energy',
 			'Environmental Sustainability / Agriculture',
 			'Health',
 			'Homelessness',
+			'Youth Activities'
+			
 			],
 		[
 			'Human Rights',
 			'Hunger',
 			'Individual Equality / Rights',
 			'Job Creation',
-			'Poverty'
-			],
-		[
-			'Politics',
-			'Religious Equality',
+			'Poverty',
 			'Social Entrepreneurship',
 			'Sex and Slavery',
-			'Youth Activities'
 			]	
 			
 		]	
 %>
 
-<h3> Select Causes of Interest</h3>
-<p>
-	We'll help you find opportunities that match your interests and design challenges and awards just for you.
-</p>	
-<table>
-	<tr>
+
 	<% for cause_set in cause_sets %>
-		<td valign="top" style="border:1px solid #666;margin:0;border-left:0;font-size:0.9em">
+	<div class="box">
+		<ul class="list">	
 			<% for cause in cause_set %>
-			<%= check_box_tag 'causes[]', cause, checked.include?(cause) %> <%= cause %><br />
+			<li><a href="#"><%= check_box_tag 'causes[]', cause, checked.include?(cause) %> <%= cause %> </a></li>
 			<% end %>
-		</td>
+			</ul>
+		</div><!-- /box end -->
 	<% end %>
-	</tr>
-</table>

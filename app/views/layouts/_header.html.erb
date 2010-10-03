@@ -47,3 +47,17 @@
 			</div>
 		</div><!--header-->
 		<div id="main">
+			<% if flash[:notice] or flash[:error] %>
+			<div class="main-block">
+				<div class="t">&nbsp;</div>
+				<div class="c">
+					<div class="user-info">
+						<!--<div class="avatara"><a href="#"><img src="images/img40.jpg" alt="#" /></a></div> -->
+						<h2><%= flash[:notice] or flash[:error] %></h2>
+						<!--<p>The Newbie Badge will be your first badge. Get it and you  unlock the ability to acquire all other badges.</p>-->
+					</div>
+				</div>
+				<div class="b">&nbsp;</div>
+			</div><!--main-block-->
+			<% end %>
+			
