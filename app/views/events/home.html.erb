@@ -4,7 +4,9 @@
 		<h2><%= @title %></h2>
 		<%= link_to 'view all', events_path, :class => "view" %>
 	</div><!--title-->
+	<%= will_paginate(@events)%>	
 	<%= render :partial => 'event', :collection => @events %>
+	<%= will_paginate(@events)%>
 </div>
 <div class="b">&nbsp;</div>					
 <% content_for :sidebar do %>

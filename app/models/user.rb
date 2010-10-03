@@ -120,8 +120,8 @@ class User < ActiveRecord::Base
     return user
   end
 
-  def suggested_events
-    Event.all(:origin=> self.address, :within => 25)
+  def suggested_events(page_number)
+    Event.paginate(:origin=> self.address, :within => 25, :page => page_number)
   end
   
   def proper_address?

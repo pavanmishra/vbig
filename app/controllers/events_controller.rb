@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     @title = 'Recent Participation'
     params[:near] = params[:near].blank? ? 'unknown island' : params[:near]
     #@events = !params[:search].blank? ? Event.tagged_with(params[:search].split(','), :any => true).find(:all, :origin=> params[:near], :within => 25) : Event.find(:all, :origin => params[:near], :within => 25)
-    @events = params[:search].blank? ? Event.all : Event.all(:origin=> params[:near], :within => 25, :conditions => "title like '%#{params[:search]}%'")
+    @events = params[:search].blank? ? Event.paginate(:page => params[:page]) : Event.paginate(:page => params[:page], :origin=> params[:near], :within => 25, :conditions => "title like '%#{params[:search]}%'")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class EventsController < ApplicationController
   end
 
   def home
-    @events = logged_in? ? current_user.suggested_events : Event.featured.find(:all, :limit => 5, :order => 'events.from_date')
+    @events = logged_in? ? current_user.suggested_events(params[:page]) : Event.featured.paginate(:all, :limit => 5, :order => 'events.from_date', :page => params[:page])
     @title = logged_in? ? 'Suggested Participation' : 'Featured Participation'
     @badges = Badge.all(:limit => 9)
     @users = User.all(:limit => 10, :order => 'created_at desc')
@@ -24,13 +24,13 @@ class EventsController < ApplicationController
   
   def suggested
     @title = 'suggested participation'
-    @events = current_user.suggested_events
+    @events = current_user.suggested_events(params[:page])
     render :template => 'events/index.html.erb'
   end
   
   def featured
     @title = 'Featured Participation'
-    @events = Event.featured
+    @events = Event.featured.paginate :page => params[:page]
     render  :template => 'events/index.html.erb'
   end
   
