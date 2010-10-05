@@ -448,7 +448,7 @@ a:hover{text-decoration:underline;}
 }
 #content .post .buttons{
 	width:440px;
-	border-bottom:1px solid #ddd;
+/*	border-bottom:1px solid #ddd; */
 	padding:5px 0 9px;	
 	height:36px;
 	overflow:hidden;
@@ -459,7 +459,7 @@ a:hover{text-decoration:underline;}
 	height:36px;
 	overflow:hidden;
 }
-#content .post .buttons li a{
+#content .post .buttons li a, #sidebar .buttons li a{
 	display:block;
 	text-align:center;
 	background:url(../images/bg-buttons.gif) no-repeat -143px 0;

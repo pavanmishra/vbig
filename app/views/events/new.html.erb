@@ -1,79 +1,91 @@
+<div class="t">&nbsp;</div>
+<div class="c">
+	<div class="title">
+		<h2>New Event</h2>
+	</div><!--title-->
+	<% form_for(@event, :url => {:action => :match}, :html => {:multipart => true}) do |f| %>
+	  <%= f.error_messages %>
 
-<h1><%= @title %></h1>
-<div id='content'>
-<div id='left'> 
+		<% @event.organization_id = params[:organization_id] %>
 
-<div class='module'> 
-    <div class='head'> 
-        <h3></h3> 
-    </div> 
-    <div class='body'>
-<% form_for(@event, :url => {:action => :match}, :html => {:multipart => true}) do |f| %>
-  <%= f.error_messages %>
+	  <p>
+	    <%= f.label :title %><br />
+	    <%= f.text_field :title %>
+	  </p>
+	  <p>
+		<%= f.label :oranization %> <br />
+		<%= f.select :organization_id, Organization.all.collect{|organization| [organization.name, organization.id]}, {:include_blank => 'None'}%>
+	  </p>
 
-	<% @event.organization_id = params[:organization_id] %>
+	  <p>
+		<%= f.label :ongoing, 'Ongoing' %><br />
+		<%= f.check_box :ongoing %>
+	  </p>
+	  <p>
+		<%= f.label :from_date, 'From' %><br />
+		<%= f.text_field :from_date %>
+	  </p>
+	  <p>
+		<%= f.label :to %><br />
+		<%= f.text_field :to %>
+	  </p>
+	  <script>
+		var from_picker = new Control.DatePicker('event_from', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
+		var to_picker = new Control.DatePicker('event_to', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
+	  </script>
 
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-	<%= f.label :oranization %> <br />
-	<%= f.select :organization_id, Organization.all.collect{|organization| [organization.name, organization.id]}, {:include_blank => 'None'}%>
-  </p>
+	  <p>
+	    <%= f.label :description %><br />
+	    <%= f.text_area :description, :rows => 10, :cols => 30 %>
+	  </p>
+	  <p>
+		<%= f.label :image, "Photo" %>
+		<%= f.file_field :image %>
+	  </p>
+	  <p>
+	    <%= f.label :skills %><br />
+		<%#= render :partial => 'common/tag_checkboxes', :locals => {:items => default_skills, :item_name => 'skills', :object_items => @event.skills.collect{|skill| skill.name}}%>
+		<%= render :partial => 'users/skill_select', :locals => {:checked => @event.skills.collect{|skill| skill.name} }%>
 
-  <p>
-	<%= f.label :ongoing, 'Ongoing' %><br />
-	<%= f.check_box :ongoing %>
-  </p>
-  <p>
-	<%= f.label :from_date, 'From' %><br />
-	<%= f.text_field :from_date %>
-  </p>
-  <p>
-	<%= f.label :to %><br />
-	<%= f.text_field :to %>
-  </p>
-  <script>
-	var from_picker = new Control.DatePicker('event_from', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
-	var to_picker = new Control.DatePicker('event_to', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
-  </script>
+		Others(comma separated) <br />
+		<%= text_field_tag 'other_skills' %>
 
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-	<%= f.label :image, "Photo" %>
-	<%= f.file_field :image %>
-  </p>
-  <p>
-    <%= f.label :skills %><br />
-	<%#= render :partial => 'common/tag_checkboxes', :locals => {:items => default_skills, :item_name => 'skills', :object_items => @event.skills.collect{|skill| skill.name}}%>
-	<%= render :partial => 'users/skill_select', :locals => {:checked => @event.skills.collect{|skill| skill.name} }%>
+	  </p>
+	  <p>
+	    <%= f.label :causes %><br />
+		<%#= render :partial => 'common/tag_checkboxes', :locals => {:items => default_causes, :item_name => 'causes', :object_items => @event.causes.collect{|cause| cause.name}}%>
+		<%= render :partial => 'users/cause_select', :locals => {:checked => @event.causes.collect{|skill| skill.name} }%>
 
-	Others(comma separated) <br />
-	<%= text_field_tag 'other_skills' %>
+		Others(comma separated) <br />
+		<%= text_field_tag 'other_causes' %>
 
-  </p>
-  <p>
-    <%= f.label :causes %><br />
-	<%#= render :partial => 'common/tag_checkboxes', :locals => {:items => default_causes, :item_name => 'causes', :object_items => @event.causes.collect{|cause| cause.name}}%>
-	<%= render :partial => 'users/cause_select', :locals => {:checked => @event.causes.collect{|skill| skill.name} }%>
-
-	Others(comma separated) <br />
-	<%= text_field_tag 'other_causes' %>
+	  </p>
+	  <p>
+	    <%= f.label :address %><br />
+	    <%= f.text_field :address %>
+	  </p>
+	  <p>
+	    <%= f.submit 'Create' %>
+	  </p>
+	<% end %>
 	
-  </p>
-  <p>
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
+</div>
+<div class="b">&nbsp;</div>
 
-<%= link_to 'Back', events_path %>
-    </div>
-</div><!-- /.module #requests -->
+<% content_for :sidebar do %>
+<div class="box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title cutd">
+			<h3>New Event Tips</h3>
+		</div>
+		<ul>
+			<li>choose to select proper location</li>
+			<li>choose to select proper causes</li>			
+			<li>choose to select proper skills</li>			
+		</ul>	
+	</div>
+	<div class="b">&nbsp;</div>
+</div><!--box-->
+
+<% end %>
