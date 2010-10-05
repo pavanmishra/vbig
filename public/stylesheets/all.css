@@ -471,7 +471,7 @@ a:hover{text-decoration:underline;}
 	padding-top:12px;
 	overflow:hidden;
 }
-#content .post .buttons li a:hover{
+#content .post .buttons li a:hover, #sidebar .buttons li a:hover{
 	background:url(../images/bg-buttons.gif) no-repeat 0 0;
 	text-decoration:none;
 }
@@ -679,12 +679,12 @@ a:hover{text-decoration:underline;}
 	overflow:hidden;
 	padding-top:4px;
 }
-#sidebar .search-form .row{
+#sidebar .search-form .row, .new-form .row{
 	width:100%;
 	overflow:hidden;
 	padding-bottom:5px;
 }
-#sidebar .search-form label{
+#sidebar .search-form label, label{
 	float:left;
 	padding:10px 5px 0 0;
 	width:66px;
@@ -701,7 +701,7 @@ a:hover{text-decoration:underline;}
 	float:left;
 	margin:0!important;
 }
-#sidebar .search-form .text{
+#sidebar .search-form .text, .row .text{
 	float:left;
 	border:1px solid #bababa;
 	height:23px;
@@ -710,7 +710,7 @@ a:hover{text-decoration:underline;}
 	overflow:hidden;
 }
 #sidebar .search-form .causes .text{width:124px;}
-#sidebar .search-form .text input{
+#sidebar .search-form .text input, .row .text input{
 	font:14px/17px Arial, Helvetica, sans-serif;
 	color:#5a5a5a;
 	float:left;

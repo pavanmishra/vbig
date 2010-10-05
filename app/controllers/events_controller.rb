@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   before_filter :admin_required, :only => [:feature]
+  before_filter :login_required,  :only => [:new]
   def index
     @title = 'Recent Participation'
     params[:near] = params[:near].blank? ? 'unknown island' : params[:near]

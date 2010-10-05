@@ -3,46 +3,55 @@
 	<div class="title">
 		<h2>New Event</h2>
 	</div><!--title-->
-	<% form_for(@event, :url => {:action => :match}, :html => {:multipart => true}) do |f| %>
+	<div class="search-form">
+	<% form_for(@event, :url => {:action => :match}, :html => {:multipart => true, :class=> "new-form"}) do |f| %>
 	  <%= f.error_messages %>
 
 		<% @event.organization_id = params[:organization_id] %>
 
-	  <p>
-	    <%= f.label :title %><br />
+	  <div class="row">
+	    <%= f.label :title %>
+		<span class="text">
 	    <%= f.text_field :title %>
-	  </p>
-	  <p>
-		<%= f.label :oranization %> <br />
+		</span>
+	  </div>
+	  <div class="row">
+		<%= f.label :oranization %> 
 		<%= f.select :organization_id, Organization.all.collect{|organization| [organization.name, organization.id]}, {:include_blank => 'None'}%>
-	  </p>
-
-	  <p>
-		<%= f.label :ongoing, 'Ongoing' %><br />
+	  </div>
+	  <div class="row">
+		<%= f.label :ongoing, 'Ongoing' %>
 		<%= f.check_box :ongoing %>
-	  </p>
-	  <p>
-		<%= f.label :from_date, 'From' %><br />
-		<%= f.text_field :from_date %>
-	  </p>
-	  <p>
-		<%= f.label :to %><br />
-		<%= f.text_field :to %>
-	  </p>
+	  </div>
+	  <div class="row">
+		<%= f.label :from_date, 'From' %>
+		<span class="text"><%= f.text_field :from_date %></span>
+	  </div>
+	  <div class="row">
+		<%= f.label :to %>
+		<span class="text"><%= f.text_field :to %></span>
+	  </div>
 	  <script>
+		/*
 		var from_picker = new Control.DatePicker('event_from', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
 		var to_picker = new Control.DatePicker('event_to', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
+		*/
 	  </script>
 
-	  <p>
-	    <%= f.label :description %><br />
-	    <%= f.text_area :description, :rows => 10, :cols => 30 %>
+	  <div class="row">
+	    <%= f.label :description %>
+	    <%= f.text_area :description, :rows => 4, :cols => 25 %>
+	  </div>
+	  <div class="row">
+	    <%= f.label :address %>
+	    <span class="text"><%= f.text_field :address %></span>
 	  </p>
-	  <p>
+	
+	  <div class="row">
 		<%= f.label :image, "Photo" %>
 		<%= f.file_field :image %>
-	  </p>
-	  <p>
+	  </div>
+	  <div>
 	    <%= f.label :skills %><br />
 		<%#= render :partial => 'common/tag_checkboxes', :locals => {:items => default_skills, :item_name => 'skills', :object_items => @event.skills.collect{|skill| skill.name}}%>
 		<%= render :partial => 'users/skill_select', :locals => {:checked => @event.skills.collect{|skill| skill.name} }%>
@@ -50,8 +59,8 @@
 		Others(comma separated) <br />
 		<%= text_field_tag 'other_skills' %>
 
-	  </p>
-	  <p>
+	  </div>
+	  <div>
 	    <%= f.label :causes %><br />
 		<%#= render :partial => 'common/tag_checkboxes', :locals => {:items => default_causes, :item_name => 'causes', :object_items => @event.causes.collect{|cause| cause.name}}%>
 		<%= render :partial => 'users/cause_select', :locals => {:checked => @event.causes.collect{|skill| skill.name} }%>
@@ -59,19 +68,15 @@
 		Others(comma separated) <br />
 		<%= text_field_tag 'other_causes' %>
 
-	  </p>
-	  <p>
-	    <%= f.label :address %><br />
-	    <%= f.text_field :address %>
-	  </p>
+	  </div>
 	  <p>
 	    <%= f.submit 'Create' %>
 	  </p>
 	<% end %>
-	
+	</div>
 </div>
 <div class="b">&nbsp;</div>
-
+<br clear="all" />
 <% content_for :sidebar do %>
 <div class="box">
 	<div class="t">&nbsp;</div>
