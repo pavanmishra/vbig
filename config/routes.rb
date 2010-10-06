@@ -23,6 +23,7 @@ ActionController::Routing::Routes.draw do |map|
   map.featured_events 'featured/events', :controller => :events, :action => :featured
   map.suggested_events 'suggested/events', :controller => :events, :action => :suggested
   map.event_comments  'event/:id/comments/', :controller => :events, :action => :event_comments
+  map.event_photos  'event/:id/photos/', :controller => :events, :action => :event_photos
 #  map.new_pledge  '/pledges/new/', :controller  =>  :pledges, :action =>  :new
   map.resource :session
   map.resource  :event_user

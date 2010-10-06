@@ -20,6 +20,11 @@ class EventsController < ApplicationController
     @new_comment = @event.comments.new(:name => current_user.name, :email => current_user.email) if logged_in?
   end
   
+  def event_photos
+    @event = Event.find(params[:id])
+    @event.event_images.build
+  end
+  
   def home
     @events = logged_in? ? current_user.suggested_events(params[:page]) : Event.featured.paginate(:all, :limit => 5, :order => 'events.from_date', :page => params[:page])
     @title = logged_in? ? 'Suggested Participation' : 'Featured Participation'
@@ -101,8 +106,9 @@ class EventsController < ApplicationController
   # PUT /events/1.xml
   def update
     @event = Event.find(params[:id])
-    process_params_for_tags 'event', 'cause'
-    process_params_for_tags 'event', 'skill'
+    process_params_for_tags 'event', 'cause' rescue nil
+    process_params_for_tags 'event', 'skill' rescue nil
+
 
     respond_to do |format|
       if @event.update_attributes(params[:event])

@@ -3,8 +3,10 @@ class Event < ActiveRecord::Base
   has_many  :event_users
   has_many  :users, :through => :event_users
   belongs_to  :user
+  has_many  :event_images,  :dependent => :destroy
   named_scope :featured, :conditions => {:featured => true}
   
+  accepts_nested_attributes_for :event_images, :reject_if => lambda{|t| t['event_image'].nil?}
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills
   has_threaded_comments

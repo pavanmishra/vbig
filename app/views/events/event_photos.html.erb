@@ -1,0 +1,50 @@
+<div class="t">&nbsp;</div>
+<div class="c">
+	<div class="title">
+		<h2>Opportunity</h2>
+	</div><!--title-->
+	<%= render :partial => 'event', :locals => {:event => @event }%>
+</div>
+<div class="b">&nbsp;</div>
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">photo</h2>
+		</div><!--title-->
+		<div id="photos_container">
+		<% if logged_in? %>
+		<% form_for @event, :html => {:multipart => true} do |f|%>
+		<% f.fields_for :event_images do |builder|%>
+		<p>
+			<%= builder.label :caption %>
+			<%= builder.text_field	:caption %>
+		</p>
+		
+		<p>
+			<%= builder.label :photo %>
+			<%= builder.file_field	:photo %>
+		</p>		
+		<p>
+			<%= builder.submit %>
+		</p>	
+		<% end %>
+		<% end %>
+		<% end %>
+		 </div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	
+
+<% content_for :sidebar do %>
+	<div class="box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<ul class="buttons" >
+				<li style="padding-left:5em"><%= link_to 'create event', new_event_path %></li>
+			</ul><!--buttons-->
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+	<%= render :partial => 'filter_by_tags' %>
+<% end %>
