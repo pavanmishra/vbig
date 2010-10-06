@@ -1,5 +1,5 @@
 <div class="post">
-	<div class="visual"><%= image_tag event.image.url %></div>
+	<div class="visual"><%= image_tag event.image.url(:medium) %></div>
 	<div class="text">
 		<h3><%= link_to event.title, event %><span><%= event.organization %></span></h3>
 		<ul class="cat">

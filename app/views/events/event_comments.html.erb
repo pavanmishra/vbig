@@ -1,0 +1,37 @@
+<div class="t">&nbsp;</div>
+<div class="c">
+	<div class="title">
+		<h2>Opportunity</h2>
+	</div><!--title-->
+	<%= render :partial => 'event', :locals => {:event => @event }%>
+</div>
+<div class="b">&nbsp;</div>
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">discussion</h2>
+			<%= link_to 'All', event_comments_path(@event), :class => "view" %> 
+		</div><!--title-->
+		<div id="comments_container">
+		   <%= render_threaded_comments(@event.comments) -%>
+		<% if logged_in? %>
+		   <%= render_comment_form(@new_comment)  -%>
+		<% end %>
+		 </div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	
+
+<% content_for :sidebar do %>
+	<div class="box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<ul class="buttons" >
+				<li style="padding-left:5em"><%= link_to 'create event', new_event_path %></li>
+			</ul><!--buttons-->
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+	<%= render :partial => 'filter_by_tags' %>
+<% end %>

@@ -15,6 +15,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def event_comments
+    @event = Event.find(params[:id])
+    @new_comment = @event.comments.new(:name => current_user.name, :email => current_user.email) if logged_in?
+  end
+  
   def home
     @events = logged_in? ? current_user.suggested_events(params[:page]) : Event.featured.paginate(:all, :limit => 5, :order => 'events.from_date', :page => params[:page])
     @title = logged_in? ? 'Suggested Participation' : 'Featured Participation'

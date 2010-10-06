@@ -16,7 +16,7 @@ class Event < ActiveRecord::Base
   has_attached_file :image, :path => ':rails_root/public/system/images/events/:attachment/:id/:style/:filename', :styles => {
         :thumb=> "100x100#",
         :small  => "150x150>",
-        :medium => "300x300>",
+        :medium => "200x200>",
         :large =>   "400x400>"
   }
   cattr_reader :per_page

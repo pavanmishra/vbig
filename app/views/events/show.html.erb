@@ -70,9 +70,10 @@
 	<div class="c">
 		<div class="title">
 			<h2 class="blue">discussion</h2>
+			<%= link_to 'All', event_comments_path(@event), :class => "view" %> 
 		</div><!--title-->
 		<div id="comments_container">
-		   <%= render_threaded_comments(@event.comments) -%>
+		   <%= render_threaded_comments(@event.comments.all(:limit => 10)) -%>
 		<% if logged_in? %>
 		   <%= render_comment_form(@new_comment)  -%>
 		<% end %>
@@ -80,6 +81,28 @@
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->	
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">activities</h2>
+		</div><!--title-->
+		<div class="about-info"><p><%= @event.description %></p></div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">photos</h2>
+		</div><!--title-->
+		<div class="about-info"><p><%= @event.description %></p></div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	
+
+
 <% content_for :sidebar do %>
 	<%= render :partial => 'participant_box', :locals => {:users => @event.users.all(:limit => 9)} %>
 	<%= render :partial => 'event_box', :locals => {:events => @event.related_events}  %>
