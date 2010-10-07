@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
   belongs_to  :user
   has_many  :event_images,  :dependent => :destroy
   has_many  :activities, :as => :subject
+  has_many  :editorships, :as => :editable
   named_scope :featured, :conditions => {:featured => true}
   
   accepts_nested_attributes_for :event_images, :reject_if => lambda{|t| t['event_image'].nil?}

@@ -2,12 +2,23 @@
 	<div class="t">&nbsp;</div>
 	<div class="c">
 		<div class="title">
-			<h3>search</h3>
-			<%= link_to 'view all', badges_path, :class => 'view' %>
+			<h3>search</h3>								
 		</div>
-		<ul class="badges">
-			<%#= render :partial => 'badges/badge_small', :collection => @badges %>
-		</ul>
+		<div class="search-form">
+			<form action="/events/">
+				<fieldset>
+					<div class="row">
+						<label for="lb01">name</label><span class="text"><%= text_field_tag 'search', params[:search] %></span>
+					</div>
+					<div class="row">
+						<label for="lb02">location</label><span class="text"><%= text_field_tag 'near', params[:near] or 'U.S.A' %></span>
+					</div>
+					<div class="button-holder">
+						<input type="submit" value="search"/>
+					</div>
+				</fieldset>
+			</form>
+		</div><!--search-form-->
 	</div>
 	<div class="b">&nbsp;</div>
 </div><!--box-->
