@@ -22,7 +22,15 @@ class EventsController < ApplicationController
   
   def event_photos
     @event = Event.find(params[:id])
-    @event.event_images.build
+    @event_image = EventImage.new
+  end
+  
+  def create_event_image
+    @event = Event.find(params[:id])
+    @event_image = @event.event_images.create params[:event_image]
+    #@event_image.save
+    render :action => :event_photos
+    
   end
   
   def home
@@ -106,8 +114,8 @@ class EventsController < ApplicationController
   # PUT /events/1.xml
   def update
     @event = Event.find(params[:id])
-    process_params_for_tags 'event', 'cause' rescue nil
-    process_params_for_tags 'event', 'skill' rescue nil
+    process_params_for_tags 'event', 'cause' 
+    process_params_for_tags 'event', 'skill' 
 
 
     respond_to do |format|

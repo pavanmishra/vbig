@@ -14,8 +14,8 @@
 		</div><!--title-->
 		<div id="photos_container">
 		<% if logged_in? %>
-		<% form_for @event, :html => {:multipart => true} do |f|%>
-		<% f.fields_for :event_images do |builder|%>
+		<% form_for @event_image, :url => {:action => :create_event_image, :id => params[:id]}, :html => {:multipart => true} do |builder|%>
+
 		<p>
 			<%= builder.label :caption %>
 			<%= builder.text_field	:caption %>
@@ -30,8 +30,12 @@
 		</p>	
 		<% end %>
 		<% end %>
-		<% end %>
 		 </div>
+		<ul id="photos-list">
+			<% for event_image in @event.event_images %>
+			<li><%= image_tag event_image.photo.url(:medium)%></li>
+			<% end %>
+		</ul>	
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->	
