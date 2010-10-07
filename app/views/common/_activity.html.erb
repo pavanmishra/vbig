@@ -1,0 +1,6 @@
+<li class="activity">
+	<div><%= activity.created_at.to_s(:mmddhhss).capitalize %></div>
+	<%= link_to activity.user.name, user_path(activity.user) %>
+	<%= activity.action %><%= activity.subject_type.downcase %>
+</li>
+	

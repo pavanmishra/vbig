@@ -30,7 +30,10 @@ class EventsController < ApplicationController
     @event_image = @event.event_images.create params[:event_image]
     #@event_image.save
     render :action => :event_photos
-    
+  end
+  
+  def event_activities
+    @event = Event.find(params[:id])
   end
   
   def home
