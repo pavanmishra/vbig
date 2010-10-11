@@ -37,11 +37,16 @@ class EventsController < ApplicationController
   end
   
   def home
-    @events = logged_in? ? current_user.suggested_events(params[:page]) : Event.featured.paginate(:all, :limit => 5, :order => 'events.from_date', :page => params[:page])
-    @title = logged_in? ? 'Suggested Participation' : 'Featured Participation'
-    @badges = Badge.all(:limit => 9)
-    @users = User.all(:limit => 10, :order => 'created_at desc')
-    render :layout => 'home'
+    unless logged_in?
+      @events = Event.featured.paginate(:all, :limit => 5, :order => 'events.from_date', :page => params[:page])
+      @title = 'Featured Participation'
+      @badges = Badge.all(:limit => 9)
+      @users = User.all(:limit => 10, :order => 'created_at desc')
+      render :layout => 'home'
+    else
+      @user = current_user
+      render :template => 'users/home'
+    end
   end
   
   def suggested

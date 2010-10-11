@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_many  :pledges, :order => 'created_at DESC'
   has_one   :twitter_invitation
   has_one   :facebook_invitation
+  has_many  :editorships
+  has_many  :editables, :through => :editorships
   
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills, :others

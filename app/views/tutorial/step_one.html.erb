@@ -1,5 +1,42 @@
-<h2> What to do? </h2>
-<p>
-The stylized content.	
-</p>	
-<%= link_to 'Next', {:controller => :tutorial, :action => :step_two}, :class => 'lbAction', :rel => 'insert' %>
+<div class="main-block">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="quick-block">
+			<div class="column">
+				<h3>QUICK START GUIDE</h3>
+				<ul>
+					<li class="active"><a href="#">1. WHAT TO DO?</a></li>
+					<li><a href="#">2. HOW DO I WIN?</a></li>
+				</ul>
+			</div><!-- /column end -->
+			<div class="content-cell">
+				<div class="holder">
+					<ul>
+						<li>
+							<strong class="ttl">1. MEET LIKEMINDED FOLKS</strong>
+							<p>Be sure to cheers to us with new friends and mention us in your wedding speeches. Have at it!</p>
+						</li>
+						<li>
+							<strong class="ttl">2. KEEP TRACK OF YOUR VOLUNTEER HISTORY</strong>
+							<p>Lock down your volunteer resume in a safe and shareable location and earn points toward your first badge. The more information you share, the more connected we'll all be.</p>
+						</li>
+						<li>
+							<strong class="ttl">3. RECRUIT YOUR FRIENDS</strong>
+							<p>The best thing you can do to make a difference is find out how to make changes in things that matter to you, and then to inform and bring along others. It's also a great way to accumulate points and win prizes.</p>
+						</li>
+						<li>
+							<strong class="ttl">4. FIND OPPORTUNITIES</strong>
+							<p> Use our search functions to find opportunities that suit your needs. Upon login you will also be directed to opportunties that match your profile.  Since we're new, we only have a few opportunities listed, but</p>
+						</li>
+					</ul>
+				</div>
+				<div class="btn-holder">
+					<ul>
+						<li><%= link_to '<span>NEXT</span>', {:controller => :tutorial, :action => :step_two}, :class => 'lbAction', :rel => 'insert' %></li>
+						<li><%= link_to 'SKIP', '#', :class => 'lbAction', :rel => 'deactivate' %><li>
+					</ul>
+				</div>
+			</div>
+		</div><!-- /quick-block end -->
+	</div>
+	<div class="b">&nbsp;</div>
