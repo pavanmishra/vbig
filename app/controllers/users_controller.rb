@@ -170,4 +170,9 @@ class UsersController < ApplicationController
     @users = User.paginate :order => 'points desc', :page => params[:page]
     render :action => :index
   end
+  
+  def editors
+    @users = User.all(:conditions => "last_name like '%#{params[:value]}%' or first_name like '%#{params[:value]}%'", :limit => 10)
+    render :layout => false
+  end
 end

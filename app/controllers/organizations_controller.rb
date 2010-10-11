@@ -26,6 +26,7 @@ class OrganizationsController < ApplicationController
     # following query uses the mysql current function
     @recent_events = @organization.events.find(:all, :conditions => "date(from_date) < current_date() ")
     @upcoming_events = @organization.events.find(:all, :conditions => "date(from_date) > current_date() ")
+    @editorship = Editorship.new :editable => @organization
     @title = @organization.name
     respond_to do |format|
       format.html # show.html.erb

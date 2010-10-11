@@ -25,12 +25,14 @@ ActionController::Routing::Routes.draw do |map|
   map.event_comments  'event/:id/comments/', :controller => :events, :action => :event_comments
   map.event_photos  'event/:id/photos/', :controller => :events, :action => :event_photos
   map.event_activities  'event/:id/activities/', :controller => :events, :action => :event_activities 
+  map.editors 'editors', :controller => :users, :action => :editors
 #  map.new_pledge  '/pledges/new/', :controller  =>  :pledges, :action =>  :new
   map.resource :session
   map.resource  :event_user
   map.resources  :pledges
   map.resources   :pages
   map.resources   :discussions
+  map.resources   :editorships
 
   map.resources :organizations do |organizations|
     organizations.resources :events

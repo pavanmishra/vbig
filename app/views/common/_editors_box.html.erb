@@ -1,0 +1,35 @@
+<div class="box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title cutd">
+			<h3>editors</h3>
+		</div>
+		<input type="text" id="autocomplete" name="autocomplete_parameter"/>
+		<span id="indicator1" style="display: none">
+		  <img src="/images/spinner.gif" alt="Working..." />
+		</span>
+		<div id="autocomplete_choices" class="autocomplete"></div>
+		<script>
+		new Ajax.Autocompleter("autocomplete", "autocomplete_choices", "/editors", {
+		  paramName: "value", 
+		  minChars: 2, 
+		  indicator: 'indicator1',
+		  afterUpdateElement: function(text, li){
+			$('editorship_user_id').value = li.id;
+		}
+		});
+		</script>
+		<% form_for @editorship, :url => {:controller => :editorships, :action => :create} do |f|%>
+		<%= f.hidden_field :user_id %>
+		<%= f.hidden_field :editable_id %>
+		<%= f.hidden_field :editable_type %>			
+		<%= f.submit 'add'%>
+		<% end %>
+		<ul class="badges">
+			<% for editor in @editorship.editable.editors %>
+			<li><%= editor.name %></li>
+			<% end %>
+		</ul>
+	</div>
+	<div class="b">&nbsp;</div>
+</div><!--box-->

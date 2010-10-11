@@ -118,6 +118,7 @@
 <% content_for :sidebar do %>
 	<%= render :partial => 'participant_box', :locals => {:users => @event.users.all(:limit => 9)} %>
 	<%= render :partial => 'event_box', :locals => {:events => @event.related_events}  %>
+	<%= render :partial => 'common/editors_box'%>	
 <% end %>
 <!--
 
