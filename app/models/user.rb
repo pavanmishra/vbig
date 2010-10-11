@@ -17,8 +17,9 @@ class User < ActiveRecord::Base
   has_one   :twitter_invitation
   has_one   :facebook_invitation
   has_many  :editorships
-  has_many  :editables, :through => :editorships
-  
+#  has_many  :editables, :through => :editorships
+  has_many  :editable_events, :through => :editorships, :source => :event, :conditions => 'editorships.editable_type="Event"'
+  has_many  :editable_organizations, :through => :editorships, :source => :organization, :conditions => 'editorships.editable_type="Organization"'  
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills, :others
   
@@ -67,6 +68,10 @@ class User < ActiveRecord::Base
     return nil if login.blank? || password.blank?
     u = find_by_login(login.downcase) # need to get the salt
     u && u.authenticated?(password) ? u : nil
+  end
+  
+  def editables
+    self.editable_events + self.editable_organizations
   end
 
   def login=(value)

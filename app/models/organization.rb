@@ -3,8 +3,8 @@ class Organization < ActiveRecord::Base
   belongs_to  :user
   has_many :organization_users
   has_many  :users, :through => :organization_users
-  has_many  :editorships
-  has_many  :editors, :through => :editorships, :class_name => 'User', :as => :editable
+  has_many  :editorships, :as => :editable
+  has_many  :editors, :through => :editorships, :class_name => 'User'
   
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills
