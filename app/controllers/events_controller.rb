@@ -2,9 +2,10 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   before_filter :admin_required, :only => [:feature]
-  before_filter :login_required,  :only => [:new]
+  before_filter :login_required,  :only => [:new, :create, :suggested]
+
   def index
-    @title = 'Recent Participation'
+    @title = 'Recent Events'
     params[:near] = params[:near].blank? ? 'unknown island' : params[:near]
     #@events = !params[:search].blank? ? Event.tagged_with(params[:search].split(','), :any => true).find(:all, :origin=> params[:near], :within => 25) : Event.find(:all, :origin => params[:near], :within => 25)
     @events = params[:search].blank? ? Event.paginate(:page => params[:page]) : Event.paginate(:page => params[:page], :origin=> params[:near], :within => 25, :conditions => "title like '%#{params[:search]}%'")
@@ -39,7 +40,7 @@ class EventsController < ApplicationController
   def home
     unless logged_in?
       @events = Event.featured.paginate(:all, :limit => 5, :order => 'events.from_date', :page => params[:page])
-      @title = 'Featured Participation'
+      @title = 'Featured Events'
       @badges = Badge.all(:limit => 9)
       @users = User.all(:limit => 10, :order => 'created_at desc')
       render :layout => 'home'
@@ -97,7 +98,12 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
-    @title = 'Editing Event'
+    if current_user.is_admin? or current_user.editor?(@event)    
+      @title = 'Editing Event'
+    else
+      flash[:notice] = 'You cannot edit this event.'
+      redirect_to @event
+    end
   end
 
   # POST /events
@@ -106,6 +112,7 @@ class EventsController < ApplicationController
     process_params_for_tags 'event', 'cause'
     process_params_for_tags 'event', 'skill'
     @event = Event.new(params[:event])
+
     @event.user = current_user
     respond_to do |format|
       if @event.save
@@ -123,6 +130,7 @@ class EventsController < ApplicationController
   # PUT /events/1.xml
   def update
     @event = Event.find(params[:id])
+    if current_user.is_admin? or current_user.editor?(@event)    
     process_params_for_tags 'event', 'cause' 
     process_params_for_tags 'event', 'skill' 
 
@@ -137,17 +145,26 @@ class EventsController < ApplicationController
         format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
       end
     end
+    else
+      flash[:error] = 'You are not an editor for this event.'
+      redirect_to @event
+    end
   end
 
   # DELETE /events/1
   # DELETE /events/1.xml
   def destroy
     @event = Event.find(params[:id])
+    if current_user.is_admin? or current_user.editor?(@event)    
     @event.destroy
 
     respond_to do |format|
       format.html { redirect_to(events_url) }
       format.xml  { head :ok }
+    end
+    else
+      flash[:error] = 'You are not an editor for this event.'
+      redirect_to events_url
     end
   end
   

@@ -27,7 +27,7 @@
 		<% end %>
 		<ul class="badges">
 			<% for editor in @editorship.editable.editors %>
-			<li><%= editor.name %></li>
+			<li><%= editor.name %> <%= link_to 'x', delete_editor_path(@editorship.editable, editor)  %></li>
 			<% end %>
 		</ul>
 	</div>

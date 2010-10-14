@@ -18,17 +18,24 @@ class Event < ActiveRecord::Base
   validate  :must_be_either_ongoing_or_dated
   
   # paperclip image attachment
-  has_attached_file :image, :path => ':rails_root/public/system/images/events/:attachment/:id/:style/:filename', :styles => {
-        :thumb=> "100x100#",
-        :small  => "150x150>",
-        :medium => "200x200>",
-        :large =>   "400x400>"
-  }
+  has_attached_file :image, :path => ':rails_root/public/system/images/events/:attachment/:id/:style/:filename', 
+        :url => '/system/images/events/:attachment/:id/:style/:filename',
+        :styles => {
+          :small_thumbnail => "75x79#",
+          :thumb=> "100x100#",
+          :small  => "150x150>",
+          :medium => "200x200#",
+          :large =>   "400x400>"
+        }
   cattr_reader :per_page
    @@per_page = 10
   
   def feature!
     self.update_attribute :featured, !self.featured
+  end
+  
+  def closed?
+    self.status.eql?('completed')
   end
   
   def complete!

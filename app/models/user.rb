@@ -73,7 +73,11 @@ class User < ActiveRecord::Base
   def editables
     self.editable_events + self.editable_organizations
   end
-
+  
+  def editor?(editable)
+    editable.editors.include?(self)
+  end
+  
   def login=(value)
     write_attribute :login, (value ? value.downcase : nil)
   end
@@ -107,6 +111,10 @@ class User < ActiveRecord::Base
   
   def participate(event)
     self.events << event
+  end
+  
+  def deny_participation(event)
+    self.events.delete(event)
   end
   
   def self.find_facebook_user(user_info)

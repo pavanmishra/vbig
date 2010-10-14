@@ -1,0 +1,5 @@
+<%= render :partial => 'users/user_shot', :object => event_user.user%>
+<%= event_user.attended? ? 'Attended' : 'Could not attend'%>
+<p>
+<%= event_user.comment %>
+</p>

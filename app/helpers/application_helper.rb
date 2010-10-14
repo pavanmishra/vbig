@@ -37,5 +37,9 @@ module ApplicationHelper
    
    content_tag("fb:login-button",text,options.merge(:onlogin=>js))
  end
+ 
+ def facebook_profile_picture(user, type='small')
+   type.eql?('small') ? user.pic_square : user.profile_url.gsub('www', 'graph') + "/picture?type=#{type}" rescue ''
+ end
     
 end

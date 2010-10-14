@@ -1,34 +1,54 @@
 <div class="post">
 	<div class="visual"><%= image_tag event.image.url(:medium) %></div>
 	<div class="text">
-		<h3><%= link_to event.title, event %><span><%= event.organization %></span></h3>
+		<h3><%= link_to event.title, event %></h3>
 		<ul class="cat">
-			<li class="active"><a href="#">Today</a></li>
+			<li class="active"><a href="#"><%= 'Today' or time_ago_in_words(event.from_date)%></a></li>
 			<li><a href="#"><%= event.address %></a></li>
-			<li><a href="#">3 Comments</a></li>
+			<li><a href="#"><%= event.comments.count %> Comments</a></li>
 			<li><%= link_to 'View Details', event %></li>
+			<% if logged_in? and current_user.is_admin? %>
+			<li>
+			<%= link_to (event.featured? ? 'Unfeature' : 'Feature'), feature_event_path(event)%></li>
+			<li><%= link_to 'Close Event', complete_event_path(event)%></li>					
+			<% end %>					
 		</ul><!--cat-->
 		<div class="skils">
 			<div class="row">
 				<h4>causes: </h4>
-				<span> <%= event.causes.join(', ') %> (<a href="#">See All</a>)</span>
+				<span><%= event.causes.collect{|cause| cause.name.titleize}.join(', ')%></span>
 			</div>
 			<div class="row">
 				<h4>skills needed: </h4>
-				<span> <%= event.skills.join(', ') %> (<a href="#">See All</a>)</span>
+				<span> <%= event.skills.collect{|skill| skill.name.titleize}.join(', ')%></span>
 			</div>
 		</div><!--skils-->
+
 		<ul class="photos">
-			<li><img src="images/img02.jpg" alt="" width="79" height="75" /></li>
-			<li><img src="images/img03.jpg" alt="" width="79" height="75" /></li>
-			<li><img src="images/img04.jpg" alt="" width="79" height="75" /></li>
-			<li><img src="images/img05.jpg" alt="" width="79" height="75" /></li>
-			<li><a href="#" class="all">(see all...)</a></li>
+			<% unless event.event_images.empty? %>
+			<% for event_image in event.event_images.all(:limit => 5)%>
+			<li><%= image_tag event_image.photo.url(:small_thumbnail) %></li>
+			<% end %>
+			<% else %>
+			<li><%= image_tag event.image.url(:small_thumbnail)%></li>
+			<% end %>
 		</ul><!--photos-->
 		<ul class="buttons">
-			<li><a href="#">recruit!</a></li>
-			<li><a href="#">share!</a></li>
-			<li><a href="#">participate!</a></li>
+			<% unless event.completed? %>
+			<li><%= link_to 'recruit!',  invite_to_event_path(event) %></li>
+			<li><%= link_to 'share!',  invite_to_event_path(event) %></li>
+			<% if logged_in? and current_user.participating?(event) %>
+			<li><%= link_to 'deny!', participate_event_path(event) %></li>
+			<% else %>
+			<li><%= link_to 'participate!', participate_event_path(event) %></li>
+			<%end%>
+			<% else %>
+			<% event_user = EventUser.first(:conditions => {:user_id => current_user, :event_id => event})
+				if event_user
+			%>
+			<li><%= link_to 'Give Feedback', :controller => :event_users, :action => :new, :id => event_user  %></li>
+			<% end %>
+			<% end %>
 		</ul><!--buttons-->
 	</div><!--text-->
 </div><!--post-->

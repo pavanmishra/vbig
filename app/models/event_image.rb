@@ -6,6 +6,7 @@ class EventImage < ActiveRecord::Base
         :path => ':rails_root/public/system/event_photos/:attachment/:id/:style/:filename', 
         :url => '/system/event_photos/:attachment/:id/:style/:filename',
         :styles => {
+          :small_thumbnail => "75x79#",          
           :thumb=> "100x100#",
           :small  => "150x150>",
           :medium => "200x200>",

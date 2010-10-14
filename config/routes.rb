@@ -26,6 +26,8 @@ ActionController::Routing::Routes.draw do |map|
   map.event_photos  'event/:id/photos/', :controller => :events, :action => :event_photos
   map.event_activities  'event/:id/activities/', :controller => :events, :action => :event_activities 
   map.editors 'editors', :controller => :users, :action => :editors
+  map.delete_editor '/editorship/:editable_id/delete/:user_id', :controller => :editorships, :action => :delete
+  map.delete_event 'events/:id/delete', :controller => :events, :action => :destroy
 #  map.new_pledge  '/pledges/new/', :controller  =>  :pledges, :action =>  :new
   map.resource :session
   map.resource  :event_user
@@ -33,14 +35,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :pages
   map.resources   :discussions
   map.resources   :editorships
-
+  map.resources :events
   map.resources :organizations do |organizations|
     organizations.resources :events
   end
 
   map.resources :users
 
-  map.resources :events
+
   
   map.resources :sent, :messages
   

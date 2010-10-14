@@ -4,7 +4,8 @@ class EventUsersController < ApplicationController
   # need to make this secure
   def participate
     @event = Event.find(params[:id])
-    current_user.participate(@event) unless current_user.participating?(@event)
+    flash[:notice] = current_user.participating?(@event) ? 'You have denied to participate this event' : 'You are now participating this event'
+    current_user.participating?(@event) ? current_user.deny_participation(@event) : current_user.participate(@event) 
     redirect_to @event
   end
 

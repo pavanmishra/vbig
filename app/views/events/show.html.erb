@@ -5,53 +5,7 @@
 			<h2>participation</h2>
 			<a href="#" class="view">view all</a>
 		</div><!--title-->
-		<div class="post">
-			<div class="visual"><img src="images/img01.jpg" alt="" /></div>
-			<div class="text">
-				<h3><%= @event.title %></h3>
-				<ul class="cat">
-					<li class="active"><a href="#"><%= 'Today' or time_ago_in_words(@event.from_date)%></a></li>
-					<li><a href="#"><%= @event.address %></a></li>
-					<li><a href="#"><%= @event.comments.count %> Comments</a></li>
-					<li><a href="#">View Details</a></li>
-					<% if logged_in? and current_user.is_admin? %>
-					<li>
-					<%= link_to (@event.featured? ? 'Unfeature' : 'Feature'), feature_event_path(@event)%></li>
-					<li><%= link_to 'Complete', complete_event_path(@event)%></li>					
-					<% end %>					
-				</ul><!--cat-->
-				<div class="skils">
-					<div class="row">
-						<h4>causes: </h4>
-						<span><%= @event.causes.collect{|cause| cause.name.titleize}.join(', ')%></span>
-					</div>
-					<div class="row">
-						<h4>skills needed: </h4>
-						<span> <%= @event.skills.collect{|skill| skill.name.titleize}.join(', ')%></span>
-					</div>
-				</div><!--skils-->
-				<ul class="photos">
-					<li><img src="images/img02.jpg" alt="" /></li>
-					<li><img src="images/img03.jpg" alt="" /></li>
-					<li><img src="images/img04.jpg" alt="" /></li>
-					<li><img src="images/img05.jpg" alt="" /></li>
-					<li><img src="images/img27.jpg" alt="" /></li>
-				</ul><!--photos-->
-				<ul class="buttons">
-					<% unless @event.completed? %>
-					<li><%= link_to 'recruit!',  invite_to_event_path(@event) %></li>
-					<li><%= link_to 'share!',  invite_to_event_path(@event) %></li>
-					<li><%= link_to 'participate!', participate_event_path(@event) %></li>
-					<% else %>
-					<% event_user = EventUser.first(:conditions => {:user_id => current_user, :event_id => @event})
-						if event_user
-					%>
-					<li><%= link_to 'Give Feedback', :controller => :event_users, :action => :new, :id => event_user  %></li>
-					<% end %>
-					<% end %>
-				</ul><!--buttons-->
-			</div><!--text-->
-		</div><!--post-->
+		<%= render :partial => 'event', :object => @event %>
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->
@@ -65,6 +19,22 @@
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->	
+<% if @event.closed? %>
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">feedback</h2>
+		</div><!--title-->
+		<div class="about-info">
+			<% for event_user in @event.event_users.all(:limit => 5, :conditions => "attended is not null")%>
+				<%= render :partial => 'event_users/event_user', :object => event_user %>
+			<% end %>
+		</div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	
+<% end %>
 <div class="content-box">
 	<div class="t">&nbsp;</div>
 	<div class="c">
@@ -116,9 +86,24 @@
 
 
 <% content_for :sidebar do %>
+	<% if current_user.is_admin? or current_user.editor?(@event)%>
+	<div class="box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<ul class="buttons" >
+				<li style="padding-left:5em"><%= link_to 'edit event', edit_event_path(@event) %></li>
+				<br />
+				<li style="padding-left:5em"><%= link_to 'delete event', :controller => :events, :action => :destroy, :id => @event %></li>				
+			</ul><!--buttons-->
+		</div>	
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+	<% end %>
 	<%= render :partial => 'participant_box', :locals => {:users => @event.users.all(:limit => 9)} %>
 	<%= render :partial => 'event_box', :locals => {:events => @event.related_events}  %>
+	<% if logged_in? and current_user.is_admin? %>
 	<%= render :partial => 'common/editors_box'%>	
+	<% end %>
 <% end %>
 <!--
 

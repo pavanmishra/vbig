@@ -1,6 +1,8 @@
 class ContactsController < ApplicationController
   require 'bitly'
   layout 'events'
+  before_filter :login_required, :except => [:participate_event_by_invitation, :join_by_invitation]
+  
   def plaxo_cb
     render :layout => false
   end

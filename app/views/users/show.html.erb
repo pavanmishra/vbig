@@ -6,21 +6,23 @@
 		</div><!--title-->
 		<div class="cart-info">
 			<div class="holder">
-				<div class="visual"><img src="/images/img32.jpg" alt="" /></div>
-				<div class="cart-text">
+				<div class="visual"><%= link_to(image_tag(facebook_profile_picture(@user, 'large')), @user) %></div>
+ 				<div class="cart-text"  style="width:440px">
 					<h3><%= @user.name %></h3>
 					<div class="dc"><%= @user.address %></div>
+<!--
 					<ul class="social">
 						<li class="facebook"><a href="#">www.facebook.com/kofman.foundation</a></li>
 						<li class="twitter"><a href="#">@ koufmanfoundation</a></li>
 					</ul>
-					<div class="row"><strong class="even"><%= @user.badges.count %> badges</strong><a href="#" class="suggest-btn">Suggest a skill</a></div>
+-->										<ul class="effected">
+						<li><strong>causes effected:</strong> <%= @user.causes.collect{|cause_tag| cause_tag.name.titleize}.join(', ') %></li>
+						<li><strong>skills sought:</strong>  <%= @user.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
+					</ul>
+
+					<div class="row"><strong class="even"><%= @user.points %> points</strong></div>
 				</div>
 			</div>
-			<ul class="effected">
-				<li><strong>causes effected:</strong> <%= @user.causes.collect{|cause_tag| cause_tag.name.titleize}.join(', ') %></li>
-				<li><strong>skills sought:</strong>  <%= @user.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
-			</ul>
 		</div>
 	</div>
 	<div class="b">&nbsp;</div>		
@@ -32,11 +34,6 @@
 			<h2 class="blue">about</h2>
 		</div><!--title-->
 		<div class="about-info"><%= @user.about_me %></div>
-		<div class="promo-buttons">
-			<a href="#" class="btn">recruit!</a>
-			<a href="#" class="facebook-like"><img src="/images/btn-facebook-like.gif" alt="" /></a>
-			<span><a href="#">Jason Wisdom</a>, <a href="#">Alessandra Nicole</a>, and 32 other like this.</span>
-		</div>
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->	
@@ -47,6 +44,7 @@
 			<h2>pledges</h2>
 			<a href="#" class="view orang-link">view all</a>
 		</div><!--title-->
+		<% unless @user.pledges.empty? %>
 		<ul>
 			<% for pledge in @user.pledges %>
 			<li>
@@ -57,6 +55,11 @@
 			</li>
 			<% end %>
 		</ul>	
+		<% else %>
+		<p>
+		Still has to take the pledges.	
+		</p>	
+		<% end %>
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->
@@ -67,25 +70,15 @@
 			<h2>Participating in opportunities</h2>
 			<a href="#" class="view orang-link">view all</a>
 		</div><!--title-->
+		<% unless @user.events.empty? %>
 		<%= render :partial => 'events/event', :collection => @user.events%>
-			
+		<% else %>
+		<p> Is not participating in any upcoming events.</p>
+		<% end %>
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->
 <% content_for :sidebar do %>
-	<div class="box">
-		<div class="t">&nbsp;</div>
-		<div class="c">
-			<div class="title">
-				<h3>badges</h3>
-				<%= link_to 'view all', badges_path, :class => 'view' %>
-			</div>
-			<ul class="badges">
-				<%= render :partial => 'badges/badge_small', :collection => @user.badges.find(:all, :limit => 9) %>
-			</ul>
-		</div>
-		<div class="b">&nbsp;</div>
-	</div><!--box-->
 	<%= render :partial => 'events/event_box', :locals => {:events => @user.events_created, :section_title => 'Past Participation'}  %>
 	
 <% end %>
