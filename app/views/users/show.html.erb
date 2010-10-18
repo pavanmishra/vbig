@@ -71,7 +71,7 @@
 			<a href="#" class="view orang-link">view all</a>
 		</div><!--title-->
 		<% unless @user.events.empty? %>
-		<%= render :partial => 'events/event', :collection => @user.events%>
+		<%= render :partial => 'events/event', :collection => @user.events.all(:conditions => "events.to > now()")%>
 		<% else %>
 		<p> Is not participating in any upcoming events.</p>
 		<% end %>
@@ -79,6 +79,6 @@
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->
 <% content_for :sidebar do %>
-	<%= render :partial => 'events/event_box', :locals => {:events => @user.events_created, :section_title => 'Past Participation'}  %>
+	<%= render :partial => 'events/event_box', :locals => {:events => @user.events.all(:conditions => "events.to < now()"), :section_title => 'Past Participation'}  %>
 	
 <% end %>
