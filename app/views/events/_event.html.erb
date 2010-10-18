@@ -34,21 +34,27 @@
 			<% end %>
 		</ul><!--photos-->
 		<ul class="buttons">
+			<% if logged_in? %>
 			<% unless event.completed? %>
-			<li><%= link_to 'recruit!',  invite_to_event_path(event) %></li>
-			<li><%= link_to 'share!',  invite_to_event_path(event) %></li>
-			<% if logged_in? and current_user.participating?(event) %>
-			<li><%= link_to 'deny!', participate_event_path(event) %></li>
+				<li><%= link_to 'recruit!',  invite_to_event_path(event) %></li>
+				<li><%= link_to 'share!',  invite_to_event_path(event) %></li>
+				<% if logged_in? and current_user.participating?(event) %>
+				<li><%= link_to 'deny!', participate_event_path(event) %></li>
+				<% else %>
+				<li><%= link_to 'participate!', participate_event_path(event) %></li>
+				<%end%>
 			<% else %>
-			<li><%= link_to 'participate!', participate_event_path(event) %></li>
-			<%end%>
-			<% else %>
-			<% event_user = EventUser.first(:conditions => {:user_id => current_user, :event_id => event})
-				if event_user
-			%>
-			<li><%= link_to 'Give Feedback', :controller => :event_users, :action => :new, :id => event_user  %></li>
+				<% event_user = EventUser.first(:conditions => {:user_id => current_user, :event_id => event})
+					if event_user
+						%>
+						<li><%= link_to 'Give Feedback', :controller => :event_users, :action => :new, :id => event_user  %></li>
+					<% end %>
 			<% end %>
-			<% end %>
+			<%else%>
+				<li><%= link_to 'recruit!',  signup_for_action_path, :class=>'lbOn' %></li>
+				<li><%= link_to 'share!',  signup_for_action_path, :class=> 'lbOn' %></li>
+				<li><%= link_to 'participate!', signup_for_action_path, :class=> 'lbOn' %></li>
+			<% end %>	
 		</ul><!--buttons-->
 	</div><!--text-->
 </div><!--post-->

@@ -3,7 +3,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => :events, :action => :home
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-  map.login '/login', :controller => 'sessions', :action => 'new'
+  map.login '/login', :controller => 'sessions', :action => 'new'  
+  map.login2 '/login2', :controller => 'sessions', :action => 'new2'
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.profile 'profile', :controller => :users, :action => :profile
@@ -28,6 +29,7 @@ ActionController::Routing::Routes.draw do |map|
   map.editors 'editors', :controller => :users, :action => :editors
   map.delete_editor '/editorship/:editable_id/delete/:user_id', :controller => :editorships, :action => :delete
   map.delete_event 'events/:id/delete', :controller => :events, :action => :destroy
+  map.signup_for_action 'signup/action/', :controller => :facebook_sessions, :action => :signup
 #  map.new_pledge  '/pledges/new/', :controller  =>  :pledges, :action =>  :new
   map.resource :session
   map.resource  :event_user

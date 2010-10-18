@@ -14,7 +14,7 @@
 						<li class="facebook"><a href="#">www.facebook.com/kofman.foundation</a></li>
 						<li class="twitter"><a href="#">@ koufmanfoundation</a></li>
 					</ul>
-					<div class="row"><strong class="even"><%= @user.badges.count %> badges</strong><a href="#" class="suggest-btn">Suggest a skill</a></div>
+					<div class="row"><strong class="even"><%= @user.badges.count %> badges</strong></div>
 				</div>
 			</div>
 			<ul class="effected">
@@ -46,7 +46,7 @@
 				<h3>tutorial</h3>
 			</div>
 			<p>
-			<%= link_to 'Start', {:controller => :tutorial, :action => :step_one}, :class=>'lbOn' %> your time, commitment to recruit new people. 	
+			<%= link_to 'Start', {:controller => :tutorial, :action => :step_one}, :class=>'lbOn', :id => 'tutorial_start' %> your time, commitment to recruit new people. 	
 			<%= link_to 'Step 2', {:controller => :tutorial, :action => :step_two}, :class=>'lbOn' %> 
 			</p>	
 		</div>

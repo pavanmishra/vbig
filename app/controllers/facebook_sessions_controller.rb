@@ -1,5 +1,5 @@
 class FacebookSessionsController < ApplicationController
-  before_filter :set_fb_info
+  before_filter :set_fb_info, :only => :create
   include AuthenticatedSystem
   def create
     if verify_fb_cookie_signature
@@ -24,6 +24,10 @@ class FacebookSessionsController < ApplicationController
       flash[:notice] = 'TO USE VOLUNTEERBIG, YOU MUST ALLOW ACCESS TO YOUR FACEBOOK ACCOUNT'
       redirect_to :back
     end
+  end
+  
+  def signup
+    render :layout => false
   end
   
   private

@@ -1,15 +1,12 @@
-
-<% form_tag session_path do -%>
-<p><%= label_tag 'login' %><br />
-<%= text_field_tag 'login', @login %></p>
-
-<p><%= label_tag 'password' %><br/>
-<%= password_field_tag 'password', nil %></p>
-
-<!-- Uncomment this if you want this functionality
-<p><%= label_tag 'remember_me', 'Remember me' %>
-<%= check_box_tag 'remember_me', '1', @remember_me %></p>
--->
-
-<p><%= submit_tag 'Log in' %></p>
-<% end -%>
+<div class="t">&nbsp;</div>
+<div class="c">
+	<div class="title">
+		<h2>Please signup before you proceed.</h2>
+	</div><!--title-->
+	<div class="about-info">
+					 <%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
+	</div>	
+</div>
+<div class="b">&nbsp;</div>
+</div>
+	
