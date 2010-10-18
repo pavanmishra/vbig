@@ -20,7 +20,7 @@
 						<li><strong>skills sought:</strong>   <%= @organization.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
 					</ul>
 					
-					<div class="row"><strong class="even"><%= @organization.events.count %> events</strong><% unless current_user.helping?(@organization)%><%= link_to 'Help', help_organization_path(@organization), :class=> 'suggest-btn'%><% end %></div>
+					<div class="row"><strong class="even"><%= @organization.events.count %> events</strong><% unless logged_in? and current_user.helping?(@organization)%><%= link_to 'Help', help_organization_path(@organization), :class=> 'suggest-btn'%><% end %></div>
 				</div>
 			</div>
 		</div>
