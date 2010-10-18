@@ -1,5 +1,5 @@
 <li>
-	<div class="visual"><a href="#"><img src="/images/img29.jpg" alt="" /></a></div>
+	<div class="visual"><a href="#"><%= image_tag(event_card.image.url(:smaller_thumbnail))%></a></div>
 	<div class="info">
 		<span class="name"><a href="#"><%= event_card.title %></a></span>
 		<p><% if event_card.from_date %><span class="date"><%= time_ago_in_words(event_card.from_date)%></span><% end %><%= event_card.address %></p>

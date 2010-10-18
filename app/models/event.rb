@@ -22,6 +22,7 @@ class Event < ActiveRecord::Base
         :url => '/system/images/events/:attachment/:id/:style/:filename',
         :styles => {
           :small_thumbnail => "75x79#",
+          :smaller_thumbnail => "60x60#"
           :thumb=> "100x100#",
           :small  => "150x150>",
           :medium => "200x200#",
