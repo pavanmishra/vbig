@@ -86,7 +86,7 @@
 
 
 <% content_for :sidebar do %>
-	<% if current_user.is_admin? or current_user.editor?(@event)%>
+	<% if logged_in? and current_user.is_admin? or current_user.editor?(@event)%>
 	<div class="box">
 		<div class="t">&nbsp;</div>
 		<div class="c">
