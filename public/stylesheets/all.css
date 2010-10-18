@@ -102,6 +102,7 @@ a:hover{text-decoration:underline;}
 #nav li a{
 	color:#3044b5;
 	font-size:12px;
+	font-weight:bold;
 }
 #nav li a:hover{
 	text-decoration:none;
