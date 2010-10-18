@@ -3,7 +3,12 @@ class OrganizationUsersController < ApplicationController
 
   def help
     organization = Organization.find(params[:id])
-    current_user.help(organization)
+    unless current_user.helping?(organization)
+      current_user.help(organization) 
+      flash[:notice] = 'You are now helping this organization'
+    else
+        flash[:notice] = 'You are already'
+    end
     redirect_to organization
   end
   

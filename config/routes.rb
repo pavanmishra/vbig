@@ -8,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.profile 'profile', :controller => :users, :action => :profile
+  map.edit_profile 'profile/edit', :controller => :users, :action => :edit
   map.help_organization '/help/:id', :controller => :organization_users, :action => :help
   map.participate_event '/participate/:id', :controller => :event_users, :action => :participate
   map.feature_event '/feature/event/:id', :controller => :events, :action => :feature  

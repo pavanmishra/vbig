@@ -6,21 +6,23 @@
 		</div><!--title-->
 		<div class="cart-info">
 			<div class="holder">
-				<div class="visual"><img src="/images/img32.jpg" alt="" /></div>
+				<div class="visual"><%= image_tag @organization.image.url(:small)%></div>
 				<div class="cart-text">
 					<h3><%= @organization.name %></h3>
 					<div class="dc"><%= @organization.address %></div>
+					<!--
 					<ul class="social">
 						<li class="facebook"><a href="#">www.facebook.com/kofman.foundation</a></li>
 						<li class="twitter"><a href="#">@ koufmanfoundation</a></li>
+					</ul> -->
+					<ul class="effected">
+						<li><strong>causes effected:</strong> <%= @organization.causes.collect{|cause_tag| cause_tag.name.titleize}.join(', ') %></li>
+						<li><strong>skills sought:</strong>   <%= @organization.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
 					</ul>
-					<div class="row"><strong class="even"><%= @organization.events.count %> events</strong><a href="#" class="suggest-btn">suggest a skill</a></div>
+					
+					<div class="row"><strong class="even"><%= @organization.events.count %> events</strong><% unless current_user.helping?(@organization)%><%= link_to 'Help', help_organization_path(@organization), :class=> 'suggest-btn'%><% end %></div>
 				</div>
 			</div>
-			<ul class="effected">
-				<li><strong>causes effected:</strong> <%= @organization.causes.collect{|cause_tag| cause_tag.name.titleize}.join(', ') %></li>
-				<li><strong>skills sought:</strong>   <%= @organization.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
-			</ul>
 		</div>
 	</div>
 	<div class="b">&nbsp;</div>		

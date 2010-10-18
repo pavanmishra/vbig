@@ -11,9 +11,12 @@ class Organization < ActiveRecord::Base
   has_threaded_comments
   
   # paperclip image attachment
-  has_attached_file :image, :path => ':rails_root/public/system/images/organizations/:attachment/:id/:style/:filename', :styles => {
+  has_attached_file :image, :path => ':rails_root/public/system/images/organizations/:attachment/:id/:style/:filename', 
+          :url => '/system/images/organizations/:attachment/:id/:style/:filename',
+  :styles => {
         :thumb=> "100x100#",
-        :small  => "150x150>",
+        :small  => "175x175#",
+        
         :medium => "300x300>",
         :large =>   "400x400>"
   }
