@@ -74,7 +74,7 @@
 	<div class="heading"><strong><%= skill_set.first.capitalize %></strong></div>
 	<ul class="list">
 		<% for item in skill_set.last %>
-			<li><a href="#"><%= check_box_tag 'skills[]', item, checked.include?(item) %> <%= item %></a></li>
+			<li><%= check_box_tag 'skills[]', item, checked.include?(item) %> <%= item %></li>
 		<% end %>
 	</ul>
 </div><!-- /box end -->

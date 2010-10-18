@@ -36,7 +36,7 @@
 	<div class="box">
 		<ul class="list">	
 			<% for cause in cause_set %>
-			<li><a href="#"><%= check_box_tag 'causes[]', cause, checked.include?(cause) %> <%= cause %> </a></li>
+			<li><%= check_box_tag 'causes[]', cause, checked.include?(cause) %> <%= cause %></li>
 			<% end %>
 			</ul>
 		</div><!-- /box end -->
