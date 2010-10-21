@@ -39,7 +39,7 @@ module ApplicationHelper
  end
  
  def facebook_profile_picture(user, type='small')
-   profile_url = (user.profile_url =~ /profile.php/) ? user.profile_url.split('=').last : user.profile_url
+   profile_url = (user.profile_url =~ /profile.php/) ? 'http://graph.facebook.com/'+ user.profile_url.split('=').last : user.profile_url
    type.eql?('small') ? user.pic_square : profile_url.gsub('www', 'graph') + "/picture?type=#{type}" rescue ''
  end
     
