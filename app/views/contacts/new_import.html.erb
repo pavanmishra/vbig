@@ -15,6 +15,10 @@ function onABCommComplete() {
         <h3>Invite your Friends</h3> 
     </div> 
     <div class='body'>
+		<fb:request-form action="/contacts/import/" method="POST" invite="true" type="Favorite Causes" content="Support the causes you feel for.">  
+		<fb:multi-friend-selector max="20" actiontext="Here are your friends who haven't added Favorite Games to their profile. Invite them to share their Favorite Games today!" showborder="true" rows="5">
+		</fb:request-form>
+		
 	<% form_tag '/contacts/import/', :method => :post do %>
 		<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>
 		<textarea id="recipient_list" name="recipients" ></textarea>
