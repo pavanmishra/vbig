@@ -16,6 +16,8 @@ class Organization < ActiveRecord::Base
   :styles => {
         :thumb=> "100x100#",
         :small  => "175x175#",
+        :small_thumbnail => "75x79#",
+        :smaller_thumbnail => "60x60#",        
         
         :medium => "300x300>",
         :large =>   "400x400>"

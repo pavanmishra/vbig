@@ -13,15 +13,40 @@
 			</p>	
 			<p>
 			Description<br/>
-			<%= f.text_area :description %>	
+			<%= f.text_area :description, :rows => 5 %>	
 			</p>
+		  <p>
+			<%= f.label :oranization %> <br />
+			<%= f.select :organization_id, Organization.all.collect{|organization| [organization.name, organization.id]}, {:include_blank => 'None'}%>
+		  </p>
+
+			
 			<p>
-			Address<br/>
-			<%= f.text_field :address %>	
+			Coverage<br/>
+			<input type="radio" name="coverage" onclick="coverage_us()" checked="checked"/>National <input type="radio" name="coverage" onclick="coverage_local()" />Local
+			<%= f.text_field :address, :style=> 'display:none', :value=>"U.S.A" %>	
 			</p>	
+			<p>
+		    <%= f.label :causes %><br />
+			<%#= render :partial => 'common/tag_checkboxes', :locals => {:items => default_causes, :item_name => 'causes', :object_items => @event.causes.collect{|cause| cause.name}}%>
+			<%= render :partial => 'users/cause_select', :locals => {:checked => @discussion.causes.collect{|skill| skill.name} }%>
+			Others(comma separated) <br />
+			<%= text_field_tag 'other_causes' %>
+			
+		  	</p>
 			<%= f.submit 'Create' %>					
 			<% end %>
 		</div>
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->	
+<script type="text/javascript">
+	function coverage_us(){
+		$('discussion_address').hide();
+		$('discussion_address').value='U.S.A';
+	}
+	function coverage_local(){
+		$('discussion_address').value='';
+		$('discussion_address').show();
+	}
+</script>

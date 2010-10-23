@@ -5,6 +5,8 @@ class SessionsController < ApplicationController
   include AuthenticatedSystem
 
   # render new.rhtml
+  def new2
+  end
   def new
   end
 

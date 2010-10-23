@@ -13,7 +13,13 @@ class ContactsController < ApplicationController
   
   def invite_to_event
     @event = Event.find params[:id]
+    render  :layout => false
+  end
+  
+  def share_event
+    @event = Event.find(params[:id])
     @invites = @event.get_or_create_invite_links_for(current_user) if logged_in?
+    render  :layout => false
   end
   
   def import

@@ -36,8 +36,8 @@
 		<ul class="buttons">
 			<% if logged_in? %>
 			<% unless event.completed? %>
-				<li><%= link_to 'recruit!',  invite_to_event_path(event) %></li>
-				<li><%= link_to 'share!',  invite_to_event_path(event) %></li>
+				<li><%= link_to 'recruit!',  invite_to_event_path(event), :class =>'lbOn' %></li>
+				<li><%= link_to 'share!',  share_event_path(event), :class =>'lbOn' %></li>
 				<% if logged_in? and current_user.participating?(event) %>
 				<li><%= link_to 'deny!', participate_event_path(event) %></li>
 				<% else %>

@@ -1,0 +1,10 @@
+<li>
+	<div class="visual"><a href="#"><%= image_tag(organization_bar.image.url(:smaller_thumbnail))%></a></div>
+	<div class="info">
+		<span class="name"><a href="#"><%= organization_bar.name %></a></span>
+		<p><%= organization_bar.address %></p>
+		<ul class="points">
+			<li><%= organization_bar.users.count %> activists</li>
+		</ul>
+	</div>
+</li>

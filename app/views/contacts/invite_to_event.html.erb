@@ -1,46 +1,17 @@
-<script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
-<script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
-<script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
-<script type="text/javascript"><!--
-function onABCommComplete() {
-  // OPTIONAL: do something here after the new data has been populated in your text area
-}
-//--></script>
 
-<div id='content'>
-<div id='left'> 
-
-<div class='module'> 
-    <div class='head'> 
+<div class="main-block" style="width:450px;margin-left:200px">
+	<div class="t">&nbsp;</div>
+	<div class="c" style="width:410px"> 
         <h3>Invite to <%= @event.title %></h3> 
-    </div> 
-    <div class='body'>
-	<% form_tag '/contacts/import/', :method => :post do %>
-		<textarea id="recipient_list" name="recipients"></textarea>
+    	
+		<% form_tag '/contacts/import/', :method => :post do %>
+			<textarea id="recipient_list" name="recipients"></textarea>
 
-		<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>
-		<%= hidden_field_tag :id, params[:id] %>
-		<input type="submit" value="Invite"/>
-	<% end %>
-	<% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
-	<h5> Invite on Twitter</h5>
-	<div>
-		<p>
-			<%= twitter_message = "Follow #{ bitly.shorten(participate_event_by_invitation_url(@invites.first.code)).short_url} to join VolunteerBig, do good, have fun and win prizes." %>
-			
-		</p>
-		<p>
-			<a href="http://twitter.com/?status=<%= URI.escape(twitter_message)%>" target="_blank">Share on Twitter</a>
-		</p>
-	</div>
-	<h3> Invite on Facebook </h3>
-	<div>
-		<p>
-			Click <%= bitly.shorten(participate_event_by_invitation_url(@invites.last.code)).short_url  %> to post invite on Facebook.
-		</p>
-		<p>
-			<a target="_blank" href="http://www.facebook.com/sharer.php?u=<%= URI.escape(join_by_invitation_url(@invites.last.code))%>&t=Join VolunteerBig, do good, have fun and win prizes">Share on Facebook</a>
-		</p>
-	</div>
-	</div>
+			<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img style="width:15%" src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>
+			<%= hidden_field_tag :id, params[:id] %>
+			<input type="submit" value="Invite"/>
+		<% end %>
+	<a class="lbAction" rel="deactivate">Cancel</a>
+</div>
+<div class="b">&nbsp;</div>
 </div>

@@ -3,6 +3,10 @@ module ApplicationHelper
   FeaturedCauses = ['Environment', 'Poverty']
   FeaturedSkills = ['Social Media', 'Writing']
   
+  def menu_highlight_class(path, matcher)
+    path =~ matcher ? 'active' : ''
+  end
+  
   def fboauth_connect_async_js(app_id,options={})
     opts = Hash.new(true).merge!(options)
     cookie = opts[:cookie]

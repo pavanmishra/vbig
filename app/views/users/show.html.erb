@@ -79,16 +79,30 @@
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->
 <% content_for :sidebar do %>
-<div class="box">
+	<div class="box">
 	<div class="t">&nbsp;</div>
 	<div class="c">
 		<div class="title">
 			<h3>Contests</h3>
 		</div>
-		<div class="promo-visual"><a href="contest.html"><img width="151" alt="" src="http://www.pc.ibm.com/ca/nba/images/nba_cares_140x187.jpg"></a></div>
+		<div class="promo-visual"><a href="/contest.html"><img width="151" alt="" src="http://www.pc.ibm.com/ca/nba/images/nba_cares_140x187.jpg"></a></div>
 	</div>
 	<div class="b">&nbsp;</div>
 	</div>
-	<%= render :partial => 'events/event_box', :locals => {:events => @user.events.all(:conditions => "events.to < now()"), :section_title => 'Past Participation'}  %>
+	<%= render :partial => 'events/event_box', :locals => {:events => @user.events.all(:conditions => "events.to < now()"), :section_title => 'Past Events'}  %>
+	<%= render :partial => 'events/event_box', :locals => {:events => Event.all(:conditions => "user_id = #{@user.id}", :limit => 5), :section_title => 'Events Created'}  %>	
+	<div class="box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h3>Helping NGOs</h3>	
+		</div>
+		<ul class="users">
+			<%= render :partial => 'organizations/organization_bar', :collection => @user.organizations.all(:limit => 5)%>
+		</ul>
+	</div>
+	<div class="b">&nbsp;</div>
+	</div>
+	
 	
 <% end %>

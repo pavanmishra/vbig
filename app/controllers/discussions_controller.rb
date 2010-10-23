@@ -12,7 +12,9 @@ class DiscussionsController < ApplicationController
   end
   
   def create
+    process_params_for_tags 'discussion', 'cause' 
     @discussion = Discussion.new(params[:discussion])
+
     @discussion.user = current_user
     if @discussion.save
       flash[:notice] = 'A discussion has been created.'
