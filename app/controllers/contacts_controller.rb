@@ -9,6 +9,7 @@ class ContactsController < ApplicationController
 
   def new_import
     @invite_event = Event.find(cookies[:invite_event]) unless cookies[:invite_event].nil?
+    render :layout => false
   end
   
   def invite_to_event
@@ -24,9 +25,10 @@ class ContactsController < ApplicationController
   
   def import
     # find_by_id does not raise an exception, which is good for this scenario
-    event = Event.find_by_id(params[:event_id])
+    event = Event.find_by_id(params[:id])
     PersonalInvitation.invite(params[:recipients].split(',').collect {|recipient| recipient.split('<').last.sub('>', '') }, current_user, event)
-    redirect_to params.key?(:event_id) ? {:action => :invite_to_event, :event_id => params[:event_id] } : {:action => :new_import}
+    flash[:notice] = 'You have succesfully sent your invite'
+    redirect_to params.key?(:id) ? event : root_path
   end
   
   def participate_event_by_invitation

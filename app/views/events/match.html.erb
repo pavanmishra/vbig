@@ -1,16 +1,23 @@
-<% if @events.blank? %>
-	<h2> No matching events</h2>
+<div class="t">&nbsp;</div>
+<div class="c">
+
+	<% if @events.blank? %>
+	<div class="title">
+		<h2>No Matching Event</h2>
+	</div><!--title-->
 	
 	<p> Looks would like to proceed ahead and create the event. You can do so by clicking the link below </p>
-	
 	<h3><%= link_to 'Create Event', events_path(:event => params[:event], :other_causes=> params[:other_causes], :other_skills => params[:other_skills]), :method => :post %></h3>
-<% else %>	
-	<h2> There are <%= @events.length %> events matching</h2>
+	<% else %>	
+	<div class="title">
+		<h2>Matching Event</h2>
+	</div><!--title-->
 	
-	<p> Its possible that someone among your friends might have created the event before you. You may look at the events listed below. If none of the
+		<h2> There are <%= @events.length %> events matching</h2>
+		<p> Its possible that someone among your friends might have created the event before you. You may look at the events listed below. If none of the
 		events match you may go ahead and create the event.</p>
 		
-	<div id="events">
+		<div id="events">
 		<% for event in @events %>
 		<div class="event">
 			<h3><%= event.title %></h3>
@@ -18,8 +25,28 @@
 			<p> Created by: <%= event.user %></p>
 		</div>
 		<% end %>
-	</div>
+		</div>
 	
-	<p> If none of the events match your event, click the link below to create one.</p>
+		<p> If none of the events match your event, click the link below to create one.</p>
 		<h3><%= link_to 'Create Event', events_path(:event => params[:event], :other_causes=> params[:other_causes], :other_skills => params[:other_skills]), :method => :post%></h3>
+	<% end %>
+
+</div>
+	<div class="b">&nbsp;</div>
+<% content_for :sidebar do %>
+<div class="box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title cutd">
+			<h3>New Event Tips</h3>
+		</div>
+		<ul>
+			<li>choose to select proper location</li>
+			<li>choose to select proper causes</li>			
+			<li>choose to select proper skills</li>			
+		</ul>	
+	</div>
+	<div class="b">&nbsp;</div>
+</div><!--box-->
+
 <% end %>

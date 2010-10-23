@@ -1,56 +1,41 @@
-<script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
-<script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
-<script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
-<script type="text/javascript"><!--
-function onABCommComplete() {
-  // OPTIONAL: do something here after the new data has been populated in your text area
-}
-//--></script>
 
-<div id='content'>
-<div id='left'> 
-
-<div class='module'> 
-    <div class='head'> 
+<div class="main-block" style="width:450px;margin-left:200px">
+	<div class="t">&nbsp;</div>
+	<div class="c" style="width:410px">
         <h3>Invite your Friends</h3> 
-    </div> 
-    <div class='body'>
-		<fb:request-form action="/contacts/import/" method="POST" invite="true" type="Favorite Causes" content="Support the causes you feel for.">  
-		<fb:multi-friend-selector max="20" actiontext="Here are your friends who haven't added Favorite Games to their profile. Invite them to share their Favorite Games today!" showborder="true" rows="5">
-		</fb:request-form>
-		
-	<% form_tag '/contacts/import/', :method => :post do %>
-		<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>
+		<% form_tag '/contacts/import/', :method => :post do %>
+		<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img style="width:20%" src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>
 		<textarea id="recipient_list" name="recipients" ></textarea>
 		<input type="submit" value="Invite"/>
-	<% end %>
-	<% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
-	<h5> Invite on Twitter</h5>
-	<div>
-		<p>
+		<% end %>
+		<% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
+		<h5> Invite on Twitter</h5>
+		<div>
+			<p>
 			<%= twitter_message = "Follow #{ bitly.shorten(join_by_invitation_url(current_user.twitter_invitation.code)).short_url} to join VolunteerBig, do good, have fun and win prizes." %>
-			
-		</p>
-		<p>
+			</p>
+			<p>
 			<a href="http://twitter.com/?status=<%= URI.escape(twitter_message)%>" target="_blank">Share on Twitter</a>
-		</p>
-	</div>
-	<h5> Invite on Facebook </h5>
-	<div>
-		<p>
+			</p>
+		</div>
+		<h5> Invite on Facebook </h5>
+		<div>
+			<p>
 			Click <%= bitly.shorten(join_by_invitation_url(current_user.facebook_invitation.code)).short_url  %> to post invite on Facebook.
-		</p>
-		<p>
-			<a target="_blank" href="http://www.facebook.com/sharer.php?u=<%= URI.escape(join_by_invitation_url(current_user.facebook_invitation.code))%>&t=Join VolunteerBig, do good, have fun and win prizes">Share on Facebook</a>
-		</p>
-	</div>
-	<% if @invite_event %>
-	<h5> Join Event </h5>
-	<div>
+			</p>
+			<p>
+				<a target="_blank" href="http://www.facebook.com/sharer.php?u=<%= URI.escape(join_by_invitation_url(current_user.facebook_invitation.code))%>&t=Join VolunteerBig, do good, have fun and win prizes">Share on Facebook</a>
+			</p>
+		</div>
+		<% if @invite_event %>
+		<h5> Join Event </h5>
+		<div>
 		<p>
 			You have been invited to participate in the event <%= link_to event.title, event %>
 		</p>
+		</div>
+		<% end %>
+	<a class="lbAction" rel="deactivate"> Close </a>
 	</div>
-	<% end %>
-	</div>
+
 </div>

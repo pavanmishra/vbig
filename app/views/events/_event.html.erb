@@ -47,7 +47,7 @@
 				<% event_user = EventUser.first(:conditions => {:user_id => current_user, :event_id => event})
 					if event_user
 						%>
-						<li><%= link_to 'Give Feedback', :controller => :event_users, :action => :new, :id => event_user  %></li>
+						<li><%= link_to 'Give Feedback', event_feedback_path(event_user), :class => 'lbOn'  %></li>
 					<% end %>
 			<% end %>
 			<%else%>

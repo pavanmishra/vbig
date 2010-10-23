@@ -5,6 +5,7 @@ class PledgesController < ApplicationController
   
   def new
     @pledge = Pledge.new
+    render :layout => false
   end
   
   def create

@@ -11,6 +11,7 @@ class EventUsersController < ApplicationController
 
   def new
     @event_user = EventUser.find(params[:id])
+    render :layout => false
   end
   
   def update

@@ -1,17 +1,28 @@
+
+<div class="main-block" style="width:450px;margin-left:200px">
+	<div class="t">&nbsp;</div>
+	<div class="c" style="width:410px">
+
 <% form_for(@event_user, :url => {:action => :update, :id => @event_user}) do |f| %>
 	<p>
 		Did you attend this event? <br />
-		<%= f.radio_button :attended, true %>Yes 
-		<%= f.radio_button :attended, false %>No
+		<%= f.radio_button :attended, true, :onclick=> 'attended()' %>Yes
+		<%= f.radio_button :attended, false, :onclick => 'not_attended()' %>No
+
+
 	</p>	
-	<p>
+	<p id="attended_hours" style="display:none">
 		<%= f.text_field :hours %> hours
 	</p>
-	<h3> I feel different having participated because.</h3>
-	<h3> I was not able to attend because.</h3>
+	<h3 id="attended_message" style="display:none"> I feel different having participated because.</h3>
+	<h3 id="not_attended_message"> I was not able to attend because.</h3>
 	<p>
 		<%= f.text_area :comment %>
 	</p>	
 	
 	<%= f.submit 'Submit'%>
 <% end %>
+<a class="lbAction" rel="deactivate">Cancel</a>
+</div>
+<div class="b">&nbsp;</div>
+</div>
