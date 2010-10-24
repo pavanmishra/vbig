@@ -19,8 +19,7 @@
 						<li><strong>causes effected:</strong> <%= @user.causes.collect{|cause_tag| cause_tag.name.titleize}.join(', ') %></li>
 						<li><strong>skills sought:</strong>  <%= @user.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
 					</ul>
-
-					<div class="row"><strong class="even"><%= @user.points %> points</strong></div>
+					<div class="row"><strong class="even"><%= @user.points %> points</strong><%= link_to 'Send Mesg', {:controller => :sent, :action => :new_to_user, :id => @user}, :class => 'suggest-btn lbOn'%></div>
 				</div>
 			</div>
 		</div>

@@ -4,7 +4,7 @@
 <div id='left'> 
 
 <h2>Sent Messages</h2>
-
+<%= will_paginate @messages %>
   <table border="1">
     <tr>
       <th>To</th>
@@ -20,5 +20,5 @@
       </tr>
     <% end %>
   </table>
-
+<%= will_paginate @messages %>
 

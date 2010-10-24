@@ -1,0 +1,15 @@
+<div class="main-block" style="width:450px;margin-left:200px">
+	<div class="t">&nbsp;</div>
+	<div class="c" style="width:410px">
+		<h2>Compose</h2>
+
+		<% form_for :message, :url => {:controller => "sent", :action => "create"} do |f| %>
+
+		<%= hidden_field_tag 'message[to][]', params[:id]%>
+
+  		<p>Subject: <%= f.text_field :subject %></p>
+  		<p>Body:<br /> <%= f.text_area :body, :rows => 5 %></p>
+  		<p><%= submit_tag "Send" %></p>
+		<% end %>
+	</div>
+</div>	
