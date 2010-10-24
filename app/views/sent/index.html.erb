@@ -1,9 +1,11 @@
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2>Sent Messages</h2>
+			<a href="#" class="view">view all</a>
+		</div><!--title-->
 
-<h1><%= @title %></h1>
-<div id='content'>
-<div id='left'> 
-
-<h2>Sent Messages</h2>
 <%= will_paginate @messages %>
   <table border="1">
     <tr>
@@ -22,3 +24,35 @@
   </table>
 <%= will_paginate @messages %>
 
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->
+<% content_for :sidebar do %>
+<div class="box">
+<div class="t">&nbsp;</div>
+<div class="c">
+	<div class="title">
+		<h3>Inbox</h3>
+	</div>
+	<div>
+		<%= link_to 'Compose', :controller => :sent, :action => :new %><br />
+		<%= link_to 'Received', :controller => :received, :action => :index %><br />
+		<%= link_to 'Sent', :controller => :sent, :action => :index %>
+	</div>	
+</div>
+<div class="b">&nbsp;</div>
+</div>
+
+
+<div class="box">
+<div class="t">&nbsp;</div>
+<div class="c">
+	<div class="title">
+		<h3>Contests</h3>
+	</div>
+	<div class="promo-visual"><a href="/contest.html"><img width="151" alt="" src="http://www.pc.ibm.com/ca/nba/images/nba_cares_140x187.jpg"></a></div>
+</div>
+<div class="b">&nbsp;</div>
+</div>
+
+<% end %>	
