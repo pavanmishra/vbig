@@ -1513,3 +1513,16 @@ div.autocomplete ul li {
   height:32px;
   cursor:pointer;
 }
+#carousel-wrapper {
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+}
+#carousel-content {
+    width: 1200px;
+}
+#carousel-content .slide {
+    float: left;
+    width: 250px;
+    height: 250px;
+}

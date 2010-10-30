@@ -2,15 +2,16 @@
 	<div class="t">&nbsp;</div>
 	<div class="c">
 		<div class="title">
-			<h2 class="blue">non profit</h2>
+			<h2 class="blue"><%= @organization.name %></h2>
 		</div><!--title-->
 		<div class="cart-info">
 			<div class="holder">
 				<div class="visual"><%= image_tag @organization.image.url(:small)%></div>
 				<div class="cart-text">
+					<!--
+
 					<h3><%= @organization.name %></h3>
 					<div class="dc"><%= @organization.address %></div>
-					<!--
 					<ul class="social">
 						<li class="facebook"><a href="#">www.facebook.com/kofman.foundation</a></li>
 						<li class="twitter"><a href="#">@ koufmanfoundation</a></li>
@@ -20,7 +21,7 @@
 						<li><strong>skills sought:</strong>   <%= @organization.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
 					</ul>
 					
-					<div class="row"><strong class="even"><%= @organization.events.count %> events</strong><% unless logged_in? and current_user.helping?(@organization)%><%= link_to 'Help', help_organization_path(@organization), :class=> 'suggest-btn'%><% end %></div>
+					<div class="row"><strong class="even"><%= @organization.events.count %> events</strong><% unless logged_in? and current_user.helping?(@organization)%><%= link_to 'Like', help_organization_path(@organization), :class=> 'suggest-btn'%><% end %></div>
 				</div>
 			</div>
 		</div>
@@ -56,7 +57,18 @@
 	<div class="title">
 		<h3>Contests</h3>
 	</div>
-	<div class="promo-visual"><a href="/contest.html"><img width="151" alt="" src="http://www.pc.ibm.com/ca/nba/images/nba_cares_140x187.jpg"></a></div>
+	<div id="carousel-wrapper">
+	    <div id="carousel-content">
+	        <div class="slide"> </div>
+	        <div class="slide"><a href="/contest.html"><img width="151" alt="" src="http://www.pc.ibm.com/ca/nba/images/nba_cares_140x187.jpg"></a></div>
+	        <div class="slide"><a href="/contest.html"><img width="151" alt="" src="http://t2.gstatic.com/images?q=tbn:ANd9GcSB5tp3OKrnqAQLFlXMv2THs014ckGW-RNBWaH3oTXaEyLg_sQ&t=1&usg=__34jrsX8GkxmDopuo63hLk3qDYTY="></a></div>
+	        <div class="slide"><a href="/contest.html"><img width="151" alt="" src="http://t0.gstatic.com/images?q=tbn:ANd9GcSm6k1g9Krc97nqyJYSF6yBh-DIa8ytuTO2JiHqymI6UGrrA-U&t=1&usg=___h9Tsh6TjLD6LSU4Cgz6X56pmcU="></a></div>	
+	
+	    </div>
+	</div>
+	<script type="text/javascript">
+	new Carousel('carousel-wrapper', $$('#carousel-content .slide'), $$('a.carousel-control', 'a.carousel-jumper'), {circular:true, auto:true, frequency:5, duration:1});
+	</script>
 </div>
 <div class="b">&nbsp;</div>
 </div>

@@ -28,4 +28,8 @@ class Organization < ActiveRecord::Base
   def to_s
     name 
   end
+  
+  def iMatter?
+    self.name.eql?('iMatter')
+  end
 end
