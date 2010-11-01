@@ -34,7 +34,13 @@
 		<div class="title">
 			<h2 class="blue">about</h2>
 		</div><!--title-->
-		<div class="about-info"><p><%= @organization.description %></p></div>
+		<div class="about-info">
+		<% if @organization.iMatter? %>
+			<div style="text-align:center">
+				<object width="480" height="385" align="center"><param name="movie" value="http://www.youtube.com/v/S1ffgR1BxaE?fs=1&amp;hl=en_US&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/S1ffgR1BxaE?fs=1&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
+			</div>	
+		<% end %>
+		<p><%= @organization.description %></p></div>
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->	
@@ -45,6 +51,7 @@
 			<h2>opportunities</h2>
 			<a href="#" class="view orang-link">view all</a>
 		</div><!--title-->
+		<iframe width="640" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;oe=UTF8&amp;source=embed&amp;msa=0&amp;msid=117031743659010886480.000493d910267f6df30fa&amp;ll=37.020098,-96.679687&amp;spn=33.464656,56.25&amp;z=4&amp;output=embed"></iframe><br /><small>View <a href="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;oe=UTF8&amp;source=embed&amp;msa=0&amp;msid=117031743659010886480.000493d910267f6df30fa&amp;ll=37.020098,-96.679687&amp;spn=33.464656,56.25&amp;z=4" style="color:#0000FF;text-align:left">imatter</a> in a larger map</small>
 		<%= render :partial => 'events/event', :collection => @organization.events %>
 	</div>
 	<div class="b">&nbsp;</div>		
