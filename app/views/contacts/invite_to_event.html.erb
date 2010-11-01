@@ -7,7 +7,7 @@
 		<% form_tag '/contacts/import/', :method => :post do %>
 			<textarea id="recipient_list" name="recipients"></textarea>
 
-			<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img style="width:15%" src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>
+			<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img style="width:100px" src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>
 			<%= hidden_field_tag :id, params[:id] %>
 			<input type="submit" value="Invite"/>
 		<% end %>
