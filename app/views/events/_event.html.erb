@@ -13,13 +13,16 @@
 			<li><%= link_to 'Close Event', complete_event_path(event)%></li>					
 			<% end %>					
 		</ul><!--cat-->
+		<% if event.organization %>
 		<div class="skils">
 			<div class="row">
 				
 				<h4>organized by: </h4>
-				<a href="somewhere"><h5>Big Volunteers</h5></a>
+				<h5><%= link_to event.organization.name, event.organization %></h5>
+
 			</div>
 		</div><!--skils-->
+		<% end %>
 		<div class="skils">
 			<div class="row">
 				<h4>causes: </h4>
