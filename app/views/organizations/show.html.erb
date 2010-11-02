@@ -97,10 +97,10 @@
 		<div class="t">&nbsp;</div>
 		<div class="c">
 			<div class="title cutd">
-				<h3>past opportunities</h3>
+				<h3>leaderboard</h3>
 			</div>
 			<ul class="users activity">
-				<%= render :partial => 'events/event_card', :collection => @organization.events %>
+				<%= render :partial => 'users/user_small', :collection => User.all(:limit => 5, :order => 'points DESC') %>
 			</ul>
 		</div>
 		<div class="b">&nbsp;</div>
