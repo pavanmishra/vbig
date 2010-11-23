@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101122131706) do
+ActiveRecord::Schema.define(:version => 20101123192640) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -42,14 +42,33 @@ ActiveRecord::Schema.define(:version => 20101122131706) do
     t.integer  "photo_file_size"
   end
 
-  create_table "contest_users", :id => false, :force => true do |t|
-    t.integer "contest_id"
-    t.integer "user_id"
+  create_table "contest_organizations", :force => true do |t|
+    t.integer  "contest_id"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contest_users", :force => true do |t|
+    t.integer  "contest_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "contests", :force => true do |t|
     t.string   "title"
     t.string   "description"
+    t.string   "address"
+    t.decimal  "lat",                :precision => 10, :scale => 7
+    t.decimal  "lng",                :precision => 10, :scale => 7
+    t.boolean  "featured"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "from_date"
+    t.datetime "to"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -123,7 +142,7 @@ ActiveRecord::Schema.define(:version => 20101122131706) do
   create_table "invitations", :force => true do |t|
     t.string   "code"
     t.string   "email"
-    t.boolean  "used"
+    t.boolean  "used",       :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
@@ -177,17 +196,16 @@ ActiveRecord::Schema.define(:version => 20101122131706) do
   end
 
   create_table "pledges", :force => true do |t|
-    t.string   "type"
+    t.string   "info"
     t.float    "time"
     t.float    "money"
+    t.integer  "number"
     t.string   "other"
     t.integer  "pledgeable_id"
     t.string   "pledgeable_type"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "number"
-    t.string   "info"
   end
 
   create_table "prizes", :force => true do |t|
@@ -242,9 +260,9 @@ ActiveRecord::Schema.define(:version => 20101122131706) do
     t.string   "crypted_password",           :limit => 40
     t.string   "remember_token",             :limit => 40
     t.datetime "remember_token_expires_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
     t.integer  "facebook_user_id"
     t.integer  "facebook_access_token"
     t.integer  "points",                                                                   :default => 0
@@ -259,7 +277,7 @@ ActiveRecord::Schema.define(:version => 20101122131706) do
     t.string   "country"
     t.string   "zip"
     t.text     "about_me"
-    t.string   "fighting_for"
+    t.text     "fighting_for"
     t.boolean  "is_admin"
     t.boolean  "send_message_notifications"
     t.boolean  "send_weekly_updates"

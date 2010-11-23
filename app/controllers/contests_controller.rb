@@ -14,7 +14,7 @@ class ContestsController < ApplicationController
   # GET /contests/1.xml
   def show
     @contest = Contest.find(params[:id])
-
+    @contest_organization = ContestOrganization.new :contest => @contest
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @contest }
@@ -81,5 +81,10 @@ class ContestsController < ApplicationController
       format.html { redirect_to(contests_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def add_organization
+    contest_organization = ContestOrganization.create params[:contest_organization]
+    redirect_to contest_organization.contest
   end
 end

@@ -13,7 +13,9 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.profile 'profile', :controller => :users, :action => :profile
   map.edit_profile 'profile/edit', :controller => :users, :action => :edit
+  map.contesting_organizations '/contesting-organizations', :controller => 'organizations', :action => 'autocomplete_list'
   map.help_organization '/help/:id', :controller => :organization_users, :action => :help
+  map.enter_contest '/enter/contest/:id', :controller => :contest_users, :action => :create
   map.participate_event '/participate/:id', :controller => :event_users, :action => :participate
   map.feature_event '/feature/event/:id', :controller => :events, :action => :feature  
   map.complete_event '/complete/event/:id', :controller => :events, :action => :complete

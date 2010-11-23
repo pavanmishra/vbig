@@ -1549,3 +1549,20 @@ text-transform:uppercase;
 vertical-align:top;
 width:100%;
 }
+#content .thumbs {
+overflow:hidden;
+padding:5px 0 0;
+width:665px;
+}
+#content .thumbs li {
+float:left;
+height:72px;
+overflow:hidden;
+padding:0 10px 9px 0;
+width:73px;
+}
+#sidebar .content-box h3 {
+color:#3044B5;
+font-size:13px;
+padding-bottom:5px;
+}

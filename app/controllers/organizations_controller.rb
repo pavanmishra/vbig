@@ -100,4 +100,9 @@ class OrganizationsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def autocomplete_list
+    @organizations = Organization.find(:all, :conditions => "name like '%#{params[:value]}%'")
+    render :layout => false
+  end
 end

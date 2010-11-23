@@ -154,7 +154,7 @@ class User < ActiveRecord::Base
   protected
     
   def after_create
-    Badges::FoundingMember.check_conditions_for(self)
+    #Badges::FoundingMember.check_conditions_for(self)
     TwitterInvitation.create :code => Invitation.random_code, :user => self
     FacebookInvitation.create :code => Invitation.random_code, :user => self
   end

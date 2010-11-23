@@ -30,18 +30,83 @@
 
 										</div>
 										<div class="promo-buttons">
-											<a href="#" class="btn">Enter!</a>
+											<% unless !logged_in? or @contest.has_participant?(current_user)%>
+											<%= link_to 'Enter!', enter_contest_path(@contest), :class => 'btn'%>
+											<% else %>
+											<p> You are already participating in this contest.</p>
+											<% end %>
 										</div>
 
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->
+					<div class="content-box">
+						<div class="t">&nbsp;</div>
+						<div class="c">
+							<ul class="thumbs">
+								<% for user in @contest.users %>
+									<li><%= link_to image_tag(facebook_profile_picture(user, 'large')), user %></li>
+								<% end %>
+							</ul>
+						</div>
+						<div class="b">&nbsp;</div>		
+					</div><!--content-box-->
+
 </div>
 <% content_for :sidebar do %>
 	<div class="box">
 		<div class="t">&nbsp;</div>
 		<div class="c">
-			<div class="promo-visual"><img alt="" src="/ups_files/nba_logo.jpg" width="151"></div>
+			<div class="promo-visual"><%= image_tag @contest.image.url(:medium)%></div>
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+	<div class="box content-box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<div class="title cutd">
+				<h3>nonprofit leaderboard</h3>
+			</div>
+			<% if logged_in? and current_user.is_admin? %>
+			<input type="text" id="autocomplete" name="autocomplete_parameter"/>
+			<span id="indicator1" style="display: none">
+			  <img src="/images/spinner.gif" alt="Working..." />
+			</span>
+			<div id="autocomplete_choices" class="autocomplete"></div>
+			<script>
+			new Ajax.Autocompleter("autocomplete", "autocomplete_choices", "/contesting-organizations", {
+			  paramName: "value", 
+			  minChars: 2, 
+			  indicator: 'indicator1',
+			  afterUpdateElement: function(text, li){
+				$('contest_organization_organization_id').value = li.id;
+			}
+			});
+			</script>
+			<% form_for @contest_organization, :url => {:controller => :contests, :action => :add_organization} do |f|%>
+			<%= f.hidden_field :organization_id %>
+			<%= f.hidden_field :contest_id %>
+			<%= f.submit 'add'%>
+			<% end %>
+			<% end %>
+			<ul class="users">
+				<% for organization in @contest.organizations %>
+				<li>
+					<div class="visual"><%= link_to image_tag(organization.image.url(:thumbnail)), organization %></div>
+					<div class="info">
+						<span class="name"><%= link_to organization.name, organization %></span>
+						<p> <%= organization.address %></p>
+						<ul class="points">
+							<li>&nbsp;223 events</li>
+							<li>349 activists</li>
+						</ul>
+					</div>
+				</li>
+				<% end %>
+			</ul>
+
+			
+			<div class="all"><a href="#">view all </a></div>
 		</div>
 		<div class="b">&nbsp;</div>
 	</div><!--box-->
