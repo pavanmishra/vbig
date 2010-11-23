@@ -2,7 +2,7 @@
 	<div class="t">&nbsp;</div>
 	<div class="c">
 		<div class="title">
-			<h2>participation</h2>
+			<h2><% if @event.organization and @event.organization.iMatter? %> iMatter <% else %>participation<%end%></h2>
 			<a href="#" class="view">view all</a>
 		</div><!--title-->
 		<%= render :partial => 'event', :object => @event %>

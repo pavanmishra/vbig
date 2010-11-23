@@ -1,0 +1,10 @@
+<div class="t">&nbsp;</div>
+<div class="c">
+	<div class="title">
+		<h2>Contests</h2>
+		<%= link_to 'featured', '#', :class => "view" %> 
+		<%= link_to 'view all', contests_path, :class => "view" %>
+	</div><!--title-->
+	<%= render :partial => 'contest', :collection => @contests %>
+</div>
+<div class="b">&nbsp;</div>
