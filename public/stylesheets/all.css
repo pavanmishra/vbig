@@ -1526,3 +1526,26 @@ div.autocomplete ul li {
     width: 250px;
     height: 250px;
 }
+ #content .contest-box .global-info .list li {
+background:url("/images/sep08.gif") no-repeat scroll 0 50% transparent;
+color:#1A2732;
+float:left;
+font-size:11px;
+margin:0 7px 0 -7px;
+padding:0 7px 0 8px;
+text-transform:uppercase;
+}
+#content .contest-box .causes-skills {
+border-top:1px solid #ECECEC;
+padding:16px 0 8px;
+}
+#content .contest-box .causes-skills li {
+color:#1A2732;
+font-size:13px;
+line-height:15px;
+overflow:hidden;
+padding-bottom:10px;
+text-transform:uppercase;
+vertical-align:top;
+width:100%;
+}

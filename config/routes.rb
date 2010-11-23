@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :prizes
+
+  map.resources :contests
+
   map.resources :badges
 
   map.root :controller => :events, :action => :home

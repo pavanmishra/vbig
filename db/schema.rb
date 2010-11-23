@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101006004459) do
+ActiveRecord::Schema.define(:version => 20101122131706) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(:version => 20101006004459) do
     t.integer  "photo_file_size"
   end
 
+  create_table "contest_users", :id => false, :force => true do |t|
+    t.integer "contest_id"
+    t.integer "user_id"
+  end
+
+  create_table "contests", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "discussions", :force => true do |t|
     t.string   "title"
     t.string   "description"
@@ -51,6 +63,14 @@ ActiveRecord::Schema.define(:version => 20101006004459) do
     t.boolean  "featured"
     t.decimal  "lat",             :precision => 10, :scale => 7
     t.decimal  "lng",             :precision => 10, :scale => 7
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "editorships", :force => true do |t|
+    t.integer  "editable_id"
+    t.string   "editable_type"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -168,6 +188,13 @@ ActiveRecord::Schema.define(:version => 20101006004459) do
     t.datetime "updated_at"
     t.integer  "number"
     t.string   "info"
+  end
+
+  create_table "prizes", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "taggings", :force => true do |t|

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  editable_id: 1
+  editable_type: MyString
+  user_id: 1
+
+two:
+  editable_id: 1
+  editable_type: MyString
+  user_id: 1
