@@ -20,6 +20,7 @@ class Contest < ActiveRecord::Base
   @@per_page = 10
   
   def has_participant?(user)
-    users.find(user.id)
+    # so that if user is not found it returns nil and not exception
+    users.find_by_id(user.id)
   end
 end
