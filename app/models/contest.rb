@@ -20,6 +20,6 @@ class Contest < ActiveRecord::Base
   @@per_page = 10
   
   def has_participant?(user)
-    users.find(user)
+    users.find(user.id)
   end
 end
