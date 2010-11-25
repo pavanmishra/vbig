@@ -30,10 +30,12 @@
 
 										</div>
 										<div class="promo-buttons">
-											<% unless !logged_in? or @contest.has_participant?(current_user)%>
+											<% if !logged_in? or !@contest.has_participant?(current_user)%>
 											<%= link_to 'Enter!', enter_contest_path(@contest), :class => 'btn'%>
 											<% else %>
-											<p> You are already participating in this contest.</p>
+											<% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
+											<%= link_to 'Share', "http://www.facebook.com/sharer.php?u=#{ URI.escape(join_by_invitation_url(current_user.facebook_invitation.code))}&t=Join VolunteerBig, do good, have fun and win prizes", :class => 'btn'%>
+											<p>Share link to this contest on facebook and win.</p>
 											<% end %>
 										</div>
 
