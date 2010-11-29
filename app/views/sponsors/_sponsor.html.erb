@@ -1,0 +1,11 @@
+<div class="cart-info">
+			<div class="holder">
+				<div class="visual"><%= image_tag sponsor.image.url(:small)%></div>
+				<div class="cart-text">
+					<h3><%= link_to sponsor.name, sponsor %></h3>
+					<div class="dc"><%= sponsor.address %></div>
+
+					<div class="row"><strong class="even"><%= sponsor.contests.count %> contests</strong></div>
+				</div>
+			</div>
+		</div>

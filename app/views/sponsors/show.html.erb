@@ -1,0 +1,53 @@
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue"><%= @sponsor.name %></h2>
+		</div><!--title-->
+		<div class="cart-info">
+			<div class="holder">
+				<div class="visual"><%= image_tag @sponsor.image.url(:small)%></div>
+				<div class="cart-text">
+					<div class="row"><strong class="even"><%= @sponsor.contests.count %> contests</strong></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue">about</h2>
+		</div><!--title-->
+		<div class="about-info">
+		<p><%= @sponsor.description %></p></div>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->	
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2>contests</h2>
+			<a href="#" class="view orang-link">view all</a>
+		</div><!--title-->
+		<%= render :partial => 'contests/contest', :collection => @sponsor.contests %>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->
+<% content_for :sidebar do %>
+
+<div class="box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<ul class="buttons" >
+			<li style="padding-left:5em"><%= link_to 'new contest', new_contest_path(:sponsor => @sponsor) %></li>
+		</ul><!--buttons-->
+	</div>
+	<div class="b">&nbsp;</div>
+</div><!--box-->
+
+
+<% end %>

@@ -1,6 +1,6 @@
-class Prize < ActiveRecord::Base
-  has_many  :contest_prizes
-  has_many  :contests
+class Sponsor < ActiveRecord::Base
+  has_many  :contest_sponsors
+  has_many  :contests, :through => :contest_sponsors
   has_attached_file :image, :path => ':rails_root/public/system/images/sponsors/:attachment/:id/:style/:filename', 
         :url => '/system/images/sponsors/:attachment/:id/:style/:filename',
         :styles => {
@@ -11,5 +11,5 @@ class Prize < ActiveRecord::Base
           :medium => "200x200#",
           :large =>   "400x400>"
         }
-
+  
 end

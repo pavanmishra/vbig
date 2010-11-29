@@ -3,6 +3,8 @@ class Contest < ActiveRecord::Base
   has_many  :users, :through => :contest_users
   has_many  :contest_organizations
   has_many  :organizations, :through => :contest_organizations
+  has_many  :contest_sponsors
+  has_many  :sponsors, :through => :contest_sponsors
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills
   has_attached_file :image, :path => ':rails_root/public/system/images/contests/:attachment/:id/:style/:filename', 

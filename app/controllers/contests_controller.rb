@@ -41,7 +41,7 @@ class ContestsController < ApplicationController
   # POST /contests.xml
   def create
     @contest = Contest.new(params[:contest])
-
+    @contest.sponsors << Sponsor.find(params[:for_sponsor]) if params[:for_sponsor]
     respond_to do |format|
       if @contest.save
         flash[:notice] = 'Contest was successfully created.'

@@ -1,3 +1,20 @@
+<div class="t">&nbsp;</div>
+<div class="c">
+	<div class="title">
+		<h2>Prizes</h2>
+	</div><!--title-->
+	<%= will_paginate(@prizes) rescue nil%>
+	<div class="content-box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<%= render :partial => 'prize', :collection => @prizes %>
+		</div>
+		<div class="b">&nbsp;</div>		
+	</div><!--content-box-->
+	<%= will_paginate(@prizes) rescue nil %>	
+</div>
+<div class="b">&nbsp;</div>
+
 <h1>Listing prizes</h1>
 
 <table>

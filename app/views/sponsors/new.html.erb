@@ -1,15 +1,15 @@
-<h1>New contest</h1>
+<h1>New sponsor</h1>
 
-<% form_for(@contest, :html => {:multipart => true}) do |f| %>
+<% form_for(@sponsor, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
   </p>
   <p>
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_area :description %>
   </p>
   <p>
     <%= f.label :address %><br />
@@ -20,10 +20,11 @@
 	<%= f.label :image, "Photo" %>
 	<%= f.file_field :image %>
   </p>
-	<%= hidden_field_tag :for_sponsor, params[:sponsor]%>
+
+
   <p>
     <%= f.submit 'Create' %>
   </p>
 <% end %>
 
-<%= link_to 'Back', contests_path %>
+<%= link_to 'Back', sponsors_path %>

@@ -1,13 +1,16 @@
-<p>
-  <b>Title:</b>
-  <%=h @prize.title %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%=h @prize.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_prize_path(@prize) %> |
-<%= link_to 'Back', prizes_path %>
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2 class="blue"><%= @prize.title %></h2>
+		</div><!--title-->
+		<div class="cart-info">
+			<div class="holder">
+				<div class="visual"><%= image_tag @prize.image.url(:small)%></div>
+				<div class="cart-text">
+					<div class="row"><strong class="even"><%= @prize.contests.count %> contests</strong></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="b">&nbsp;</div>		
