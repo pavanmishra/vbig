@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :sponsors
+
   map.resources :prizes
 
   map.resources :contests
@@ -13,6 +15,8 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.profile 'profile', :controller => :users, :action => :profile
   map.edit_profile 'profile/edit', :controller => :users, :action => :edit
+  map.sponsors_autocomplete 'sponsors-autocomplete', :controller => :sponsors, :action => :autocomplete_list
+  map.prizes_autocomplete 'prizes-autocomplete', :controller => :prizes, :action => :autocomplete_list  
   map.contesting_organizations '/contesting-organizations', :controller => 'organizations', :action => 'autocomplete_list'
   map.help_organization '/help/:id', :controller => :organization_users, :action => :help
   map.enter_contest '/enter/contest/:id', :controller => :contest_users, :action => :create

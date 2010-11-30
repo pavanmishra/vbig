@@ -3,7 +3,11 @@ class CreatePrizes < ActiveRecord::Migration
     create_table :prizes do |t|
       t.string :title
       t.string :description
-
+      t.string   "image_file_name"
+      t.string   "image_content_type"
+      t.integer  "image_file_size"
+      t.string  'address'
+      
       t.timestamps
     end
   end
