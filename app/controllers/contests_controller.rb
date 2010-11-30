@@ -15,10 +15,22 @@ class ContestsController < ApplicationController
   def show
     @contest = Contest.find(params[:id])
     @contest_organization = ContestOrganization.new :contest => @contest
+    @contest_sponsor  = ContestSponsor.new :contest => @contest
+    @contest_prize = ContestPrize.new :contest => @contest
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @contest }
     end
+  end
+
+  def add_sponsor
+    contest_sponsor = ContestSponsor.create params[:contest_sponsor]
+    redirect_to contest_sponsor.contest
+  end
+
+  def add_prize
+    contest_prize = ContestPrize.create params[:contest_prize]
+    redirect_to contest_prize.contest
   end
 
   # GET /contests/new

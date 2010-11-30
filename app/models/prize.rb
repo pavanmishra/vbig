@@ -1,8 +1,8 @@
 class Prize < ActiveRecord::Base
   has_many  :contest_prizes
-  has_many  :contests
-  has_attached_file :image, :path => ':rails_root/public/system/images/sponsors/:attachment/:id/:style/:filename', 
-        :url => '/system/images/sponsors/:attachment/:id/:style/:filename',
+  has_many  :contests, :through => :contest_prizes
+  has_attached_file :image, :path => ':rails_root/public/system/images/prizes/:attachment/:id/:style/:filename', 
+        :url => '/system/images/prizes/:attachment/:id/:style/:filename',
         :styles => {
           :small_thumbnail => "75x79#",
           :smaller_thumbnail => "60x60#",

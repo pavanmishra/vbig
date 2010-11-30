@@ -9,6 +9,11 @@ class SponsorsController < ApplicationController
       format.xml  { render :xml => @sponsors }
     end
   end
+  
+  def autocomplete_list
+    @sponsors = Sponsor.find(:all, :conditions => "name like '%#{params[:value]}%'")
+    render :layout => false
+  end
 
   # GET /sponsors/1
   # GET /sponsors/1.xml

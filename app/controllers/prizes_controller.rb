@@ -10,6 +10,11 @@ class PrizesController < ApplicationController
     end
   end
 
+  def autocomplete_list
+    @prizes = Prize.find(:all, :conditions => "title like '%#{params[:value]}%'")
+    render :layout => false
+  end
+  
   # GET /prizes/1
   # GET /prizes/1.xml
   def show
