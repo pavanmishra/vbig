@@ -1,6 +1,6 @@
 <h1>New prize</h1>
 
-<% form_for(@prize) do |f| %>
+<% form_for(@prize, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -11,6 +11,11 @@
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </p>
+  <p>
+	<%= f.label :image, "Photo" %>
+	<%= f.file_field :image %>
+  </p>
+
   <p>
     <%= f.submit 'Create' %>
   </p>
