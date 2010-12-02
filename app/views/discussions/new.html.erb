@@ -4,15 +4,15 @@
 		<div class="title">
 			<h2 class="blue">new discussion</h2>
 		</div><!--title-->
-		<div class="about-info">
+		<div class="search-form">
 			<% form_for @discussion do |f| %>
 			<%= f.error_messages %>
 			<p>
-			Title<br/>
+			<%= f.label	:title %><br />
 			<%= f.text_field :title %>	
 			</p>	
 			<p>
-			Description<br/>
+			<%= f.label :description %><br />
 			<%= f.text_area :description, :rows => 5 %>	
 			</p>
 		  <p>
@@ -22,18 +22,20 @@
 
 			
 			<p>
-			Coverage<br/>
+			<%= f.label :coverage %><br/>
 			<input type="radio" name="coverage" onclick="coverage_us()" checked="checked"/>National <input type="radio" name="coverage" onclick="coverage_local()" />Local
 			<%= f.text_field :address, :style=> 'display:none', :value=>"U.S.A" %>	
 			</p>	
 			<p>
 		    <%= f.label :causes %><br />
 			<%#= render :partial => 'common/tag_checkboxes', :locals => {:items => default_causes, :item_name => 'causes', :object_items => @event.causes.collect{|cause| cause.name}}%>
+			<div style="padding: 1em 6.5em">
 			<%= render :partial => 'users/cause_select', :locals => {:checked => @discussion.causes.collect{|skill| skill.name} }%>
 			Others(comma separated) <br />
 			<%= text_field_tag 'other_causes' %>
-			
+			</div>
 		  	</p>
+			<br />
 			<%= f.submit 'Create' %>					
 			<% end %>
 		</div>
