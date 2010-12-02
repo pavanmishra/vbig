@@ -284,6 +284,7 @@ a:hover{text-decoration:underline;}
 	padding-top:4px;
 	border-bottom:1px solid #3044b5;
 	text-transform:uppercase;
+	margin-left:1em;
 }
 #content .title .view:hover{
 	text-decoration:none;
