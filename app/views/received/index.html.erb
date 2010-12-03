@@ -3,22 +3,18 @@
 	<div class="c">
 		<div class="title">
 			<h2>Received Messages</h2>
-			<a href="#" class="view">view all</a>
+			<%= link_to 'unread', inbox_path(:filter => 'unread'), :class => 'view'%>
+			<%= link_to 'all', inbox_path, :class => 'view'%>			
 		</div><!--title-->
 
 		<%= will_paginate @messages %>
-		<table border="1">
-  			<tr>
-    			<th>From</th>
-    			<th>Subject</th>
-    			<th>Received</th>
-  			</tr>
-  
+		<table cellpadding="0" width="100%">
   			<% for message in @messages %>
-    		<tr>
-      			<td><%=h message.author.login %></td>
-      			<td><%= link_to h(message.subject), :controller => :received, :action => :show, :id => message %></td>
-      			<td><%= distance_of_time_in_words(message.created_at, Time.now) %> ago</td>
+    		<tr style="border-bottom:1px solid #cacaca;<%= 'background-color:#efefef' unless message.read? %>">
+      			<td><%= link_to image_tag((message.author.pic_square or '/images/img24.jpg'), :align => :left, :style=> 'margin:0.5em'), message.author %><%=link_to h(message.author.name), message.author %><br /><%= distance_of_time_in_words(message.created_at, Time.now) %> ago</td>
+      			<td style="width:68%"><%= link_to truncate(h(message.subject), :length => 70), {:controller => :received, :action => :show, :id => message}, :style => "color:#333;font-size:1.1em;#{'font-weight:bold' unless message.read? }" %><br />
+				<%= link_to truncate(h(message.body), :length => 120), {:controller => :received, :action => :show, :id => message}, :style => 'color:#666;font-size:1em;text-decoration:none'%>
+				</td>
     		</tr>
   			<% end %>
 		</table>

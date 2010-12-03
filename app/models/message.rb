@@ -6,13 +6,15 @@ class Message < ActiveRecord::Base
   before_create :prepare_copies
   attr_accessor  :to # array of people to send to
   attr_accessible :subject, :body, :to
+  validates_presence_of :subject 
   
   def prepare_copies
     return if to.blank?
     
     to.each do |recipient|
       recipient = User.find(recipient)
-      message_copies.build(:recipient_id => recipient.id)
+      # strange bug with rails as to not updating the created_at time
+      message_copies.build(:recipient_id => recipient.id, :created_at => Time.now)
     end
   end
 end

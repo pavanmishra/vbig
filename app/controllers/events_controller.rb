@@ -76,7 +76,7 @@ class EventsController < ApplicationController
     end
     @event = Event.find(params[:id], :include => {:comments => []})
     @editorship = Editorship.new :editable => @event
-    @new_comment = @event.comments.new(:name => current_user.name, :email => current_user.email) if logged_in?
+    @new_comment = @event.comments.new(:name => current_user.name, :email => current_user.email, :user_id => current_user.id) if logged_in?
     @title = @event.title
     respond_to do |format|
       format.html # show.html.erb
