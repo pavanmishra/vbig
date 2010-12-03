@@ -29,6 +29,10 @@
     <%= f.label :name, name_label, :class => 'comment_name_label' -%>
     <%= f.text_field :name, :class => 'threaded_comment_name_input' %>
   </p>
+  <p class="new_threaded_comment_user_id">
+    <%= f.label :user_id -%>
+    <%= f.text_field :user_id, :class => 'threaded_comment_user_id_input' %>
+  </p>
   
   <p class="new_threaded_comment_email">
     <%= f.label :email, email_label, :class => 'comment_email_label' -%>

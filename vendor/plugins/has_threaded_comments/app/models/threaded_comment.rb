@@ -14,7 +14,7 @@ class ThreadedComment < ActiveRecord::Base
   
   before_validation   :assign_owner_info_to_nested_comment
   
-  attr_accessible :name, :body, :email, :parent_id, :threaded_comment_polymorphic_id, :threaded_comment_polymorphic_type
+  attr_accessible :name, :body, :email, :parent_id, :threaded_comment_polymorphic_id, :threaded_comment_polymorphic_type, :user_id
   
   def assign_owner_info_to_nested_comment
     unless( self[:parent_id].nil? || self[:parent_id] == 0 )

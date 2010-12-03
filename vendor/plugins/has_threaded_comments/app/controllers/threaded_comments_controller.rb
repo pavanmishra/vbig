@@ -1,4 +1,4 @@
-class ThreadedCommentsController < ActionController::Base
+class ThreadedCommentsController < ApplicationController
 
   before_filter :was_action_already_performed, :only => [:flag, :upmod, :downmod]
 
@@ -7,7 +7,8 @@ class ThreadedCommentsController < ActionController::Base
     @comment = ThreadedComment.new(params[:threaded_comment])
     @comment.name = session[:name] unless( session[:name].nil? )
     @comment.email = session[:email] unless( session[:email].nil? )
-    render :layout => false
+    @comment.user_id = session[:user_id] unless( session[:user_id].nil? )    
+    render :layout => false if logged_in?
   end
   
   # GET /threaded-comments/1
@@ -30,6 +31,7 @@ class ThreadedCommentsController < ActionController::Base
     if( @comment.save )
       session[:name] = @comment.name
       session[:email] = @comment.email
+      session[:user_id] = @comment.user_id
       render :action => 'show', :layout => false
     else
       render :action => 'new', :layout => false, :status => :bad_request

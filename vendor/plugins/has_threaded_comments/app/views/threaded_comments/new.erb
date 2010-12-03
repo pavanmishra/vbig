@@ -1,1 +1,5 @@
+<% if logged_in? %>
 <%= render_comment_form(@comment) %>
+<% else %>
+<p style="color:red"> You need to be member to comment</p>
+<% end %>
