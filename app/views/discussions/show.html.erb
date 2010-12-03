@@ -14,7 +14,8 @@
 				<li><strong>causes effected:</strong> <%= @discussion.causes.collect{|cause_tag| cause_tag.name.titleize}.join(', ') %></li>
 			</ul>
 			<div id="comments_container">
-				<h4 style="font-size:1.1em"> <%= @discussion.comments.count %> Comments </h4>
+				<h4 style="border-bottom:1px dotted;font-size:1.4em;padding:1em 0;"> <%= @discussion.comments.count %> Comments </h4>
+				
 			   <%= render_threaded_comments(@discussion.comments) -%>
 			<% if logged_in? %>
 			   <%= render_comment_form(@new_comment)  -%>
