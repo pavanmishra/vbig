@@ -5,6 +5,7 @@ class DiscussionsController < ApplicationController
   
   def index
    @discussions = Discussion.paginate(:all, :limit => 25, :page => params[:page])
+   @recent_discussions = Discussion.find(:all, :limit => 5, :order => 'created_at DESC')
   end
   
   def new
@@ -26,7 +27,7 @@ class DiscussionsController < ApplicationController
   
   def show
     @discussion = Discussion.find(params[:id])
-    @new_comment = @discussion.comments.new(:name => current_user.name, :email => current_user.email) if logged_in?
+    @new_comment = @discussion.comments.new(:name => current_user.name, :email => current_user.email, :user_id => current_user.id) if logged_in?
   end
   
 end
