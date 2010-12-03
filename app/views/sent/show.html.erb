@@ -2,15 +2,22 @@
 	<div class="t">&nbsp;</div>
 	<div class="c">
 		<div class="title">
-			<h2>Sent Message</h2>
+			<h2><%=h(@message.subject) %></h2>
 
 		</div><!--title-->
-
-<h2>Sent: <%=h(@message.subject) %></h2>
-<p><strong>To:</strong> <%= @message.recipients.map(&:login).to_sentence %></p>
-<p><strong>Sent:</strong> <%= @message.created_at.to_s(:long) %></p>
-
-<pre><%=h @message.body %></pre>
+		<div style="margin-bottom:2em">
+			<div style="width:15%;float:left;">
+				<%= link_to image_tag((@message.author.pic_square or '/images/img24.jpg'), :align => :left, :style=> 'margin:0.5em'), @message.author %>
+			</div>	
+			<div style="float:left;width:84%">
+				<h3 style="font-size:1.2em"><%= link_to @message.author.name, @message.author %></h3>
+				<p><%= @message.created_at.to_s(:long) %> </p>
+				<br />
+				<%= simple_format h(@message.body)%>
+			</div>	
+			<br clear="all" />
+		</div>	
+		
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->	<% content_for :sidebar do %>

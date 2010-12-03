@@ -2,17 +2,40 @@
 	<div class="t">&nbsp;</div>
 	<div class="c">
 		<div class="title">
-			<h2>Recieved Message</h2>
+			<h2><%=h @message.subject %></h2>
 
 		</div><!--title-->
+		<div style="margin-bottom:2em">
+			<div style="width:15%;float:left;">
+				<%= link_to image_tag((@message.author.pic_square or '/images/img24.jpg'), :align => :left, :style=> 'margin:0.5em'), @message.author %>
+			</div>	
+			<div style="float:left;width:84%">
+				<h3 style="font-size:1.2em"><%= link_to @message.author.name, @message.author %></h3>
+				<p><%= @message.created_at.to_s(:long) %> </p>
+				<br />
+				<%= simple_format h(@message.body)%>
+			</div>	
+			<br clear="all" />
+		</div>	
+		<div>
+			<div style="width:15%;float:left;text-align:right;">
+				<h4 style="margin:1em 1em 0 0"> Reply:</h4>
+			</div>	
+			<div style="float:left;width:84%">
+				
+					<% form_for Message.new, :url => {:controller => "sent", :action => "create"} do |f| %>
 
-<h2><%=h @message.subject %></h2>
-
-<p><strong>From:</strong> <%=h @message.author.login %></p>
-<p><strong>To:</strong> <%=h @message.recipients.map(&:login).to_sentence %></p>
-<p><strong>Received:</strong> <%= @message.created_at.to_s(:long) %></p>
-
-<pre><%=h @message.body %></pre>
+			  		<p>
+						<%= hidden_field_tag 'message[to][]', @message.author.id %>
+						<%= f.hidden_field :subject, :value => 'RE: ' + @message.subject %></p>
+					</p>
+					
+			  		<p><%= f.text_area :body, :cols => 70, :rows => 5 %></p>
+			  		<p><%= submit_tag "Reply" %></p>
+					<% end %>
+			</div>	
+		</div>	
+		
 </div>
 <div class="b">&nbsp;</div>		
 </div><!--content-box-->
