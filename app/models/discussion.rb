@@ -5,7 +5,7 @@ class Discussion < ActiveRecord::Base
   
   validates_presence_of :title, :description, :user_id, :address
   acts_as_mappable :auto_geocode => true
-  acts_as_taggable_on :causes
+  #acts_as_taggable_on :causes
   cattr_reader :per_page
   @@per_page = 10
   

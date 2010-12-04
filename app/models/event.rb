@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
   
   accepts_nested_attributes_for :event_images, :reject_if => lambda{|t| t['event_image'].nil?}
   acts_as_mappable :auto_geocode => true
-  acts_as_taggable_on :causes, :skills
+  #acts_as_taggable_on :causes, :skills
   has_threaded_comments
   
   validates_presence_of :title, :description, :address
