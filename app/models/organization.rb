@@ -8,7 +8,7 @@ class Organization < ActiveRecord::Base
   has_many  :contest_organizations
   has_many  :contests, :through => :organizations
   acts_as_mappable :auto_geocode => true
-  #acts_as_taggable_on :causes, :skills
+  acts_as_taggable_on :causes, :skills
   has_threaded_comments
   
   # paperclip image attachment

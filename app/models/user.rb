@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many  :editable_events, :through => :editorships, :source => :event, :conditions => 'editorships.editable_type="Event"'
   has_many  :editable_organizations, :through => :editorships, :source => :organization, :conditions => 'editorships.editable_type="Organization"'  
   acts_as_mappable :auto_geocode => true
-  #acts_as_taggable_on :causes, :skills, :others
+  acts_as_taggable_on :causes, :skills, :others
   
   validates_presence_of :first_name, :last_name#, :address
   WithinDistance = 10
