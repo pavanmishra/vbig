@@ -23,6 +23,10 @@
     <%= f.label :to %><br />
     <%= f.text_field :to, :class=> 'datepicker' %>
   </p>
+  <script>
+	var from_picker = new Control.DatePicker('contest_from_date', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
+	var to_picker = new Control.DatePicker('contest_to', {icon: '/images/calendar.png', timePicker:true, timePickerAdjacent: true, dateTimeFormat: 'yyyy-MM-dd HH:mm'});
+  </script>
   <p>
     <%= f.label :address %><br />
     <%= f.text_field :address %>
@@ -53,4 +57,3 @@
 </div>
 <div class="b">&nbsp;</div>
 </div>
-<script language="javascript"> function createPickers() { $(document.body).select('input.datepicker').each( function(e) { new Control.DatePicker(e, { 'icon': '/images/calendar.png' }); } ); } Event.observe(window, 'load', createPickers); </script>
