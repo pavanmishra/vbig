@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101123192640) do
+ActiveRecord::Schema.define(:version => 20101204102910) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -49,6 +49,20 @@ ActiveRecord::Schema.define(:version => 20101123192640) do
     t.datetime "updated_at"
   end
 
+  create_table "contest_prizes", :force => true do |t|
+    t.integer  "contest_id"
+    t.integer  "prize_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contest_sponsors", :force => true do |t|
+    t.integer  "contest_id"
+    t.integer  "sponsor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "contest_users", :force => true do |t|
     t.integer  "contest_id"
     t.integer  "user_id"
@@ -71,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20101123192640) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pledge_points",                                     :default => 0
+    t.integer  "invite_points",                                     :default => 0
   end
 
   create_table "discussions", :force => true do |t|
@@ -155,6 +171,7 @@ ActiveRecord::Schema.define(:version => 20101123192640) do
     t.integer  "message_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "read"
   end
 
   create_table "messages", :force => true do |t|
@@ -211,6 +228,21 @@ ActiveRecord::Schema.define(:version => 20101123192640) do
   create_table "prizes", :force => true do |t|
     t.string   "title"
     t.string   "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sponsors", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -244,6 +276,7 @@ ActiveRecord::Schema.define(:version => 20101123192640) do
     t.boolean  "notifications",                     :default => true
     t.integer  "threaded_comment_polymorphic_id"
     t.string   "threaded_comment_polymorphic_type"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
