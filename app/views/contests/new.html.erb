@@ -16,14 +16,32 @@
     <%= f.text_field :description %>
   </p>
   <p>
+    <%= f.label :from_date %><br />
+    <%= f.text_field :from_date, :class=> 'datepicker' %>
+  </p>
+  <p>
+    <%= f.label :to %><br />
+    <%= f.text_field :to, :class=> 'datepicker' %>
+  </p>
+  <p>
     <%= f.label :address %><br />
     <%= f.text_field :address %>
   </p>
 
   <p>
-	<%= f.label :image, "Photo" %>
+	<%= f.label :image, "Photo" %><br />
 	<%= f.file_field :image %>
   </p>
+  <p>
+    <%= f.label :pledge_points %><br />
+    <%= f.text_field :pledge_points %>
+  </p>
+	<br />
+  <p>
+    <%= f.label :invite_points %><br />
+    <%= f.text_field :invite_points %>
+  </p>
+
 	<%= hidden_field_tag :for_sponsor, params[:sponsor]%>
   <p>
     <%= f.submit 'Create' %>
@@ -35,3 +53,4 @@
 </div>
 <div class="b">&nbsp;</div>
 </div>
+<script language="javascript"> function createPickers() { $(document.body).select('input.datepicker').each( function(e) { new Control.DatePicker(e, { 'icon': '/images/calendar.png' }); } ); } Event.observe(window, 'load', createPickers); </script>
