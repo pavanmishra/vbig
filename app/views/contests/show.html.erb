@@ -209,5 +209,53 @@
 		</div>
 		<div class="b">&nbsp;</div>
 	</div><!--box-->
+	<div class="box content-box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<div class="title cutd">
+				<h3>events</h3>
+			</div>
+			<% if logged_in? and current_user.is_admin? %>
+			<input type="text" id="autocomplete_event" name="autocomplete_parameter"/>
+			<span id="indicator-event" style="display: none">
+			  <img src="/images/spinner.gif" alt="Working..." />
+			</span>
+			<div id="autocomplete_events" class="autocomplete"></div>
+			<script>
+			new Ajax.Autocompleter("autocomplete_event", "autocomplete_events", "/contesting-events", {
+			  paramName: "value", 
+			  minChars: 2, 
+			  indicator: 'indicator-event',
+			  afterUpdateElement: function(text, li){
+				$('contest_event_event_id').value = li.id;
+			}
+			});
+			</script>
+			<% form_for @contest_event, :url => {:controller => :contests, :action => :add_event} do |f|%>
+			<%= f.hidden_field :event_id %>
+			<%= f.hidden_field :contest_id %>
+			<%= f.submit 'add'%>
+			<% end %>
+			<% end %>
+			<ul class="users">
+				<% for event in @contest.events %>
+				<li>
+					<div class="visual"><%= link_to image_tag(event.image.url(:thumbnail)), event %></div>
+					<div class="info">
+						<span class="name"><%= link_to event.name, event %></span>
+						<p> <%= event.address %></p>
+						<ul class="points">
+							<li>349 participants</li>
+						</ul>
+					</div>
+				</li>
+				<% end %>
+			</ul>
+
+			
+			<div class="all"><a href="#">view all </a></div>
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
 	
 <% end %>

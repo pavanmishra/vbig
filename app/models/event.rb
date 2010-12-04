@@ -7,6 +7,8 @@ class Event < ActiveRecord::Base
   has_many  :activities, :as => :subject
   has_many  :editorships, :as => :editable
   has_many  :editors, :through => :editorships, :class_name => 'User'
+  has_many  :contest_events
+  has_many  :contests, :through => :contest_events
   named_scope :featured, :conditions => {:featured => true}
   
   accepts_nested_attributes_for :event_images, :reject_if => lambda{|t| t['event_image'].nil?}

@@ -17,6 +17,7 @@ class ContestsController < ApplicationController
     @contest_organization = ContestOrganization.new :contest => @contest
     @contest_sponsor  = ContestSponsor.new :contest => @contest
     @contest_prize = ContestPrize.new :contest => @contest
+    @contest_event = ContestEvent.new :contest => @contest
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @contest }
@@ -31,6 +32,11 @@ class ContestsController < ApplicationController
   def add_prize
     contest_prize = ContestPrize.create params[:contest_prize]
     redirect_to contest_prize.contest
+  end
+
+  def add_event
+    contest_event = ContestEvent.create params[:contest_event]
+    redirect_to contest_event.contest
   end
 
   # GET /contests/new

@@ -62,6 +62,11 @@ class EventsController < ApplicationController
     render  :template => 'events/index.html.erb'
   end
   
+  def autocomplete_list
+    @events = Event.find(:all, :conditions => "title like '%#{params[:value]}%'")
+    render :layout => false
+  end
+  
   def filter_by_tag
     @events = Event.tagged_with(params[:tag_name])
     render :template => 'events/index.html.erb'

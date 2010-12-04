@@ -18,6 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.sponsors_autocomplete 'sponsors-autocomplete', :controller => :sponsors, :action => :autocomplete_list
   map.prizes_autocomplete 'prizes-autocomplete', :controller => :prizes, :action => :autocomplete_list  
   map.contesting_organizations '/contesting-organizations', :controller => 'organizations', :action => 'autocomplete_list'
+  map.contest_events 'contesting-events', :controller => :events, :action => 'autocomplete_list'
   map.help_organization '/help/:id', :controller => :organization_users, :action => :help
   map.enter_contest '/enter/contest/:id', :controller => :contest_users, :action => :create
   map.participate_event '/participate/:id', :controller => :event_users, :action => :participate

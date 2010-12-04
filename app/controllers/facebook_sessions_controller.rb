@@ -11,7 +11,12 @@ class FacebookSessionsController < ApplicationController
         user_signup = true
         if cookies[:invite_code]
           Invitation.update_invite(cookies[:invite_code], user.email) 
-          cookies.delete(:invite_code) if cookies[:invite_event].nil?
+          if cookies[:invite_event].nil?  
+              cookies.delete(:invite_code)
+          else
+              invitation = Invitation.find_by_code(cookies[:invite_code])
+              PointLog.create :event_id => invitation.event_id, :user_id => invitation.user_id, :point => invitation.event.contests.first.invite_points
+          end 
         end
       end
       redirect_path = cookies[:invite_event].nil? ? user_path(user) : event_path(Invitation.find_by_code(cookies[:invite_code]).event_id)      
