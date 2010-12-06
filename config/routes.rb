@@ -38,6 +38,8 @@ ActionController::Routing::Routes.draw do |map|
   map.suggested_events 'suggested/events', :controller => :events, :action => :suggested
   map.event_comments  'event/:id/comments/', :controller => :events, :action => :event_comments
   map.event_photos  'event/:id/photos/', :controller => :events, :action => :event_photos
+  map.contest_organizations 'contests/:id/organizations', :controller => :contests, :action => :organizations
+  map.contest_participants  'contests/:id/participants', :controller => :contests, :action => :participants
   map.event_activities  'event/:id/activities/', :controller => :events, :action => :event_activities 
   map.editors 'editors', :controller => :users, :action => :editors
   map.delete_editor '/editorship/:editable_id/delete/:user_id', :controller => :editorships, :action => :delete
