@@ -24,10 +24,7 @@
 											</ul>
 										</div>
 										<div class="text-info">
-											<p><%= @contest.description %></p>
-		<br>
-		<p style="text-transform: none; color: rgb(102, 102, 102);">UPS is donating $10,000 to the non-profit that gets the most hours pledged by 1/1/2011.</p>
-
+											<%= @contest.description %>
 										</div>
 										<div class="promo-buttons">
 											<% if !logged_in? or !@contest.has_participant?(current_user)%>
@@ -121,12 +118,12 @@
 			<ul class="users">
 				<% for sponsor in @contest.sponsors %>
 				<li>
-					<div class="visual"><%= link_to image_tag(sponsor.image.url(:smaller_thumbnail)), sponsor %></div>
+					<div class="visual"><%= link_to image_tag(sponsor.image.url(:small), :width => 60), sponsor %></div>
 					<div class="info">
 						<span class="name"><%= link_to sponsor.name, sponsor %></span>
 						<p> <%= sponsor.address %></p>
 						<ul class="points">
-							<li>&nbsp;550 contests</li>
+							<li>&nbsp;<%= %> contests</li>
 						</ul>
 					</div>
 				</li>
