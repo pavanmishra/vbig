@@ -55,6 +55,10 @@
 										<h3><%= link_to organization.name, organization %></h3>
 										<div class="dc"><%= organization.address %></div>
 										<div class="row"><strong class="even"><%= organization.events.count %> points</strong></div>
+										<ul class="buttons">
+											<li><%= link_to 'recruit!',  signup_for_action_path, :class=>'lbOn' %></li>
+											<li><%= link_to 'share!',  signup_for_action_path, :class=> 'lbOn' %></li>
+										</ul>
 									</div>
 								</div>
 							</div>
