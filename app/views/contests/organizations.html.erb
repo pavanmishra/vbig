@@ -46,7 +46,7 @@
 	<div class="t">&nbsp;</div>
 	<div class="c">
 		<div class="title">
-			<h2><%= @title %></h2>
+			<h2></h2>
 			<%= link_to 'view all', contest_organizations_path, :class => "view" %> 
 		</div><!--title-->
 		
@@ -57,11 +57,6 @@
 				<div class="cart-text">
 					<h3><%= link_to organization.name, organization %></h3>
 					<div class="dc"><%= organization.address %></div>
-					<ul class="effected">
-						<li><strong>causes effected:</strong> <%= organization.causes.collect{|cause_tag| cause_tag.name.titleize}.join(', ') %></li>
-						<li><strong>skills sought:</strong>   <%= organization.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
-					</ul>
-
 					<div class="row"><strong class="even"><%= organization.events.count %> points</strong></div>
 				</div>
 			</div>

@@ -47,7 +47,7 @@
 						<div class="t">&nbsp;</div>
 						<div class="c">
 							<div class="title">
-								<h2>participating organizations</h2>
+								<h2>organizations leaderboard</h2>
 								<%= link_to 'view all', contest_organizations_path, :class => "view" %> 
 							</div><!--title-->
 							
@@ -58,11 +58,6 @@
 									<div class="cart-text">
 										<h3><%= link_to organization.name, organization %></h3>
 										<div class="dc"><%= organization.address %></div>
-										<ul class="effected">
-											<li><strong>causes effected:</strong> <%= organization.causes.collect{|cause_tag| cause_tag.name.titleize}.join(', ') %></li>
-											<li><strong>skills sought:</strong>   <%= organization.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
-										</ul>
-
 										<div class="row"><strong class="even"><%= organization.events.count %> points</strong></div>
 									</div>
 								</div>
@@ -75,7 +70,7 @@
 						<div class="t">&nbsp;</div>
 						<div class="c">
 							<div class="title">
-								<h2>participants</h2>
+								<h2>users leaderboard</h2>
 								<%= link_to 'view all', contest_participants_path, :class => "view" %> 
 							</div><!--title-->							
 							<div class="sort-holder">
@@ -126,7 +121,7 @@
 			<ul class="users">
 				<% for sponsor in @contest.sponsors %>
 				<li>
-					<div class="visual"><%= link_to image_tag(sponsor.image.url(:thumbnail)), sponsor %></div>
+					<div class="visual"><%= link_to image_tag(sponsor.image.url(:smaller_thumbnail)), sponsor %></div>
 					<div class="info">
 						<span class="name"><%= link_to sponsor.name, sponsor %></span>
 						<p> <%= sponsor.address %></p>
@@ -174,7 +169,7 @@
 			<ul class="users">
 				<% for prize in @contest.prizes %>
 				<li>
-					<div class="visual"><%= link_to image_tag(prize.image.url(:thumbnail)), prize %></div>
+					<div class="visual"><%= link_to image_tag(prize.image.url(:smaller_thumbnail)), prize %></div>
 					<div class="info">
 						<span class="name"><%= link_to prize.title, prize %></span>
 						<ul class="points">
