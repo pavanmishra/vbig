@@ -42,18 +42,50 @@
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->
+
 					<div class="content-box">
 						<div class="t">&nbsp;</div>
 						<div class="c">
-							<ul class="thumbs">
-								<% for user in @contest.users %>
-									<li><%= link_to image_tag(facebook_profile_picture(user, 'large')), user %></li>
-								<% end %>
-							</ul>
+							<div class="title">
+								<h2>participating organizations</h2>
+								<%= link_to 'view all', contest_organizations_path, :class => "view" %> 
+							</div><!--title-->
+							
+							<% for organization in @contest.organizations.all(:limit => 5) %>
+							<div class="cart-info">
+								<div class="holder">
+									<div class="visual"><%= image_tag organization.image.url(:small)%></div>
+									<div class="cart-text">
+										<h3><%= link_to organization.name, organization %></h3>
+										<div class="dc"><%= organization.address %></div>
+										<ul class="effected">
+											<li><strong>causes effected:</strong> <%= organization.causes.collect{|cause_tag| cause_tag.name.titleize}.join(', ') %></li>
+											<li><strong>skills sought:</strong>   <%= organization.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
+										</ul>
+
+										<div class="row"><strong class="even"><%= organization.events.count %> points</strong></div>
+									</div>
+								</div>
+							</div>
+							<% end %>
 						</div>
 						<div class="b">&nbsp;</div>		
 					</div><!--content-box-->
-
+					<div class="content-box">
+						<div class="t">&nbsp;</div>
+						<div class="c">
+							<div class="title">
+								<h2>participants</h2>
+								<%= link_to 'view all', contest_participants_path, :class => "view" %> 
+							</div><!--title-->							
+							<div class="sort-holder">
+								<ul class="results">
+									<%= render :partial => 'users/user', :collection => @contest.users.all(:limit => 5) %>
+								</ul>
+							</div>
+						</div>
+						<div class="b">&nbsp;</div>		
+					</div><!--content-box-->
 </div>
 <% content_for :sidebar do %>
 	<div class="box">
@@ -160,13 +192,14 @@
 		<div class="b">&nbsp;</div>
 	</div><!--box-->
 
+<% if logged_in? and current_user.is_admin? %>
 	<div class="box content-box">
 		<div class="t">&nbsp;</div>
 		<div class="c">
 			<div class="title cutd">
 				<h3>nonprofit leaderboard</h3>
 			</div>
-			<% if logged_in? and current_user.is_admin? %>
+
 			<input type="text" id="autocomplete" name="autocomplete_parameter"/>
 			<span id="indicator3" style="display: none">
 			  <img src="/images/spinner.gif" alt="Working..." />
@@ -186,7 +219,6 @@
 			<%= f.hidden_field :organization_id %>
 			<%= f.hidden_field :contest_id %>
 			<%= f.submit 'add'%>
-			<% end %>
 			<% end %>
 			<ul class="users">
 				<% for organization in @contest.organizations %>
@@ -209,6 +241,8 @@
 		</div>
 		<div class="b">&nbsp;</div>
 	</div><!--box-->
+	<% end %>
+
 	<div class="box content-box">
 		<div class="t">&nbsp;</div>
 		<div class="c">

@@ -15,7 +15,7 @@ class FacebookSessionsController < ApplicationController
               cookies.delete(:invite_code)
           else
               invitation = Invitation.find_by_code(cookies[:invite_code])
-              PointLog.create :event_id => invitation.event_id, :user_id => invitation.user_id, :point => invitation.event.contests.first.invite_points
+              PointLog.create :event_id => invitation.event_id, :user_id => invitation.user_id, :point => invitation.event.contests.first.invite_points rescue nil
           end 
         end
       end

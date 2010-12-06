@@ -105,4 +105,14 @@ class ContestsController < ApplicationController
     contest_organization = ContestOrganization.create params[:contest_organization]
     redirect_to contest_organization.contest
   end
+  
+  def organizations
+    @contest = Contest.find(params[:id])
+    @organizations = @contest.organizations
+  end
+  
+  def participants
+    @contest = Contest.find(params[:id])
+    @users = @contest.users
+  end
 end

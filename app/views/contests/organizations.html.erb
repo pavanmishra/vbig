@@ -1,0 +1,83 @@
+<div class="content-box contest-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+									<div class="global-info">
+										<h2 style="color:#1A2732;
+										float:none;
+										font-size:18px;
+										overflow:hidden;
+										padding-bottom:11px;
+										width:100%;"><%= link_to @contest.title, @contest %></h2>
+										<ul class="list" style="overflow:hidden;
+										padding:0 0 19px;
+										width:100%;">
+											<li>ends 12/11/10</li>
+											<li>Nationwide</li>
+											<li>2,400 shares</li>
+											<li>1500 participants</li>
+											<li>1,400 hours pledged</li>
+										</ul>
+										<div class="causes-skills">
+											<ul>
+												<li>causes: all</li>
+												<li>skills: all</li>
+											</ul>
+										</div>
+										<div class="text-info">
+											<p><%= @contest.description %></p>
+		<br>
+		<p style="text-transform: none; color: rgb(102, 102, 102);">UPS is donating $10,000 to the non-profit that gets the most hours pledged by 1/1/2011.</p>
+
+										</div>
+										<div class="promo-buttons">
+											<% if !logged_in? or !@contest.has_participant?(current_user)%>
+											<%= link_to 'Enter!', enter_contest_path(@contest), :class => 'btn'%>
+											<% else %>
+											<% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
+											<%= link_to 'Share', "http://www.facebook.com/sharer.php?u=#{ URI.escape(join_by_invitation_url(current_user.facebook_invitation.code))}&t=Join VolunteerBig, do good, have fun and win prizes", :class => 'btn'%>
+											<p>Share link to this contest on facebook and win.</p>
+											<% end %>
+										</div>
+
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->
+<div class="content-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title">
+			<h2><%= @title %></h2>
+			<%= link_to 'view all', contest_organizations_path, :class => "view" %> 
+		</div><!--title-->
+		
+		<% for organization in @contest.organizations.paginate(:page => params[:page]) %>
+		<div class="cart-info">
+			<div class="holder">
+				<div class="visual"><%= image_tag organization.image.url(:small)%></div>
+				<div class="cart-text">
+					<h3><%= link_to organization.name, organization %></h3>
+					<div class="dc"><%= organization.address %></div>
+					<ul class="effected">
+						<li><strong>causes effected:</strong> <%= organization.causes.collect{|cause_tag| cause_tag.name.titleize}.join(', ') %></li>
+						<li><strong>skills sought:</strong>   <%= organization.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
+					</ul>
+
+					<div class="row"><strong class="even"><%= organization.events.count %> points</strong></div>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	<div class="b">&nbsp;</div>		
+</div><!--content-box-->
+
+</div>
+<% content_for :sidebar do %>
+	<div class="box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<div class="promo-visual"><%= image_tag @contest.image.url(:medium)%></div>
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+<% end %>
