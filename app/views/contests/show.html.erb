@@ -50,7 +50,7 @@
 							<% for organization in @contest.organizations.all(:limit => 5) %>
 							<div class="cart-info">
 								<div class="holder">
-									<div class="visual"><%= image_tag organization.image.url(:small)%></div>
+									<div class="visual"><%= image_tag organization.image.url(:medium), :width => 185%></div>
 									<div class="cart-text">
 										<h3><%= link_to organization.name, organization %></h3>
 										<div class="dc"><%= organization.address %></div>
