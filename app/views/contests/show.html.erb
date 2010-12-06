@@ -214,7 +214,7 @@
 			<ul class="users">
 				<% for organization in @contest.organizations %>
 				<li>
-					<div class="visual"><%= link_to image_tag(organization.image.url(:thumbnail)), organization %></div>
+					<div class="visual"><%= link_to image_tag(organization.image.url(:smaller_thumbnail)), organization %></div>
 					<div class="info">
 						<span class="name"><%= link_to organization.name, organization %></span>
 						<p> <%= organization.address %></p>
@@ -265,7 +265,7 @@
 			<ul class="users">
 				<% for event in @contest.events %>
 				<li>
-					<div class="visual"><%= link_to image_tag(event.image.url(:thumbnail)), event %></div>
+					<div class="visual"><%= link_to image_tag(event.image.url(:smaller_thumbnail)), event %></div>
 					<div class="info">
 						<span class="name"><%= link_to event.name, event %></span>
 						<p> <%= event.address %></p>
