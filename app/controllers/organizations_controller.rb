@@ -105,4 +105,9 @@ class OrganizationsController < ApplicationController
     @organizations = Organization.find(:all, :conditions => "name like '%#{params[:value]}%'")
     render :layout => false
   end
+  
+  def vote_popup
+    @organization = Organization.find(params[:id])
+    render :partial => 'vote_organization', :layout => false, :locals => {:organization => @organization}
+  end
 end

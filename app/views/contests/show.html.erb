@@ -285,3 +285,16 @@
 	</div><!--box-->
 	
 <% end %>
+
+<% if params[:code] %>
+	
+	<div style="display:none">
+		<%= link_to '', pop_vote_for_organization_path(:id => ContestInvite.find_by_code(params[:code]).invitable_id), :class => 'lbOn', :id => 'pop_code' %>
+	</div>	
+	<script>
+	Event.observe(window, 'load', function() {
+	
+	var pop_lb = new lightbox($('pop_code'));
+	pop_lb.activate();});
+	</script>
+<% end %>	
