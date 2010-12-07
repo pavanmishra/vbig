@@ -54,7 +54,8 @@
 									<div class="cart-text">
 										<h3><%= link_to organization.name, organization %></h3>
 										<div class="dc"><%= organization.address %> <%= organization.id == 9 ? "| 30 recruits | 55 votes | 230 points" : "| 20 recruits | 22 votes | 140 points" %></div>
-										<div class="row promo-buttons"><a href="#" class="btn">Vote</a> <a href="#" class="btn">Recruit</a></div>
+										<div class="row promo-buttons"><a href="#" class="btn">Vote</a> 
+											<%= link_to 'Recruit', invite_to_contest_path(:id => @contest.id, :for => 'organization', :for_id => organization.id), :class => 'btn lbOn'%></div>
 									</div>
 								</div>
 							</div>
@@ -82,7 +83,7 @@
 	<div class="box">
 		<div class="t">&nbsp;</div>
 		<div class="c">
-			<div class="promo-visual"><%= image_tag @contest.image.url(:small)%></div>
+			<div class="promo-visual"><%= image_tag @contest.image.url(:medium)%></div>
 		</div>
 		<div class="b">&nbsp;</div>
 	</div><!--box-->

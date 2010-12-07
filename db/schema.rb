@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101204144118) do
+ActiveRecord::Schema.define(:version => 20101207163716) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(:version => 20101204144118) do
   create_table "contest_events", :force => true do |t|
     t.integer  "contest_id"
     t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contest_invites", :force => true do |t|
+    t.integer  "contest_id"
+    t.integer  "invitable_id"
+    t.string   "invitable_type"
+    t.string   "code"
+    t.integer  "inviter_id"
+    t.integer  "invitee_id"
+    t.boolean  "used",           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -94,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20101204144118) do
     t.datetime "updated_at"
     t.integer  "pledge_points",                                     :default => 0
     t.integer  "invite_points",                                     :default => 0
+    t.string   "facebook_message",                                  :default => ""
   end
 
   create_table "discussions", :force => true do |t|

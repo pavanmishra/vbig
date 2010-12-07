@@ -115,4 +115,9 @@ class ContestsController < ApplicationController
     @contest = Contest.find(params[:id])
     @users = @contest.users
   end
+  
+  def invite_to_contest
+    @contest_invite = ContestInvite.create_for_invitable(params.reject{|key, value| [:action, :controller].include?(key)}, current_user)
+    render  :layout => false
+  end
 end

@@ -16,9 +16,9 @@ class Contest < ActiveRecord::Base
         :styles => {
           :small_thumbnail => "75x79#",
           :smaller_thumbnail => "60x60#",
-          :thumb=> "100x100#",
+          :thumb=> "100x100>",
           :small  => "150x150>",
-          :medium => "200x200#",
+          :medium => "200x200>",
           :large =>   "400x400>"
         }
   # used by will_paginate

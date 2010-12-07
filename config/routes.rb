@@ -32,6 +32,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup_step_two '/signup-2/', :controller => :users, :action => :signup_step_two
   map.leader_board  '/leaders/', :controller => :users, :action => :leaders
   map.invite_to_event '/events/:id/invite', :controller => :contacts, :action => :invite_to_event
+  map.invite_to_contest 'contest/:id/:for/:for_id', :controller => :contests, :action => :invite_to_contest
   map.share_event '/events/:id/share', :controller => :contacts, :action => :share_event  
   map.suggested_organizations '/suggested/organizations', :controller => :organizations, :action => :suggested
   map.featured_events 'featured/events', :controller => :events, :action => :featured

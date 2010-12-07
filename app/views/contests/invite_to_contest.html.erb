@@ -1,0 +1,12 @@
+<div class="main-block" style="width:450px;margin-left:200px;">
+	<div class="c" style="width:410px;border:0.4em solid #aaa;padding:1.5em"> 
+        <h3>Invite for <%= @contest_invite.invitable.name %></h3> 
+		<p> 
+		<%= link_to 'Click here', '#' %> to post an invite to facebook with following description.	
+		</p>	
+		<p>
+			<%= @contest_invite.contest.facebook_message.sub('[name]', @contest_invite.invitable.name) %>
+		</p>	
+		<a class="lbAction" rel="deactivate">Cancel</a>
+	</div>
+</div>
