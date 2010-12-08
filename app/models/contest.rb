@@ -1,14 +1,14 @@
 class Contest < ActiveRecord::Base
   has_many :contest_users
-  has_many  :users, :through => :contest_users
+  has_many  :users, :through => :contest_users, :uniq => true
   has_many  :contest_organizations
-  has_many  :organizations, :through => :contest_organizations
+  has_many  :organizations, :through => :contest_organizations, :uniq => true
   has_many  :contest_sponsors
-  has_many  :sponsors, :through => :contest_sponsors
+  has_many  :sponsors, :through => :contest_sponsors, :uniq => true
   has_many  :contest_prizes
-  has_many  :prizes, :through => :contest_prizes
+  has_many  :prizes, :through => :contest_prizes, :uniq => true
   has_many  :contest_events
-  has_many  :events, :through => :contest_events
+  has_many  :events, :through => :contest_events, :uniq => true
   acts_as_mappable :auto_geocode => true
   acts_as_taggable_on :causes, :skills
   has_attached_file :image, :path => ':rails_root/public/system/images/contests/:attachment/:id/:style/:filename', 

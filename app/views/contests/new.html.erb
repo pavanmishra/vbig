@@ -16,6 +16,12 @@
     <%= f.text_field :description %>
   </p>
   <p>
+    <%= f.label :facebook_message %><br />
+    <%= f.text_area :facebook_message, :rows => 6 %>
+	(use [name] where you want to put organization's name)
+  </p>
+
+  <p>
     <%= f.label :from_date %><br />
     <%= f.text_field :from_date, :class=> 'datepicker' %>
   </p>
