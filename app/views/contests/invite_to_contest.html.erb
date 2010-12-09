@@ -2,7 +2,7 @@
 	<div class="c" style="width:410px;border:0.4em solid #aaa;padding:1.5em"> 
         <h3>Invite for <%= @contest_invite.invitable.name %></h3> 
 		<p> 
-		<%= link_to 'Click here', "http://www.facebook.com/sharer.php?u=#{URI.escape(url_for(:only_path => false, :controller => :contests, :action => :show, :id => @contest_invite.contest_id, :code => @contest_invite.code))}&t=#{@contest_invite.contest.facebook_message.sub('[name]', @contest_invite.invitable.name)}" %> to post an invite to facebook with following description.	
+		<%= link_to 'Click here', "http://www.facebook.com/sharer.php?t=#{URI.escape(@contest_invite.contest.facebook_message.sub('[name]', @contest_invite.invitable.name))}&u=#{URI.escape(url_for(:only_path => false, :controller => :contests, :action => :show, :id => @contest_invite.contest_id, :code => @contest_invite.code))}" %> to post an invite to facebook with following description.	
 		</p>	
 		<p>
 			<%= @contest_invite.contest.facebook_message.sub('[name]', @contest_invite.invitable.name) %>
