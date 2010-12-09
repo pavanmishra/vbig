@@ -8,12 +8,16 @@
 				</div><!--title-->
 				<div class="cart-info">
 					<div class="holder">
+						
 						<div class="visual"><%= image_tag organization.image.url(:medium), :width => 185%></div>
+														<%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
 						<p>
 							You have been invited to vote for this organization you can vote now or cancel and explore other organization to vote.
 						</p>	
 						<div class="cart-text">
-							<div class="row"><%= link_to 'vote', help_organization_path(organization), :class=> 'suggest-btn'%></div>
+							<div class="row">
+								<%= link_to 'vote', help_organization_path(organization), :class=> 'suggest-btn'%>
+							</div>
 						</div>
 						<a class="lbAction" rel="deactivate">Cancel</a>
 					</div>
