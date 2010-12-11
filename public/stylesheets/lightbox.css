@@ -10,110 +10,111 @@ Modified : February 1, 2006
 - - - - - - - - - - - - - - - - - - - - - */
 
 #lightbox{
-	display:none;
-	position: absolute;
-	top:50%;
-	left:50%;
-	z-index:9999;
-/*	width:500px;
-	height:400px; */
-	margin:-220px 0 0 -450px;
-/*	border:1px solid #fff;
-	background:#FDFCE9; */
-	text-align:left;
+  display:none;
+  position: absolute;
+  top:50%;
+  left:50%;
+  z-index:9999;
+/*  width:500px;
+  height:400px; */
+  margin:-220px 0 0 -450px;
+/*  border:1px solid #fff;
+  background:#FDFCE9; */
+  text-align:left;
 }
 #lightbox[id]{
-	position:fixed;
+  position:fixed;
 }
 
 #overlay{
-	display:none;
-	position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	z-index:5000;
-	background-color:#000;
-	-moz-opacity: 0.8;
-	opacity:.80;
-	filter: alpha(opacity=80);
+  display:none;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:5000;
+  background-color:#000;
+  -moz-opacity: 0.8;
+  opacity:.80;
+  filter: alpha(opacity=80);
 }
 #overlay[id]{
-	position:fixed;
+  position:fixed;
 }
 
 #lightbox.done #lbLoadMessage{
-	display:none;
+  display:none;
 }
 #lightbox.done #lbContent{
-	display:block;
+  display:block;
 }
 #lightbox.loading #lbContent{
-	display:none;
+  display:none;
 }
 #lightbox.loading #lbLoadMessage{
-	display:block;
+  display:block;
 }
 /*
 #lightbox.done img{
-	width:100%;
-	height:100%;
+  width:100%;
+  height:100%;
 }
 */
 
 /* lightbox content styles */
 #lightbox .c .holder ul{
-	width:100%;
-	overflow:hidden;
+  width:100%;
+  overflow:hidden;
 }
 #lightbox .c .holder li{
-	width:100%;
-	overflow:hidden;
-	vertical-align:top;
-	padding:14px 0 6px;
-	border-top:1px solid #e6e6e6;
+  width:100%;
+  overflow:hidden;
+  vertical-align:top;
+  padding:14px 0 6px;
+  border-top:1px solid #e6e6e6;
 }
 #lightbox .c .holder li:first-child{border:none;}
 #lightbox .c .holder h2, #lightbox .c .holder li .ttl{
-	display:block;
-	width:100%;
-	overflow:hidden;
-	color:#c6c6c6;
-	margin:0 0 15px;
-	font:bold 20px/22px Arial, Helvetica, sans-serif;
+  display:block;
+  width:100%;
+  overflow:hidden;
+  color:#c6c6c6;
+  margin:0 0 15px;
+  font:bold 20px/22px Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
 }
 #lightbox .c .holder li .ttl .cufon {
-	margin:0 !important;
-	float:left;
+  margin:0 !important;
+  float:left;
 }
 #lightbox .c .holder li p{
-	color:#656565;
-	font:11px/23px Arial, Helvetica, sans-serif;
+  color:#656565;
+  font:11px/23px Arial, Helvetica, sans-serif;
 }
 #lightbox .c .btn-holder{
-	width:100%;
-	overflow:hidden;
-	margin-top: 10px;
+  width:100%;
+  overflow:hidden;
+  margin-top: 10px;
 }
 #lightbox .c .btn-holder ul{float:right; width:none;}
 #lightbox .c .btn-holder li{
-	float:left;
-	display:inline;
-	margin-left:8px;
+  float:left;
+  display:inline;
+  margin-left:8px;
 }
 #lightbox .c .btn-holder li a{
-	display:block;
-	text-align:center;
-	background:url(../images/bg-buttons.gif) -143px 0 no-repeat;
-	width:129px;
-	height:24px;
-	color:#fff;
-	font-size:15px;
-	text-transform:uppercase;
-	padding-top:12px;
+  display:block;
+  text-align:center;
+  background:url(../images/bg-buttons.gif) -143px 0 no-repeat;
+  width:129px;
+  height:24px;
+  color:#fff;
+  font-size:15px;
+  text-transform:uppercase;
+  padding-top:12px;
 }
 #lightbox .c .btn-holder li a:hover{
-	background:url(../images/bg-buttons.gif) no-repeat;
-	text-decoration:none;
+  background:url(../images/bg-buttons.gif) no-repeat;
+  text-decoration:none;
 }
