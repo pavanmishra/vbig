@@ -47,6 +47,7 @@ ActionController::Routing::Routes.draw do |map|
   map.delete_event 'events/:id/delete', :controller => :events, :action => :destroy
   map.signup_for_action 'signup/action/', :controller => :facebook_sessions, :action => :signup
   map.pop_vote_for_organization 'vote/organization/:id', :controller => :organizations, :action => :vote_popup
+  map.vote_organization_on_contest 'contests/:id/:code', :controller => :contests, :action => :show
 #  map.new_pledge  '/pledges/new/', :controller  =>  :pledges, :action =>  :new
   map.resource :session
   map.resource  :event_user
