@@ -13,3 +13,9 @@ function not_attended(){
 	$('attended_hours').hide();
 	$('event_user_comment').value = 'I was ill. But I did get to hear from my friends that it was fantastic.';
 }
+
+function login_signup_facebook(){
+	FB.login(function(response){ alert(response)},
+	{}
+	)
+}
