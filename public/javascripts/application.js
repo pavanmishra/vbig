@@ -15,7 +15,11 @@ function not_attended(){
 }
 
 function login_signup_facebook(){
-	FB.login(function(response){ alert(response)},
+	FB.login(function(response){ 
+		if(!response.session){
+			alert('there was problem, logging into the system. Please try again after sometime.')
+		}
+		},
 	{}
 	)
 }
