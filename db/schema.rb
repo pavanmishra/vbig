@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101207163716) do
+ActiveRecord::Schema.define(:version => 20101214130852) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -45,18 +45,6 @@ ActiveRecord::Schema.define(:version => 20101207163716) do
   create_table "contest_events", :force => true do |t|
     t.integer  "contest_id"
     t.integer  "event_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "contest_invites", :force => true do |t|
-    t.integer  "contest_id"
-    t.integer  "invitable_id"
-    t.string   "invitable_type"
-    t.string   "code"
-    t.integer  "inviter_id"
-    t.integer  "invitee_id"
-    t.boolean  "used",           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -178,12 +166,14 @@ ActiveRecord::Schema.define(:version => 20101207163716) do
   create_table "invitations", :force => true do |t|
     t.string   "code"
     t.string   "email"
-    t.boolean  "used",       :default => false
+    t.boolean  "used",           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
-    t.integer  "event_id"
     t.integer  "user_id"
+    t.integer  "contest_id"
+    t.integer  "invitable_id"
+    t.string   "invitable_type"
   end
 
   create_table "message_copies", :force => true do |t|
