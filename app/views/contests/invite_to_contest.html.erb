@@ -1,21 +1,22 @@
 <div class="main-block" style="width:450px;margin-left:200px">
   <div class="t">&nbsp;</div>
   <div class="c" style="width:410px">
+	<% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
     <div class="holder">
-      <h2>Invite for <%= @contest_invite.invitable.name %></h2> 	
+	<% twitter_invite, facebook_invite = @social_invites %>
+      <h2>Invite for <%= facebook_invite.invitable.name %></h2> 	
 	  <h3> Facebook Invite </h3>
 		<p> 
 		Post an invite to facebook with following description.	
 		</p>	
 		<p style="font-style:oblique">
-			<%= @contest_invite.contest.facebook_message.sub('[name]', @contest_invite.invitable.name) %>
+			<%= facebook_invite.contest.facebook_message.sub('[name]', facebook_invite.invitable.name) %>
 		</p>	
 
     </div>
     <div class="btn-holder">
       <ul>
-		<li><a href="http://www.facebook.com/sharer.php?u=<%= URI.escape(vote_organization_on_contest_url( :id => @contest_invite.contest_id, :code => @contest_invite.code)) -%>&t=<%= URI.escape(@contest_invite.contest.facebook_message.sub('[name]', @contest_invite.invitable.name))-%>"> Invite</a>  </li>
-
+		<li><a href="http://www.facebook.com/sharer.php?u=<%= URI.escape(vote_organization_on_contest_url( :id => facebook_invite.contest_id, :code => facebook_invite.code)) -%>&t=<%= URI.escape(facebook_invite.contest.facebook_message.sub('[name]', facebook_invite.invitable.name))-%>"> Invite</a>  </li>
       </ul>
     </div>
 	<hr />
@@ -25,13 +26,13 @@
 		Post an invite to Twitter with following description.	
 		</p>	
 		<p style="font-style:oblique">
-			<%= @contest_invite.contest.facebook_message.sub('[name]', @contest_invite.invitable.name) %>
+		<%= twitter_message = "Click #{ bitly.shorten(join_by_invitation_url(twitter_invite.code)).short_url} to support #{facebook_invite.invitable.name}, do good, have fun and win prizes." %>
 		</p>	
 
     </div>
     <div class="btn-holder">
       <ul>
-		<li><a href="http://www.facebook.com/sharer.php?u=<%= URI.escape(vote_organization_on_contest_url( :id => @contest_invite.contest_id, :code => @contest_invite.code)) -%>&t=<%= URI.escape(@contest_invite.contest.facebook_message.sub('[name]', @contest_invite.invitable.name))-%>"> Invite</a>  </li>
+		<li><a href="http://twitter.com/?status=<%= URI.escape(twitter_message)%>" target="_blank"> Invite</a>  </li>
       </ul>
     </div>
 	<hr />
@@ -40,11 +41,17 @@
 			<p> 
 			Invite your friends through email. With the following content.
 			</p>	
+			<p style="font-style:oblique">
+				You have been invited to support <%= facebook_invite.invitable.name %>. 
+				Click <a href="">here</a> to do show your support.
+			</p>	
 	</div>		
-			<% form_tag '/contacts/import/', :method => :post, :id => 'email-invite' do %>
+			<% form_tag '/contacts/import_for_contest/', :method => :post, :id => 'email-invite' do %>
 					<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img style="width:104px;height:31px" src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a><br />
 					<textarea id="recipient_list" name="recipients"></textarea>Use the above button to choose your contacts or enter comma separated email addresses.<br />
-					<%= hidden_field_tag :id, params[:id] %>
+					<%= hidden_field_tag :id, facebook_invite.contest_id %>
+					<%= hidden_field_tag :invitable_type, facebook_invite.invitable.class.to_s %>
+					<%= hidden_field_tag :invitable_id, facebook_invite.invitable.id %>
 					<div class="btn-holder">
 				      <ul>
 						<li><a onclick="$('email-invite').submit()"> Invite</a>  </li>

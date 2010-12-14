@@ -31,6 +31,13 @@ class ContactsController < ApplicationController
     redirect_to params.key?(:id) ? event : root_path
   end
   
+  def import_for_contest
+    contest = Contest.find(params[:id])
+    PersonalInvitation.invite_for_contest(params[:recipients].split(',').collect {|recipient| recipient.split('<').last.sub('>', '') }, current_user, contest, params[:invitable_id], params[:invitable_type])
+    flash[:notice] = 'Your invite has been successfuly sent.'
+    redirect_to contest
+  end
+  
   def participate_event_by_invitation
     invite = Invitation.find_by_code params[:invite_code]
     if invite

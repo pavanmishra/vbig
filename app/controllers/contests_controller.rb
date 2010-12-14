@@ -117,7 +117,7 @@ class ContestsController < ApplicationController
   end
   
   def invite_to_contest
-    @contest_invite = ContestInvite.create_for_invitable(params.reject{|key, value| [:action, :controller].include?(key)}, current_user)
+    @social_invites = Invitation.create_social_invites_for_invitable_components(current_user, Contest.find(params[:id]), params[:for], params[:for_id])
     render  :layout => false
   end
 end

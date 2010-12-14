@@ -23,13 +23,21 @@ class Invitation < ActiveRecord::Base
   def self.create_social_invites(user, contest = nil, invitable = nil)
     contest_id = contest.nil? ? nil : contest.id
     invitable_id, invitable_type = invitable.nil? ? [nil, nil] : invitable.id, invitable.class.to_s
-    social_invites = [self.find( :first, :conditions => {:contest_id => contest_id, :type => 'TwitterInvitation', :invitable_id => invitable_id, :invitable_type => invitable_type}), self.find( :first, :conditions => {:contest_id => contest_id, :type => 'FacebookInvitation'})]
+    social_invites = [self.find( :first, :conditions => {:contest_id => contest_id, :type => 'TwitterInvitation', :invitable_id => invitable_id, :invitable_type => invitable_type}), self.find( :first, :conditions => {:contest_id => contest_id, :type => 'FacebookInvitation', :invitable_id => invitable_id, :invitable_type => invitable_type})]
     if social_invites.all?{|invite| invite.nil?}
       social_invites = []
       social_invites << TwitterInvitation.create( :code => self.random_code, :user => user, :invitable => invitable, :contest => contest)
       social_invites << FacebookInvitation.create( :code => self.random_code, :user => user, :invitable => invitable, :contest => contest      )
     end
     return social_invites
+  end
+  
+  def self.create_social_invites_for_invitable_components(user, contest = nil, invitable_type = nil, invitable_id = nil)
+    invitable = case invitable_type
+    when 'organization'
+      Organization.find(invitable_id)
+    end
+    self.create_social_invites(user, contest, invitable)
   end
   
   
