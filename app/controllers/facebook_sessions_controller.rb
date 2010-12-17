@@ -7,19 +7,13 @@ class FacebookSessionsController < ApplicationController
       logger.debug "verified fb cookie signature"
       user_info = get_user_info
       user = User.find_facebook_user(user_info)
-
+      invitation = Invitation.find_by_code(cookies[:invite_code]) if cookies[:invite_code]
       unless user
         user = User.create_facebook_user(user_info) 
         user_signup = true
         if cookies[:invite_code]
-#          Invitation.update_invite(cookies[:invite_code], user.email) 
-          if cookies[:invite_event].nil?  
-              cookies.delete(:invite_code)
-          else
-              invitation = Invitation.find_by_code(cookies[:invite_code])
-              user.update_attribute :invited_by_id, invitation.user_id
-              PointLog.create :event_id => invitation.event_id, :user_id => invitation.user_id, :point => invitation.event.contests.first.invite_points rescue nil
-          end 
+          user.update_attribute :invited_by_id, invitation.user_id
+          PointLog.create :event_id => invitation.event_id, :user_id => invitation.user_id, :point => invitation.event.contests.first.invite_points rescue nil
         end
       end
       
