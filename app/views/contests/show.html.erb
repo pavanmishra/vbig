@@ -300,7 +300,7 @@
 <% if params[:code] %>
 	
 	<div style="display:none">
-		<%= link_to '', pop_vote_for_organization_path(:id => ContestInvite.find_by_code(params[:code]).invitable_id), :class => 'lbOn', :id => 'pop_code' %>
+	  <%= link_to '', pop_vote_for_organization_path(:id => Invitation.find_by_code(params[:code]).invitable_id), :class => 'lbOn', :id => 'pop_code' %>
 	</div>	
 	<script>
 	Event.observe(window, 'load', function() {
