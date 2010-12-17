@@ -106,8 +106,14 @@ class UsersController < ApplicationController
         flash[:notice] = 'User was successfully updated.'
 
         format.html { 
-          unless cookies[:invite_event]
-            redirect_to(:controller => :contacts, :action => :new_import) 
+          raise cookies.inspect
+          if cookies[:invite_code]
+            invite_code = Invitation.find(cookies[:invite_code])
+            if invite_code.contest
+              redirect_to vote_organization_on_contest_path(:id => invite_code.contest_id, :code => invite_code.code)
+            else
+              redirect_to(:controller => :contacts, :action => :new_import) 
+            end
           else
             redirect_to(event_path(cookies[:invite_event]))
           end

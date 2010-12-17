@@ -58,11 +58,15 @@ class ContactsController < ApplicationController
   def join_by_invitation
     invite = Invitation.find_by_code params[:invite_code]
     if invite
-      cookies[:invite_code] = params[:invite_code]   
+      cookies[:invite_code] = params[:invite_code] 
+      if invite.contest
+        flash[:notice] = "Please login/signup using button at the top. To proceed with the contest" unless logged_in?
+        redirect_to(invite.contest) and return
+      end
     else
       flash[:notice] = 'Looks like you clicked an expired link. No issues, go ahead you can still VolunteerBig'
     end
-    redirect_to root_path
+    redirect_to  root_path
   end
 
 end

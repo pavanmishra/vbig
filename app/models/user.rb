@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_one   :twitter_invitation
   has_one   :facebook_invitation
   has_many  :editorships
+  has_one   :invited_by, :class_name => 'User'
 #  has_many  :editables, :through => :editorships
   has_many  :editable_events, :through => :editorships, :source => :event, :conditions => 'editorships.editable_type="Event"'
   has_many  :editable_organizations, :through => :editorships, :source => :organization, :conditions => 'editorships.editable_type="Organization"'  
