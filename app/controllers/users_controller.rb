@@ -106,9 +106,9 @@ class UsersController < ApplicationController
         flash[:notice] = 'User was successfully updated.'
 
         format.html { 
-          raise cookies.inspect
+
           if cookies[:invite_code]
-            invite_code = Invitation.find(cookies[:invite_code])
+            invite_code = Invitation.find_by_code(cookies[:invite_code])
             if invite_code.contest
               redirect_to vote_organization_on_contest_path(:id => invite_code.contest_id, :code => invite_code.code)
             else

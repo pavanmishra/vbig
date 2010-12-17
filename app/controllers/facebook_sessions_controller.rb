@@ -7,6 +7,7 @@ class FacebookSessionsController < ApplicationController
       logger.debug "verified fb cookie signature"
       user_info = get_user_info
       user = User.find_facebook_user(user_info)
+
       unless user
         user = User.create_facebook_user(user_info) 
         user_signup = true
@@ -21,7 +22,8 @@ class FacebookSessionsController < ApplicationController
           end 
         end
       end
-      redirect_path = cookies[:invite_code].nil? ? user_path(user) : invitation.contest
+      
+      redirect_path = cookies[:invite_code].nil? ? user_path(user) : vote_organization_on_contest_path(:id => invitation.contest_id, :code => invitation.code)
       logout_keeping_session!
       self.current_user = user
       logger.debug "redirecting to join_with_facebook_account_and_email to create a new user"

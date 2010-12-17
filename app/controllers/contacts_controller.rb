@@ -60,8 +60,12 @@ class ContactsController < ApplicationController
     if invite
       cookies[:invite_code] = params[:invite_code] 
       if invite.contest
-        flash[:notice] = "Please login/signup using button at the top. To proceed with the contest" unless logged_in?
+        unless logged_in?
+        flash[:notice] = "Please login/signup using button at the top. To proceed with the contest"
         redirect_to(invite.contest) and return
+        else
+          redirect_to(vote_organization_on_contest_path(:id => invite.contest_id, :code => invite.code)) and return 
+        end
       end
     else
       flash[:notice] = 'Looks like you clicked an expired link. No issues, go ahead you can still VolunteerBig'
