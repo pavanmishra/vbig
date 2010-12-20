@@ -6,4 +6,9 @@ class ContestUsersController < ApplicationController
     flash[:notice] = contest_user.save ? 'You are now participating in this contest.' : 'There was an error in making you participate the contest.'
     redirect_to contest
   end
+  
+  def new
+    contest = Contest.find params[:id]
+    render :layout => false
+  end
 end

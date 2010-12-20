@@ -28,8 +28,8 @@
 										</div>
 										<div class="promo-buttons">
 											<% if logged_in? %>
-											<% if !@contest.has_participant?(current_user)%>
-											<%= link_to 'Enter!', enter_contest_path(@contest), :class => 'btn'%>
+											<% unless @contest.has_participant?(current_user)%>
+											<%= link_to 'Enter!', enter_contest_path(@contest), :class => 'btn lbOn'%>
 											<% else %>
 											<% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
 											<%= link_to 'Share', "http://www.facebook.com/sharer.php?u=#{ URI.escape(join_by_invitation_url(current_user.facebook_invitation.code))}&t=Join VolunteerBig, do good, have fun and win prizes", :class => 'btn'%>
@@ -63,8 +63,13 @@
 											<%= link_to 'Vote!',  signup_for_action_path, :class=>'lbOn btn' %>
 											<%= link_to 'Recruit!',  signup_for_action_path, :class=>'lbOn btn' %>
 											<% else %>
-											<%= link_to 'Vote', help_organization_path(organization), :class => 'btn'%>
-											<%= link_to 'Recruit', invite_to_contest_path(:id => @contest.id, :for => 'organization', :for_id => organization.id), :class => 'btn lbOn'%>
+												<% unless @contest.has_participant?(current_user) %>
+													<%= link_to 'Vote', enter_contest_path(@contest), :class => 'btn lbOn' %>
+													<%= link_to 'Recruit', enter_contest_path(@contest), :class => 'btn lbOn' %>
+												<% else %>
+													<%= link_to 'Vote', help_organization_path(organization), :class => 'btn'%>
+													<%= link_to 'Recruit', invite_to_contest_path(:id => @contest.id, :for => 'organization', :for_id => organization.id), :class => 'btn lbOn'%>
+												<% end %>
 											<% end %>
 										</div>	
 									</div>

@@ -1,0 +1,20 @@
+<div class="main-block" style="width:450px;margin-left:200px">
+  <div class="t">&nbsp;</div>
+  <div class="c" style="width:410px">
+    <div class="holder">
+      <h2>Terms & Conditions</h2>
+      <p>The action you requested requires you to agree terms and conditions for this contest. 
+	  </p>
+		<p>
+			Click <a href="contest-terms"> here </a> to check the terms and conditions
+		</p>	
+    </div>
+    <div class="btn-holder">
+      <ul>
+        <li><%= link_to 'Agree', {:action => :create, :id => params[:id]}, :class=> 'sign-up' %></li>
+        <li><%= link_to 'Disagree', '#', :class=> 'lbAction', :rel => 'deactivate'%></li>
+      </ul>
+    </div>
+  </div>
+  <div class="b">&nbsp;</div>
+</div>
