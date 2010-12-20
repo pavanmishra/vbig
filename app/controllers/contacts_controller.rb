@@ -42,7 +42,8 @@ class ContactsController < ApplicationController
     invite = Invitation.find_by_code params[:invite_code]
     if invite
       if logged_in?
-        redirect_to invite.event
+        flash[:notice] = 'You have been invited to participate this event, please click on "Participate" to continue.'
+        redirect_to invite.invitable
       else
         flash[:notice] = 'Please signup, before participating in the invited event.'
         cookies[:invite_code] = params[:invite_code]

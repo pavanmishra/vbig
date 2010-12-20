@@ -61,8 +61,7 @@ class Event < ActiveRecord::Base
   end
   
   def get_or_create_invite_links_for(user)
-    invitations = Invitation.find(:all, :conditions => {:event_id => self, :user_id => user, :type => ['TwitterInvitation', 'FacebookInvitation']})
-    invitations = Invitation.create_social_invites_for_event_user(self, user) if invitations.blank?
+    invitations = Invitation.create_social_invites(user, nil, self)
     return invitations
   end
   
