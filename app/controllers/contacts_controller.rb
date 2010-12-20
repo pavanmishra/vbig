@@ -26,7 +26,7 @@ class ContactsController < ApplicationController
   def import
     # find_by_id does not raise an exception, which is good for this scenario
     event = Event.find_by_id(params[:id])
-    PersonalInvitation.invite(params[:recipients].split(',').collect {|recipient| recipient.split('<').last.sub('>', '') }, current_user, event)
+    PersonalInvitation.invite(params[:recipients].split(',').collect {|recipient| recipient.split('<').last.sub('>', '') }, current_user, nil, event)
     flash[:notice] = 'You have succesfully sent your invite'
     redirect_to params.key?(:id) ? event : root_path
   end
