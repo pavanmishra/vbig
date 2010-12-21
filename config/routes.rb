@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   map.contesting_organizations '/contesting-organizations', :controller => 'organizations', :action => 'autocomplete_list'
   map.contest_events 'contesting-events', :controller => :events, :action => 'autocomplete_list'
   map.help_organization '/help/:id', :controller => :organization_users, :action => :help
-  map.enter_contest '/enter/contest/:id', :controller => :contest_users, :action => :create
+  map.enter_contest '/enter/contest/:id', :controller => :contest_users, :action => :new
   map.participate_event '/participate/:id', :controller => :event_users, :action => :participate
   map.feature_event '/feature/event/:id', :controller => :events, :action => :feature  
   map.complete_event '/complete/event/:id', :controller => :events, :action => :complete
