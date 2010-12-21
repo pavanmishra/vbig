@@ -16,10 +16,12 @@ function not_attended(){
 
 function login_signup_facebook(){
 	FB.login(function(response){ 
-		if(!response.session){
+		if(response.session){
+			alert(response.session)
+		}else{
 			alert('there was problem, logging into the system. Please try again after sometime.')
 		}
 		},
-	{}
+	{perms:'email'}
 	)
 }
