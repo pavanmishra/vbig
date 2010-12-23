@@ -29,4 +29,12 @@ class Contest < ActiveRecord::Base
     # so that if user is not found it returns nil and not exception
     users.find_by_id(user.id)
   end
+  
+  def top_users limit = 5
+    score_list = Activity.find_by_sql("select sum(points) as total_points, user_id from activities where contest_id=#{self.id} group by user_id order by sum(points) desc limit #{limit}")
+  end
+  
+  def top_organizations limit = 5
+    score_list = Activity.find_by_sql("select sum(points) as total_points, subject_id from activities where contest_id=#{self.id} and subject_type='Organization' group by user_id order by sum(points) desc limit #{limit}")
+  end
 end

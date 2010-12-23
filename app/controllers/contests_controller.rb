@@ -18,6 +18,8 @@ class ContestsController < ApplicationController
     @contest_sponsor  = ContestSponsor.new :contest => @contest
     @contest_prize = ContestPrize.new :contest => @contest
     @contest_event = ContestEvent.new :contest => @contest
+    @top_users_score_list = Activity.find_by_sql("select sum(points) as total_points, user_id from activities where contest_id=#{@contest.id} group by user_id order by sum(points) desc limit 5")
+    @top_organizations_score_list = Activity.find_by_sql("select sum(points) as total_points, subject_id from activities where contest_id=#{@contest.id} and subject_type='Organization' group by subject_id order by sum(points) desc limit 5")
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @contest }

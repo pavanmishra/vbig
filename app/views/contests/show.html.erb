@@ -51,13 +51,15 @@
 								<%= link_to 'view all', contest_organizations_path, :class => "view" %> 
 							</div><!--title-->
 							
-							<% for organization in @contest.organizations.all(:limit => 5) %>
+							<% for score in @top_organizations_score_list 
+								organization = Organization.find(score.subject_id)
+							%>
 							<div class="cart-info">
 								<div class="holder">
 									<div class="visual"><%= image_tag organization.image.url(:medium), :width => 185%></div>
 									<div class="cart-text">
 										<h3><%= link_to organization.name, organization %></h3>
-										<div class="dc"><%= organization.address %> <%= organization.id == 9 ? "| 30 recruits | 55 votes | 230 points" : "| 20 recruits | 22 votes | 140 points" %></div>
+										<div class="dc"><%= organization.address %> | 30 recruits | 55 votes | <%= score.total_points %> points</div>
 										<div class="row promo-buttons">
 											<% unless logged_in? %>
 											<%= link_to 'Vote!',  signup_for_action_path, :class=>'lbOn btn' %>
@@ -88,7 +90,24 @@
 							</div><!--title-->							
 							<div class="sort-holder">
 								<ul class="results">
-									<%= render :partial => 'users/user', :collection => @contest.users.all(:limit => 5) %>
+									<% for score in @top_users_score_list 
+										user = User.find(score.user_id)
+									%>
+									
+									<li>
+										<div class="visual"><%= link_to(image_tag(facebook_profile_picture(user)), user) %></div>
+										<div class="text-info">
+											<p class="name"><%= link_to user.name, user %></p>
+											<p class="state"><%= user.address %></p>
+											<ul class="prop">
+												<li><%= score.total_points %> Points</li>
+												<!--
+												<li>Pepsi Philly Badge, Patagonia Badge</li>
+												<li>10 Actions</li>  -->
+											</ul>
+										</div>
+									</li>
+									<% end %>
 								</ul>
 							</div>
 						</div>
