@@ -67,7 +67,7 @@
 													<%= link_to 'Vote', enter_contest_path(@contest), :class => 'btn lbOn' %>
 													<%= link_to 'Recruit', enter_contest_path(@contest), :class => 'btn lbOn' %>
 												<% else %>
-													<%= link_to 'Vote', help_organization_path(organization), :class => 'btn'%>
+													<%= link_to 'Vote', vote_contest_organization_path(@contest, organization), :method => :post, :class => 'btn'%>
 													<%= link_to 'Recruit', invite_to_contest_path(:id => @contest.id, :for => 'organization', :for_id => organization.id), :class => 'btn lbOn'%>
 												<% end %>
 											<% end %>

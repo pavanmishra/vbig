@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101214130852) do
+ActiveRecord::Schema.define(:version => 20101223112043) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20101214130852) do
     t.string   "info",                       :default => ""
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id"
+    t.integer  "contest_id"
+    t.integer  "points"
   end
 
   add_index "activities", ["created_at"], :name => "index_activities_on_created_at"
@@ -45,6 +48,14 @@ ActiveRecord::Schema.define(:version => 20101214130852) do
   create_table "contest_events", :force => true do |t|
     t.integer  "contest_id"
     t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contest_organization_users", :force => true do |t|
+    t.integer  "contest_id"
+    t.integer  "user_id"
+    t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -334,6 +345,7 @@ ActiveRecord::Schema.define(:version => 20101214130852) do
     t.boolean  "send_message_notifications"
     t.boolean  "send_weekly_updates"
     t.boolean  "send_newsletter"
+    t.integer  "invited_by_id"
   end
 
 end
