@@ -6,6 +6,7 @@ class FacebookSessionsController < ApplicationController
     if verify_fb_cookie_signature
       logger.debug "verified fb cookie signature"
       user_info = get_user_info
+      raise user_info.inspect
       user = User.find_facebook_user(user_info)
       invitation = Invitation.find_by_code(cookies[:invite_code]) if cookies[:invite_code]
       unless user
