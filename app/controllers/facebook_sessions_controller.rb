@@ -3,6 +3,7 @@ class FacebookSessionsController < ApplicationController
   include AuthenticatedSystem
 
   def create
+    raise params.inspect
     if verify_fb_cookie_signature
       logger.debug "verified fb cookie signature"
       user_info = get_user_info
