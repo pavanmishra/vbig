@@ -42,7 +42,7 @@
 			 <%= link_to 'Inbox', :controller => :received, :action => :index %> | 
 			 <%= link_to 'Logout', logout_path %>
 			<% else %>
-			 <%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
+			 <%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email,publish_stream,read_stream'} -%>
 			<% end %>
 			</li>
 		</ul>

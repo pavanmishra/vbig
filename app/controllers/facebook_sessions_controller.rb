@@ -3,11 +3,9 @@ class FacebookSessionsController < ApplicationController
   include AuthenticatedSystem
 
   def create
-    raise @fb_info.inspect
     if verify_fb_cookie_signature
       logger.debug "verified fb cookie signature"
       user_info = get_user_info
-      raise user_info.inspect
       user = User.find_facebook_user(user_info)
       invitation = Invitation.find_by_code(cookies[:invite_code]) if cookies[:invite_code]
       unless user
@@ -18,7 +16,7 @@ class FacebookSessionsController < ApplicationController
           PointLog.create :event_id => invitation.event_id, :user_id => invitation.user_id, :point => invitation.event.contests.first.invite_points rescue nil
         end
       end
-      
+      user.update_attribute :facebook_access_token, @fb_info['access_token']
       redirect_path = cookies[:invite_code].nil? ? user_path(user) : vote_organization_on_contest_path(:id => invitation.contest_id, :code => invitation.code)
       logout_keeping_session!
       self.current_user = user
