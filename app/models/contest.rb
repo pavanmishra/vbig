@@ -25,6 +25,28 @@ class Contest < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 10
   
+  def user_score_list(page_no, count)
+    activities = Activity.find_by_sql("select sum(points) as total_points, user_id from activities where contest_id=#{self.id} group by user_id order by sum(points) desc limit #{page_no}, #{count}")
+    score_list = activities.collect{|act| [act.user_id, act.total_points] }
+    if score_list.length < count 
+      existing_ids = score_list.length.eql?(0) ? [0] : score_list.collect{|score| score.first}
+      users_no_point = users.all(:conditions => "users.id not in (#{existing_ids})", :limit => (count - score_list.length))
+      users_no_point.each{|user| score_list << [user.id, 0]}
+    end
+    return score_list
+  end
+  
+  def organization_score_list(page_no, count)
+    activities = Activity.find_by_sql("select sum(points) as total_points, subject_id from activities where contest_id=#{self.id} and subject_type='Organization' group by subject_id order by sum(points) desc limit 5")
+    score_list = activities.collect{|act| [act.subject_id, act.total_points] }
+    if score_list.length < count 
+      existing_ids = score_list.length.eql?(0) ? [0] : score_list.collect{|score| score.first}
+      organizations_no_point = organizations.all(:conditions => "organizations.id not in (#{existing_ids})", :limit => (count - score_list.length))
+      organizations_no_point.each{|organization| score_list << [organization.id, 0]}
+    end
+    return score_list
+  end
+  
   def has_participant?(user)
     # so that if user is not found it returns nil and not exception
     users.find_by_id(user.id)
