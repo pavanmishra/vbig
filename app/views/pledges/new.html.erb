@@ -1,10 +1,9 @@
 <div class="main-block" style="width:450px;margin-left:200px">
 	<div class="t">&nbsp;</div>
 	<div class="c" style="width:410px">
-		<div class="title">
+		<div class="holder">
 			<h2 class="blue">new pledge</h2>
-		</div><!--title-->
-		<div class="about-info">
+			<div class="about-info">
 			<h3> Time </h3>
 			<% form_for @pledge do |f|%>
 			<% @pledge.info = Pledge::PledgeType[:volunteer_hour][:type] %>
@@ -32,8 +31,14 @@
 			</p>
 			<% end %>
 				
-		</div>
-			<a class="lbAction" rel="deactivate">Cancel</a>
+			</div>
+		</div>	
+			<div class="btn-holder">
+				<ul >
+					<li> 			<a class="lbAction" rel="deactivate">Cancel</a></li>
+				</ul>	
+
+			</div>
 	</div>
 
 	<div class="b">&nbsp;</div>		

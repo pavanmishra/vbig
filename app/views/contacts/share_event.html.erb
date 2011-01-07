@@ -1,28 +1,40 @@
 <div class="main-block" style="width:450px;margin-left:200px">
 	<div class="t">&nbsp;</div>
 	<div class="c" style="width:410px">
+		<div class="holder">
 <% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
-<h5> Invite on Twitter</h5>
-<div>
+<h2> Invite on Twitter</h2>
 	<p>
 		<%= twitter_message = "Follow #{ bitly.shorten(participate_event_by_invitation_url(@invites.first.code)).short_url} to join VolunteerBig, do good, have fun and win prizes." %>
 		
 	</p>
-	<p>
-		<a href="http://twitter.com/?status=<%= URI.escape(twitter_message)%>" target="_blank">Share on Twitter</a>
-	</p>
-</div>
-<h3> Invite on Facebook </h3>
-<div>
+	</div>
+	<div class="btn-holder">
+		<ul>
+        <li><%= link_to 'Share', "http://twitter.com/?status=#{URI.escape(twitter_message)}", :target => "_blank", :rel => 'deactivate'%></li>
+      </ul>
+      
+	
+	</div>
+	<div class='holder'>
+	<h3> Invite on Facebook </h3>
+
 	<p>
 		Click <%= bitly.shorten(participate_event_by_invitation_url(@invites.last.code)).short_url  %> to post invite on Facebook.
 	</p>
-	<p>
-		<a target="_blank" href="http://www.facebook.com/sharer.php?u=<%= URI.escape(join_by_invitation_url(@invites.last.code))%>&t=Join VolunteerBig, do good, have fun and win prizes">Share on Facebook</a>
-	</p>
-</div>
-
-<a class="lbAction" rel="deactivate">Cancel</a>
+	</div>
+	<div class="btn-holder">
+		<ul>
+        <li><%= link_to 'Share', "http://www.facebook.com/sharer.php?u=#{URI.escape(join_by_invitation_url(@invites.last.code))}&t=Join VolunteerBig, do good, have fun and win prizes", :rel => 'deactivate'%></li>
+      </ul>
+	</div>
+	<div class="btn-holder">
+		<ul>
+        <li><%= link_to 'Cancel', '#', :class=> 'lbAction', :rel => 'deactivate'%></li>
+      </ul>
+      
+	
+	</div>
 </div>
 <div class="b">&nbsp;</div>
 </div>

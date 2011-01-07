@@ -2,6 +2,7 @@
 <div class="main-block" style="width:450px;margin-left:200px">
 	<div class="t">&nbsp;</div>
 	<div class="c" style="width:410px">
+		<div class="holder">
         <h3>Invite your Friends</h3> 
 		<% form_tag '/contacts/import/', :method => :post do %>
 		<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img style="width:20%" src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>
@@ -9,6 +10,7 @@
 		<input type="submit" value="Invite"/>
 		<% end %>
 		<% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
+
 		<h5> Invite on Twitter</h5>
 		<div>
 			<p>
@@ -27,6 +29,7 @@
 				<a target="_blank" href="http://www.facebook.com/sharer.php?u=<%= URI.escape(join_by_invitation_url(current_user.facebook_invitation.code))%>&t=Join VolunteerBig, do good, have fun and win prizes">Share on Facebook</a>
 			</p>
 		</div>
+				</div>
 		<% if @invite_event %>
 		<h5> Join Event </h5>
 		<div>
@@ -35,7 +38,9 @@
 		</p>
 		</div>
 		<% end %>
-	<a class="lbAction" rel="deactivate"> Close </a>
+		<div class="btn-holder">
+			<a class="lbAction" rel="deactivate"> Close </a>
+		</div>	
 	</div>
 
 </div>

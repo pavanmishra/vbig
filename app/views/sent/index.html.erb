@@ -5,7 +5,7 @@
 			<h2>Sent Messages</h2>
 			<a href="#" class="view">view all</a>
 		</div><!--title-->
-
+<% if @messages.blank? %>
 <%= will_paginate @messages %>
 	<table cellpadding="0" width="100%">
 		<% for message in @messages %>
@@ -18,7 +18,9 @@
 		<% end %>
 	</table>
 <%= will_paginate @messages %>
-
+<% else %>
+<p> No messages.</p>
+<% end %>
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->

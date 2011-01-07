@@ -8,6 +8,11 @@
 		</div><!--title-->
 
 		<%= will_paginate @messages %>
+		<% if @messages.blank? %>
+		<p>
+		No messages recieved.	
+		</p>	
+		<% else %>
 		<table cellpadding="0" width="100%">
   			<% for message in @messages %>
     		<tr style="border-bottom:1px solid #cacaca;<%= 'background-color:#efefef' unless message.read? %>">
@@ -18,6 +23,7 @@
     		</tr>
   			<% end %>
 		</table>
+		<% end %>
 
 		<%= will_paginate @messages %>
 		</div>

@@ -3,9 +3,10 @@
 	<div class="c">
 		<div class="title">
 			<h2>suggested opportunities</h2>
-			<a href="#" class="view orang-link">view all</a>
+			<%= link_to 'view all', suggested_events_path, :class=>'view orang-link' %>
 		</div><!--title-->
-		<%= render :partial => 'events/event', :collection => @user.suggested_events(1)%>
+		<% suggested_events = @user.suggested_events(1).blank? ? Event.featured(:limit => 5) : @user.suggested_events(1) %>
+		<%= render :partial => 'events/event', :collection => suggested_events %>
 			
 	</div>
 	<div class="b">&nbsp;</div>		
@@ -72,3 +73,12 @@
 	</div><!--box-->
 	
 <% end %>
+<% unless params[:show_tutorial].nil? %>
+<script>
+Event.observe(window, 'load', function() {
+
+var pop_lb = new lightbox($('tutorial_start'));
+pop_lb.activate();});
+</script>
+<% end %>
+

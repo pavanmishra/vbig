@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
-  before_filter :admin_required, :only => [:feature]
+  before_filter :admin_required, :only => [:feature, :new, :create]
   before_filter :login_required,  :only => [:new, :create, :suggested]
 
   def index
@@ -53,6 +53,7 @@ class EventsController < ApplicationController
   def suggested
     @title = 'suggested participation'
     @events = current_user.suggested_events(params[:page])
+    @events = Event.featured( :limit => 5) if @events.empty?
     render :template => 'events/index.html.erb'
   end
   

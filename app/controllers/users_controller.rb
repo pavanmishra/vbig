@@ -115,7 +115,7 @@ class UsersController < ApplicationController
               redirect_to(:controller => :contacts, :action => :new_import) 
             end
           else
-            redirect_to(event_path(cookies[:invite_event]))
+            redirect_to(root_path(:show_tutorial => true))
           end
           }
         format.xml  { head :ok }

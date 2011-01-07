@@ -13,7 +13,7 @@
 <div class="b">&nbsp;</div>
 
 <% content_for :sidebar do %>
-
+	<% if logged_in? and current_user.is_admin? %>
 	<div class="box">
 		<div class="t">&nbsp;</div>
 		<div class="c">
@@ -23,6 +23,7 @@
 		</div>
 		<div class="b">&nbsp;</div>
 	</div><!--box-->
+	<% end %>
 	<div class="box">
 	<div class="t">&nbsp;</div>
 	<div class="c">

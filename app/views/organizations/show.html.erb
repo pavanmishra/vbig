@@ -6,7 +6,7 @@
 		</div><!--title-->
 		<div class="cart-info">
 			<div class="holder">
-				<div class="visual"><%= image_tag @organization.image.url(:medium), :width => 185%></div>
+				<div class="visual"><%= link_to image_tag(@organization.image.url(:medium), :width => 185), @organization %></div>
 				<div class="cart-text">
 					<!--
 
@@ -21,7 +21,7 @@
 						<li><strong>skills sought:</strong>   <%= @organization.skills.collect{|skill_tag| skill_tag.name.titleize}.join(', ') %></li>
 					</ul>
 					
-					<div class="row"><strong class="even"><%= @organization.events.count %> events</strong><% unless logged_in? and current_user.helping?(@organization)%><%= link_to 'Like', help_organization_path(@organization), :class=> 'suggest-btn'%><% end %></div>
+					<div class="row"><strong class="even"><%= @organization.events.count %> events</strong><% if logged_in? %><% unless current_user.helping?(@organization)%><%= link_to 'Support', help_organization_path(@organization), :class=> 'suggest-btn'%><% end %><% else %><%= link_to 'support',  signup_for_action_path, :class=>'lbOn suggest-btn' %><% end %></div>
 				</div>
 			</div>
 		</div>
@@ -51,8 +51,11 @@
 			<h2>opportunities</h2>
 			<a href="#" class="view orang-link">view all</a>
 		</div><!--title-->
-		<iframe width="640" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;oe=UTF8&amp;source=embed&amp;msa=0&amp;msid=117031743659010886480.000493d910267f6df30fa&amp;ll=37.020098,-96.679687&amp;spn=33.464656,56.25&amp;z=4&amp;output=embed"></iframe><br /><small>View <a href="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;oe=UTF8&amp;source=embed&amp;msa=0&amp;msid=117031743659010886480.000493d910267f6df30fa&amp;ll=37.020098,-96.679687&amp;spn=33.464656,56.25&amp;z=4" style="color:#0000FF;text-align:left">imatter</a> in a larger map</small>
-		<%= render :partial => 'events/event', :collection => @organization.events %>
+		<% if @organization.events.blank? %>
+			<%= render :partial => 'events/event', :collection => @organization.events %>
+		<% else %>
+			<p> No associated opportunities </p>
+		<% end %>
 	</div>
 	<div class="b">&nbsp;</div>		
 </div><!--content-box-->
@@ -105,5 +108,7 @@
 		</div>
 		<div class="b">&nbsp;</div>
 	</div><!--box-->
+	<% if logged_in? and current_user.is_admin? %>
 	<%= render :partial => 'common/editors_box'%>
+	<% end %>
 <% end %>

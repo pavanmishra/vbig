@@ -2,15 +2,21 @@
 <div class="main-block" style="width:450px;margin-left:200px">
 	<div class="t">&nbsp;</div>
 	<div class="c" style="width:410px"> 
+		<div class="holder">
         <h3>Invite to <%= @event.title %></h3> 
     	
-		<% form_tag '/contacts/import/', :method => :post do %>
+		<% form_tag '/contacts/import/', :method => :post, :id => 'importer' do %>
 			<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img style="width:104px;height:31px" src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a><br />
 			<textarea id="recipient_list" name="recipients"></textarea>Use the above button to choose your contacts or enter comma separated email addresses.<br />
 			<%= hidden_field_tag :id, params[:id] %>
-			<input type="submit" value="Invite"/>
-		<% end %>
-	<a class="lbAction" rel="deactivate">Cancel</a>
+		</div>
+		<div class="btn-holder">
+	      <ul>
+			<li><%= link_to 'Invite', '#', :class=> '', :rel => 'deactivate', :onclick=>"$('importer').submit()"%></li>
+	        <li><%= link_to 'Cancel', '#', :class=> 'lbAction', :rel => 'deactivate'%></li>
+	      </ul>
+	    </div>
+			<% end %>
 </div>
 <div class="b">&nbsp;</div>
 </div>
