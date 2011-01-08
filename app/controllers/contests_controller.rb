@@ -1,8 +1,8 @@
 class ContestsController < ApplicationController
   # GET /contests
   # GET /contests.xml
+  before_filter :login_required, :only => :update_status
   before_filter :admin_required, :only => [:admin_show]
-  layout 'contest_detail', :only => :show
   def index
     @contests = Contest.all
 
@@ -14,10 +14,16 @@ class ContestsController < ApplicationController
   
   def show
     @contest = Contest.find(params[:id])
+    @top_users_score_list = @contest.user_score_list(0, 15)
+    @top_organizations_score_list = @contest.organization_score_list(0, 15)
+    render :layout => 'contest_detail'
   end
   
   def update_status
-    
+    contest = Contest.find params[:contest_id]
+    activity = Activity.new params[:activity].merge({:action => 'contest-update', :contest_id => contest.id, :user => current_user, :subject => contest})
+    activity.save
+    redirect_to contest
   end
 
   # GET /contests/1

@@ -5,11 +5,12 @@
 			<img src="/images/chegg.png" width="960"/>
 		</div>
 	</div><!--main-block-->
+	<% if not logged_in? or (logged_in? and !@contest.has_participant?(current_user))%>
 	<div class="main-block">
 		<div class="t">&nbsp;</div>
 		<div class="c">
 			
-			<% if not logged_in? or (logged_in? and !@contest.has_participant?(current_user))%>
+
 			<div>
 				<h2 > Participating in this contest are </h2>
 				<% for index in 1..11 %>
@@ -21,10 +22,10 @@
 				<span class="buttons-box">
 				<%= link_to 'Enter Contest', enter_contest_path(@contest), :class => 'sign-up lbOn'%>
 			</div>
-			<% end %>
+
 		</div>
 	</div><!--main-block-->
-
+	<% end %>
 			<div class="nav-holder" style="float:none;margin:0">
 			<ul id="nav">
 				<li> <a href="#">activity</a></li>

@@ -1,29 +1,21 @@
-<div class="main-block" style="width:450px;margin-left:200px;">
-	<div class="c" style="width:410px;border:0.4em solid #aaa;padding:1.5em"> 
-		<div class="content-box">
-			<div class="t">&nbsp;</div>
-			<div class="c" style="width:380px">
-				<div class="title">
-					<h2 class="blue"><%= organization.name %></h2>
-				</div><!--title-->
-				<div class="cart-info">
-					<div class="holder">
-						
-						<div class="visual"><%= image_tag organization.image.url(:medium), :width => 185%></div>
-														<%= fboauth_login_and_redirect 'http://cvb.socialsync.org/facebook_sessions/create', {:text => 'Login / Signup', :perms => 'email'} -%>
-						<p>
-							You have been invited to vote for this organization you can vote now or cancel and explore other organization to vote.
-						</p>	
-						<div class="cart-text">
-							<div class="row">
-								<%= link_to 'vote', help_organization_path(organization), :class=> 'suggest-btn'%>
-							</div>
-						</div>
-						<a class="lbAction" rel="deactivate">Cancel</a>
-					</div>
-				</div>
-			</div>
-			<div class="b">&nbsp;</div>		
-		</div><!--content-box-->
-	</div>
+
+<div class="main-block" style="width:450px;margin-left:200px">
+	<div class="t">&nbsp;</div>
+	<div class="c" style="width:410px"> 
+		<div class="holder">
+			<h2> Vote for <%= organization.name %></h2>
+			<div class="visual"><%= image_tag organization.image.url(:medium), :width => 150%></div>
+			<p>
+				You have been invited to vote for this organization you can vote now or cancel and explore other organization to vote.
+			</p>	
+			
+		</div>	
+		<div class="btn-holder">
+	      <ul>
+			<li><%= link_to 'Vote', vote_contest_organization_path(params[:contest_id], organization), :class=> '', :rel => 'deactivate', :onclick=>"$('importer').submit()"%></li>
+	        <li><%= link_to 'Cancel', '#', :class=> 'lbAction', :rel => 'deactivate'%></li>
+	      </ul>
+	    </div>
+</div>
+<div class="b">&nbsp;</div>
 </div>

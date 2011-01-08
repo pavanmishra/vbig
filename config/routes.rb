@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.profile 'profile', :controller => :users, :action => :profile
   map.edit_profile 'profile/edit', :controller => :users, :action => :edit
+  map.contest_admin 'contests/:id/admin', :controller => :contests, :action => :admin_show
   map.sponsors_autocomplete 'sponsors-autocomplete', :controller => :sponsors, :action => :autocomplete_list
   map.prizes_autocomplete 'prizes-autocomplete', :controller => :prizes, :action => :autocomplete_list  
   map.contesting_organizations '/contesting-organizations', :controller => 'organizations', :action => 'autocomplete_list'
@@ -47,7 +48,7 @@ ActionController::Routing::Routes.draw do |map|
   map.delete_event 'events/:id/delete', :controller => :events, :action => :destroy
   map.signup_for_action 'signup/action/', :controller => :facebook_sessions, :action => :signup
   map.vote_contest_organization  'vote/contest/:contest_id/organization/:organization_id', :controller => :contest_organization_users, :action => :vote
-  map.pop_vote_for_organization 'vote/organization/:id', :controller => :organizations, :action => :vote_popup
+  map.pop_vote_for_organization 'vote/organization/:id/:contest_id', :controller => :organizations, :action => :vote_popup
   map.vote_organization_on_contest 'contests/:id/:code', :controller => :contests, :action => :show
 #  map.new_pledge  '/pledges/new/', :controller  =>  :pledges, :action =>  :new
   map.resource :session

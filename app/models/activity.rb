@@ -3,7 +3,7 @@ class Activity < ActiveRecord::Base
   belongs_to  :subject, :polymorphic => true
   named_scope :recent, { :conditions => "action='viewed'", :order => "updated_at DESC", :limit => 10 }
   named_scope :for,    lambda { |user|     { :conditions => [ "user_id =?", user.id] } }
-  named_scope :only,   lambda { |*actions| { :conditions => "action     IN (#{actions.join("','").wrap("'")})" } }
+  named_scope :only,   lambda { |*actions| { :conditions => "action     IN ('#{actions.join("','")}')" } }
   named_scope :except, lambda { |*actions| { :conditions => "action NOT IN (#{actions.join("','").wrap("'")})" } }
   named_scope :latest, lambda { |options|  {
     :conditions => [ "#{options[:asset] ? "subject_type = ?" : "0=?"} AND #{options[:user] ? "user_id = ?" : "0=?"} AND activities.created_at >= ?",
@@ -14,6 +14,9 @@ class Activity < ActiveRecord::Base
 
   validates_presence_of :user, :subject
   
+  has_threaded_comments
+  
+  ContestWallActions = ['contest-update', 'participate-contest']
   def self.log(user, subject, action)
     if action != :viewed
       create_activity(user, subject, action)

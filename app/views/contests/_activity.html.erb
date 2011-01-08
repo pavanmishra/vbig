@@ -1,0 +1,12 @@
+<div class="activity-info">
+	<% case activity.action 
+		
+		when 'other action' %>
+	
+	<% when 'contest-update'%>
+		<%= activity.user.name %> updated "<%= activity.info %>"
+	
+	<% when 'participate-contest' %>
+	<%= activity.user.name %> joined the contest.
+	<% end %>
+</div>	

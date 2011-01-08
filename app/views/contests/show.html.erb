@@ -1,13 +1,53 @@
 <div class="content-box">
 	<div class="t">&nbsp;</div>
 	<div class="c">
-	<div>
-		<% form_for Activity.new, :url => {:controller => :contests, :action => :update_status, :contest_id => @contest } do |f| %>
-		<%= f.text_area :info, :rows => 5, :cols => 80 %>
-		<br />
-		<%= f.submit 'Update' %>
+		<% case params[:ctab] 
+			
+			when 'user'%>
+			
+				<%= render :partial => 'users/user', :collection => @contest.users.paginate(:page => params[:page])%>
+			
+			<% when 'non-profit'%>
+			<% for organization_id_score in @top_organizations_score_list 
+				organization = Organization.find(organization_id_score.first)
+			%>
+			<div class="cart-info">
+				<div class="holder">
+					<div class="visual"><%= image_tag organization.image.url(:medium), :width => 170%></div>
+					<div class="cart-text">
+						<h3><%= link_to organization.name, organization %></h3>
+						<div class="dc"><%= organization.address %> | <%= ContestOrganizationUser.count(:conditions => {:contest_id => @contest, :organization_id => organization})%> votes | <%= organization_id_score.last %> points</div>
+						<div class="row promo-buttons">
+							<% unless logged_in? %>
+							<%= link_to 'Vote!',  signup_for_action_path, :class=>'lbOn btn' %>
+							<%= link_to 'Recruit!',  signup_for_action_path, :class=>'lbOn btn' %>
+							<% else %>
+								<% unless @contest.has_participant?(current_user) %>
+									<%= link_to 'Vote', enter_contest_path(@contest), :class => 'btn lbOn' %>
+									<%= link_to 'Recruit', enter_contest_path(@contest), :class => 'btn lbOn' %>
+								<% else %>
+									<%= link_to 'Vote', vote_contest_organization_path(@contest, organization), :method => :post, :class => 'btn'%>
+									<%= link_to 'Recruit', invite_to_contest_path(:id => @contest.id, :for => 'organization', :for_id => organization.id), :class => 'btn lbOn'%>
+								<% end %>
+							<% end %>
+						</div>	
+					</div>
+				</div>
+			</div>
+			<% end %>
+			
+			<% else %>
+		<% if logged_in? %>
+		<div>
+			<% form_for Activity.new, :url => {:controller => :contests, :action => :update_status, :contest_id => @contest } do |f| %>
+			<%= f.text_area :info, :rows => 5, :cols => 80 %>
+			<br />
+			<%= f.submit 'Update' %>
+			<% end %>
+		</div>	
 		<% end %>
-	</div>	
+		<%= render :partial => 'activity', :collection => Activity.only(Activity::ContestWallActions).all(:limit => 25) %>
+		<% end %>
 	</div>
 	<div class="b">&nbsp;</div>		
 </div>	
@@ -19,6 +59,22 @@
 			<div class="title cutd">
 				<h3>user leaderboard</h3>
 			</div>
+			<ul class="users">
+				<% for user_id_score in @top_users_score_list 
+					user = User.find(user_id_score.first)
+				%>
+				<li>
+				<div class="visual"><%= link_to image_tag((user.pic_square or '/images/img24.jpg')), user %></div>
+				<div class="info">
+					<span class="name"><%= link_to user.name, user %></span>
+					<p><%= user.address %></p>
+					<ul class="points">
+						<li>&nbsp;<%= user_id_score.last %> points</li>
+					</ul>
+				</div>
+				</li>
+				<% end %>
+			</ul>
 			
 		</div>
 		<div class="b">&nbsp;</div>
@@ -30,9 +86,40 @@
 			<div class="title cutd">
 				<h3>nonprofit leaderboard</h3>
 			</div>
+			<ul class="users">
+				<% for organization_id_score in @top_organizations_score_list 
+					organization = Organization.find(organization_id_score.first) %>
+				<li>
+					<div class="visual"><%= link_to image_tag(organization.image.url(:smaller_thumbnail)), organization %></div>
+					<div class="info">
+						<span class="name"><%= link_to organization.name, organization %></span>
+						<p> <%= organization.address %></p>
+						<ul class="points">
+ 							
+							<li>&nbsp;<%= ContestOrganizationUser.count(:conditions => {:contest_id => @contest, :organization_id => organization})%> votes</li>
+							<li><%= organization_id_score.last %> points</li>
+						</ul>
+					</div>
+				</li>
+				<% end %>
+			</ul>
+
 			
 		</div>
 		<div class="b">&nbsp;</div>
 	</div><!--box-->
 	
 <% end %>
+
+<% if params[:code] %>
+	
+	<div style="display:none">
+	  <%= link_to '', pop_vote_for_organization_path(:id => Invitation.find_by_code(params[:code]).invitable_id, :contest_id => @contest), :class => 'lbOn', :id => 'pop_code' %>
+	</div>	
+	<script>
+	Event.observe(window, 'load', function() {
+	
+	var pop_lb = new lightbox($('pop_code'));
+	pop_lb.activate();});
+	</script>
+<% end %>	
