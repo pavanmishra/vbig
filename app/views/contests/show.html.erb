@@ -55,7 +55,7 @@
 			<% end %>
 			
 			<% else %>
-		<%= render :partial => 'activity', :collection => Activity.only(Activity::ContestWallActions).all(:limit => 25) %>
+		<%= render :partial => 'activity', :collection => Activity.only(Activity::ContestWallActions).all(:limit => 25, :conditions => {:contest_id => @contest}) %>
 		<% end %>
 	</div>
 	<div class="b">&nbsp;</div>		
