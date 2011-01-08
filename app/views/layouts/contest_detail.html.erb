@@ -19,7 +19,11 @@
 				</span>				
 				<% end %>
 				<span class="buttons-box">
+				<% unless logged_in? %>
+				<%= link_to 'enter contest',  signup_for_action_path, :class=>'lbOn sign-up' %>
+				<% else %>
 				<%= link_to 'Enter Contest', enter_contest_path(@contest), :class => 'sign-up lbOn'%>
+				<% end %>
 				</span>
 			</div>
 

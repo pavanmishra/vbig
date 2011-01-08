@@ -7,7 +7,6 @@
 		<%= activity.user.name %> voted for <strong> <%= activity.subject.name %> </strong>
 	<% when 'contest-update'%>
 		<%= activity.user.name %> updated "<%= activity.info %>"
-	
 	<% when 'participate-contest' %>
 	<%= activity.user.name %> joined the contest.
 	<% end %>

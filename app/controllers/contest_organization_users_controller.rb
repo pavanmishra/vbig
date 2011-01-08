@@ -11,7 +11,6 @@ class ContestOrganizationUsersController < ApplicationController
       # set the vote activity
       Activity.create :user => current_user, :subject => contest_vote.organization, :contest_id => params[:contest_id], :action => 'organization_vote', :points => 10
     end
-
     redirect_to contest_vote.contest
   end
   
