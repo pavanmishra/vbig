@@ -12,15 +12,15 @@
 			
 
 			<div>
-				<h2 > Participating in this contest are </h2>
-				<% for index in 1..11 %>
+				<h2 > Recent Participants </h2>
+				<% for user in @contest.users.all(:limit => 10)%>
 				<span>
-					<img style="padding: 0.1em; border: 2px solid rgb(102, 102, 102); margin:0.2em 1em 0.2em 0" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs448.snc4/49310_555942065_6456911_q.jpg" />
-
-				</span>	
+					<img style="padding: 0.1em; border: 2px solid rgb(102, 102, 102); margin:0.2em 1em 0.2em 0" src="<%= facebook_profile_picture(user)%>" />
+				</span>				
 				<% end %>
 				<span class="buttons-box">
 				<%= link_to 'Enter Contest', enter_contest_path(@contest), :class => 'sign-up lbOn'%>
+				</span>
 			</div>
 
 		</div>
@@ -28,9 +28,9 @@
 	<% end %>
 			<div class="nav-holder" style="float:none;margin:0">
 			<ul id="nav">
-				<li> <a href="#">activity</a></li>
-				<li> <a href="#">leaderboard</a></li>
-				<li> <a href="#">non profits</a></li>
+				<li> <%= link_to 'activity', contest_path(@contest) %></li>
+				<li>  <%= link_to 'leaderboard', contest_path(@contest, :ctab=> 'user') %></li>
+				<li>  <%= link_to 'non-profits', contest_path(@contest, :ctab=> 'non-profit') %></li>
 			</ul>	
 			</div>
 

@@ -1,3 +1,21 @@
+		<% if logged_in? %>
+<div class="content-box contest-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+
+		<div>
+			<% form_for Activity.new, :url => {:controller => :contests, :action => :update_status, :contest_id => @contest } do |f| %>
+			<%= f.text_area :info, :rows => 5, :cols => 80 %>
+			<br />
+			<%= f.submit 'Update' %>
+			<% end %>
+		</div>	
+		
+		
+	</div>
+	<div class="b">&nbsp;</div>		
+</div>	
+	<% end %>
 <div class="content-box">
 	<div class="t">&nbsp;</div>
 	<div class="c">
@@ -37,15 +55,6 @@
 			<% end %>
 			
 			<% else %>
-		<% if logged_in? %>
-		<div>
-			<% form_for Activity.new, :url => {:controller => :contests, :action => :update_status, :contest_id => @contest } do |f| %>
-			<%= f.text_area :info, :rows => 5, :cols => 80 %>
-			<br />
-			<%= f.submit 'Update' %>
-			<% end %>
-		</div>	
-		<% end %>
 		<%= render :partial => 'activity', :collection => Activity.only(Activity::ContestWallActions).all(:limit => 25) %>
 		<% end %>
 	</div>
