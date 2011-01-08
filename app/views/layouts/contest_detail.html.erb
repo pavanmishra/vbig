@@ -1,0 +1,47 @@
+<%= render :partial => 'layouts/header' -%>
+<div id="main" class="profile-page">
+	<div class="main-block">
+		<div class="c" style="padding: 0 4px; width:960px">
+			<img src="/images/chegg.png" width="960"/>
+		</div>
+	</div><!--main-block-->
+	<div class="main-block">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			
+			<% if not logged_in? or (logged_in? and !@contest.has_participant?(current_user))%>
+			<div>
+				<h2 > Participating in this contest are </h2>
+				<% for index in 1..11 %>
+				<span>
+					<img style="padding: 0.1em; border: 2px solid rgb(102, 102, 102); margin:0.2em 1em 0.2em 0" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs448.snc4/49310_555942065_6456911_q.jpg" />
+
+				</span>	
+				<% end %>
+				<span class="buttons-box">
+				<%= link_to 'Enter Contest', enter_contest_path(@contest), :class => 'sign-up lbOn'%>
+			</div>
+			<% end %>
+		</div>
+	</div><!--main-block-->
+
+			<div class="nav-holder" style="float:none;margin:0">
+			<ul id="nav">
+				<li> <a href="#">activity</a></li>
+				<li> <a href="#">leaderboard</a></li>
+				<li> <a href="#">non profits</a></li>
+			</ul>	
+			</div>
+
+	
+<div id="two-columns">
+	<div id="content">
+	<%= yield %>
+	</div>
+	<div id="sidebar">
+		<%= yield(:sidebar) %>
+	</div>	
+</div>	
+<%= render :partial => 'layouts/footer' -%>
+
+

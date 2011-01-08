@@ -1,0 +1,335 @@
+<div class="content-box contest-box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+									<div class="global-info">
+										<h2 style="color:#1A2732;
+										float:none;
+										font-size:18px;
+										overflow:hidden;
+										padding-bottom:11px;
+										width:100%;"><%= @contest.title %></h2>
+										<ul class="list" style="overflow:hidden;
+										padding:0 0 19px;
+										width:100%;">
+											<li>ends 12/11/10</li>
+											<li>Nationwide</li>
+											<li>2,400 shares</li>
+											<li>1500 participants</li>
+											<li>1,400 hours pledged</li>
+										</ul>
+										<div class="causes-skills">
+											<ul>
+												<li>causes: all</li>
+												<li>skills: all</li>
+											</ul>
+										</div>
+										<div class="text-info">
+											<%= @contest.description %>
+										</div>
+										<div class="promo-buttons">
+											<% if logged_in? %>
+											<% unless @contest.has_participant?(current_user)%>
+											<%= link_to 'Enter!', enter_contest_path(@contest), :class => 'btn lbOn'%>
+											<% else %>
+											<% bitly = Bitly.new('pavanmishra', 'R_834a919ea8d7c84232ab7bb83d9e31db')%>
+											<%= link_to 'Share', "http://www.facebook.com/sharer.php?u=#{ URI.escape(join_by_invitation_url(current_user.facebook_invitation.code))}&t=Join VolunteerBig, do good, have fun and win prizes", :class => 'btn'%>
+											<p>Share link to this contest on facebook and win.</p>
+											<% end %>
+											<% else %>
+											<%= link_to 'Enter!',  signup_for_action_path, :class=>'lbOn btn' %>
+											<% end %>
+										</div>
+
+	</div>
+</div><!--content-box-->
+
+					<div class="content-box">
+						<div class="t">&nbsp;</div>
+						<div class="c">
+							<div class="title">
+								<h2>nonprofit leaderboard</h2>
+								<%= link_to 'view all', contest_organizations_path, :class => "view" %> 
+							</div><!--title-->
+							
+							<% for organization_id_score in @top_organizations_score_list 
+								organization = Organization.find(organization_id_score.first)
+							%>
+							<div class="cart-info">
+								<div class="holder">
+									<div class="visual"><%= image_tag organization.image.url(:medium), :width => 185%></div>
+									<div class="cart-text">
+										<h3><%= link_to organization.name, organization %></h3>
+										<div class="dc"><%= organization.address %> | 30 recruits | 55 votes | <%= organization_id_score.last %> points</div>
+										<div class="row promo-buttons">
+											<% unless logged_in? %>
+											<%= link_to 'Vote!',  signup_for_action_path, :class=>'lbOn btn' %>
+											<%= link_to 'Recruit!',  signup_for_action_path, :class=>'lbOn btn' %>
+											<% else %>
+												<% unless @contest.has_participant?(current_user) %>
+													<%= link_to 'Vote', enter_contest_path(@contest), :class => 'btn lbOn' %>
+													<%= link_to 'Recruit', enter_contest_path(@contest), :class => 'btn lbOn' %>
+												<% else %>
+													<%= link_to 'Vote', vote_contest_organization_path(@contest, organization), :method => :post, :class => 'btn'%>
+													<%= link_to 'Recruit', invite_to_contest_path(:id => @contest.id, :for => 'organization', :for_id => organization.id), :class => 'btn lbOn'%>
+												<% end %>
+											<% end %>
+										</div>	
+									</div>
+								</div>
+							</div>
+							<% end %>
+						</div>
+						<div class="b">&nbsp;</div>		
+					</div><!--content-box-->
+					<div class="content-box">
+						<div class="t">&nbsp;</div>
+						<div class="c">
+							<div class="title">
+								<h2>users leaderboard</h2>
+								<%= link_to 'view all', contest_participants_path, :class => "view" %> 
+							</div><!--title-->							
+							<div class="sort-holder">
+								<ul class="results">
+									<% for user_id_score in @top_users_score_list 
+										user = User.find(user_id_score.first)
+									%>
+									
+									<li>
+										<div class="visual"><%= link_to(image_tag(facebook_profile_picture(user)), user) %></div>
+										<div class="text-info">
+											<p class="name"><%= link_to user.name, user %></p>
+											<p class="state"><%= user.address %></p>
+											<ul class="prop">
+												<li><%= user_id_score.last %> Points</li>
+												<!--
+												<li>Pepsi Philly Badge, Patagonia Badge</li>
+												<li>10 Actions</li>  -->
+											</ul>
+										</div>
+									</li>
+									<% end %>
+								</ul>
+							</div>
+						</div>
+						<div class="b">&nbsp;</div>		
+					</div><!--content-box-->
+</div>
+<% content_for :sidebar do %>
+	<div class="box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<div class="promo-visual"><%= image_tag @contest.image.url(:medium)%></div>
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+	<div class="box content-box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<div class="title cutd">
+				<h3>sponsors</h3>
+			</div>
+			<% if logged_in? and current_user.is_admin? %>
+			<input type="text" id="sponsor_autocomplete" name="autocomplete_parameter"/>
+			<span id="indicator1" style="display: none">
+			  <img src="/images/spinner.gif" alt="Working..." />
+			</span>
+			<div id="sponsor_autocomplete_choices" class="autocomplete"></div>
+			<script>
+			new Ajax.Autocompleter("sponsor_autocomplete", "sponsor_autocomplete_choices", "/sponsors-autocomplete", {
+			  paramName: "value", 
+			  minChars: 2, 
+			  indicator: 'indicator1',
+			  afterUpdateElement: function(text, li){
+				$('contest_sponsor_sponsor_id').value = li.id;
+			}
+			});
+			</script>
+			<% form_for @contest_sponsor, :url => {:controller => :contests, :action => :add_sponsor} do |f|%>
+			<%= f.hidden_field :sponsor_id %>
+			<%= f.hidden_field :contest_id %>
+			<%= f.submit 'add'%>
+			<% end %>
+			<% end %>
+			<ul class="users">
+				<% for sponsor in @contest.sponsors %>
+				<li>
+					<div class="visual"><%= link_to image_tag(sponsor.image.url(:small), :width => 60), sponsor %></div>
+					<div class="info">
+						<span class="name"><%= link_to sponsor.name, sponsor %></span>
+						<p> <%= sponsor.address %></p>
+						<ul class="points">
+							<li>&nbsp;<%= %> contests</li>
+						</ul>
+					</div>
+				</li>
+				<% end %>
+			</ul>
+
+			
+
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+	<div class="box content-box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<div class="title cutd">
+				<h3>prizes</h3>
+			</div>
+			<% if logged_in? and current_user.is_admin? %>
+			<input type="text" id="prize_autocomplete" name="autocomplete_parameter"/>
+			<span id="indicator2" style="display: none">
+			  <img src="/images/spinner.gif" alt="Working..." />
+			</span>
+			<div id="prize_autocomplete_choices" class="autocomplete"></div>
+			<script>
+			new Ajax.Autocompleter("prize_autocomplete", "prize_autocomplete_choices", "/prizes-autocomplete", {
+			  paramName: "value", 
+			  minChars: 2, 
+			  indicator: 'indicator2',
+			  afterUpdateElement: function(text, li){
+				$('contest_prize_prize_id').value = li.id;
+			}
+			});
+			</script>
+			<% form_for @contest_prize, :url => {:controller => :contests, :action => :add_prize} do |f|%>
+			<%= f.hidden_field :prize_id %>
+			<%= f.hidden_field :contest_id %>
+			<%= f.submit 'add'%>
+			<% end %>
+			<% end %>
+			<ul class="users">
+				<% for prize in @contest.prizes %>
+				<li>
+					<div class="visual"><%= link_to image_tag(prize.image.url(:smaller_thumbnail)), prize %></div>
+					<div class="info">
+						<span class="name"><%= link_to prize.title, prize %></span>
+						<ul class="points">
+							<li>&nbsp;223 contests</li>
+							<li>349 participants</li>
+						</ul>
+					</div>
+				</li>
+				<% end %>
+			</ul>
+
+			
+
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+
+<% if logged_in? and current_user.is_admin? %>
+	<div class="box content-box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<div class="title cutd">
+				<h3>nonprofit leaderboard</h3>
+			</div>
+
+			<input type="text" id="autocomplete" name="autocomplete_parameter"/>
+			<span id="indicator3" style="display: none">
+			  <img src="/images/spinner.gif" alt="Working..." />
+			</span>
+			<div id="autocomplete_choices" class="autocomplete"></div>
+			<script>
+			new Ajax.Autocompleter("autocomplete", "autocomplete_choices", "/contesting-organizations", {
+			  paramName: "value", 
+			  minChars: 2, 
+			  indicator: 'indicator3',
+			  afterUpdateElement: function(text, li){
+				$('contest_organization_organization_id').value = li.id;
+			}
+			});
+			</script>
+			<% form_for @contest_organization, :url => {:controller => :contests, :action => :add_organization} do |f|%>
+			<%= f.hidden_field :organization_id %>
+			<%= f.hidden_field :contest_id %>
+			<%= f.submit 'add'%>
+			<% end %>
+			<ul class="users">
+				<% for organization in @contest.organizations %>
+				<li>
+					<div class="visual"><%= link_to image_tag(organization.image.url(:smaller_thumbnail)), organization %></div>
+					<div class="info">
+						<span class="name"><%= link_to organization.name, organization %></span>
+						<p> <%= organization.address %></p>
+						<ul class="points">
+							<li>&nbsp;223 events</li>
+							<li>349 activists</li>
+						</ul>
+					</div>
+				</li>
+				<% end %>
+			</ul>
+
+			
+			<div class="all"><a href="#">view all </a></div>
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+	<% end %>
+
+	<div class="box content-box">
+		<div class="t">&nbsp;</div>
+		<div class="c">
+			<div class="title cutd">
+				<h3>events</h3>
+			</div>
+			<% if logged_in? and current_user.is_admin? %>
+			<input type="text" id="autocomplete_event" name="autocomplete_parameter"/>
+			<span id="indicator-event" style="display: none">
+			  <img src="/images/spinner.gif" alt="Working..." />
+			</span>
+			<div id="autocomplete_events" class="autocomplete"></div>
+			<script>
+			new Ajax.Autocompleter("autocomplete_event", "autocomplete_events", "/contesting-events", {
+			  paramName: "value", 
+			  minChars: 2, 
+			  indicator: 'indicator-event',
+			  afterUpdateElement: function(text, li){
+				$('contest_event_event_id').value = li.id;
+			}
+			});
+			</script>
+			<% form_for @contest_event, :url => {:controller => :contests, :action => :add_event} do |f|%>
+			<%= f.hidden_field :event_id %>
+			<%= f.hidden_field :contest_id %>
+			<%= f.submit 'add'%>
+			<% end %>
+			<% end %>
+			<ul class="users">
+				<% for event in @contest.events %>
+				<li>
+					<div class="visual"><%= link_to image_tag(event.image.url(:smaller_thumbnail)), event %></div>
+					<div class="info">
+						<span class="name"><%= link_to event.name, event %></span>
+						<p> <%= event.address %></p>
+						<ul class="points">
+							<li>349 participants</li>
+						</ul>
+					</div>
+				</li>
+				<% end %>
+			</ul>
+
+			
+			<div class="all"><a href="#">view all </a></div>
+		</div>
+		<div class="b">&nbsp;</div>
+	</div><!--box-->
+	
+<% end %>
+
+<% if params[:code] %>
+	
+	<div style="display:none">
+	  <%= link_to '', pop_vote_for_organization_path(:id => Invitation.find_by_code(params[:code]).invitable_id), :class => 'lbOn', :id => 'pop_code' %>
+	</div>	
+	<script>
+	Event.observe(window, 'load', function() {
+	
+	var pop_lb = new lightbox($('pop_code'));
+	pop_lb.activate();});
+	</script>
+<% end %>	

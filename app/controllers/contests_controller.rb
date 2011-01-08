@@ -1,6 +1,8 @@
 class ContestsController < ApplicationController
   # GET /contests
   # GET /contests.xml
+  before_filter :admin_required, :only => [:admin_show]
+  layout 'contest_detail', :only => :show
   def index
     @contests = Contest.all
 
@@ -9,10 +11,18 @@ class ContestsController < ApplicationController
       format.xml  { render :xml => @contests }
     end
   end
+  
+  def show
+    @contest = Contest.find(params[:id])
+  end
+  
+  def update_status
+    
+  end
 
   # GET /contests/1
   # GET /contests/1.xml
-  def show
+  def admin_show
     @contest = Contest.find(params[:id])
     @contest_organization = ContestOrganization.new :contest => @contest
     @contest_sponsor  = ContestSponsor.new :contest => @contest
