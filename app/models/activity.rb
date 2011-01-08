@@ -16,7 +16,7 @@ class Activity < ActiveRecord::Base
   
   has_threaded_comments
   
-  ContestWallActions = ['contest-update', 'participate-contest']
+  ContestWallActions = ['contest-update', 'participate-contest', 'organization_vote']
   def self.log(user, subject, action)
     if action != :viewed
       create_activity(user, subject, action)

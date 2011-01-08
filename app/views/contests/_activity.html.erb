@@ -3,6 +3,8 @@
 		
 		when 'other action' %>
 	
+	<% when 'organization_vote'%>
+		<%= activity.user.name %> voted for <strong> <%= activity.subject.name %> </strong>
 	<% when 'contest-update'%>
 		<%= activity.user.name %> updated "<%= activity.info %>"
 	
