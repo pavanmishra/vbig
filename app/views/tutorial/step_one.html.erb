@@ -5,8 +5,8 @@
 			<div class="column">
 				<h3>QUICK START GUIDE</h3>
 				<ul>
-					<li class="active"><a href="#">1. WHAT TO DO?</a></li>
-					<li><a href="#">2. HOW DO I WIN?</a></li>
+					<li class="active"><a >1. WHAT TO DO?</a></li>
+					<li><%= link_to '<span>2. HOW DO I WIN?</span>', {:controller => :tutorial, :action => :step_two}, :class => 'lbAction', :rel => 'insert' %></li>
 				</ul>
 			</div><!-- /column end -->
 			<div class="content-cell">

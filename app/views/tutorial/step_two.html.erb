@@ -5,7 +5,7 @@
 			<div class="column">
 				<h3>QUICK START GUIDE</h3>
 				<ul>
-					<li ><a href="#">1. WHAT TO DO?</a></li>
+					<li ><%= link_to '<span>1. WHAT TO DO?</span>', {:controller => :tutorial, :action => :step_one}, :class => 'lbAction', :rel => 'insert' %></li>
 					<li class="active"><a href="#">2. HOW DO I WIN?</a></li>
 				</ul>
 			</div><!-- /column end -->
@@ -32,6 +32,7 @@
 				</div>
 				<div class="btn-holder">
 					<ul>
+						<li ><%= link_to '<span>PREVIOUS</span>', {:controller => :tutorial, :action => :step_one}, :class => 'lbAction', :rel => 'insert' %></li>						
 						<li><%= link_to 'LET ME IN', '#', :class => 'lbAction', :rel => 'deactivate' %><li>
 					</ul>
 				</div>
