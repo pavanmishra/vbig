@@ -36,6 +36,10 @@ class Contest < ActiveRecord::Base
     return score_list
   end
   
+  def has_voted?(user, organization)
+    ContestOrganizationUser.find(:first, :conditions => {:contest_id => self, :user_id => user, :organization_id => organization})
+  end
+  
   def organization_score_list(page_no, count)
     activities = Activity.find_by_sql("select sum(points) as total_points, subject_id from activities where contest_id=#{self.id} and subject_type='Organization' group by subject_id order by sum(points) desc limit 5")
     score_list = activities.collect{|act| [act.subject_id, act.total_points] }

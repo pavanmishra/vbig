@@ -44,7 +44,9 @@
 									<%= link_to 'Vote', enter_contest_path(@contest), :class => 'btn lbOn' %>
 									<%= link_to 'Recruit', enter_contest_path(@contest), :class => 'btn lbOn' %>
 								<% else %>
+									<% unless @contest.has_voted?(current_user, organization)%>
 									<%= link_to 'Vote', vote_contest_organization_path(@contest, organization), :method => :post, :class => 'btn'%>
+									<% end %>
 									<%= link_to 'Recruit', invite_to_contest_path(:id => @contest.id, :for => 'organization', :for_id => organization.id), :class => 'btn lbOn'%>
 								<% end %>
 							<% end %>
