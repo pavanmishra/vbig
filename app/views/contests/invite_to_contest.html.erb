@@ -55,7 +55,7 @@
 	</div>		
 			<% form_tag '/contacts/import_for_contest/', :method => :post, :id => 'email-invite' do %>
 					<a href="#" onclick="showPlaxoABChooser('recipient_list', '/contacts/plaxo_cb'); return false"><img style="width:104px;height:31px" src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a><br />
-					<textarea id="recipient_list" name="recipients"></textarea>Use the above button to choose your contacts or enter comma separated email addresses.<br />
+					<textarea cols="68" rows="4" id="recipient_list" name="recipients"></textarea>Use the above button to choose your contacts or enter comma separated email addresses.<br />
 					<%= hidden_field_tag :id, facebook_invite.contest_id %>
 					<%= hidden_field_tag :invitable_type, facebook_invite.invitable.class.to_s %>
 					<%= hidden_field_tag :invitable_id, facebook_invite.invitable.id %>
@@ -69,7 +69,7 @@
 		<hr />
 		<div class="btn-holder">
 			<ul>
-        		<li><%= link_to 'Cancel', '#', :class=> 'lbAction', :rel => 'deactivate'%></li>				
+        		<li><%= link_to 'Close', '#', :class=> 'lbAction', :rel => 'deactivate'%></li>				
 			</ul>	
 		</div>	
   </div>
