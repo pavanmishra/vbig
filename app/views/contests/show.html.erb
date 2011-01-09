@@ -1,4 +1,4 @@
-		<% if logged_in? %>
+		<% if logged_in? and params.key?(:ctab) and params[:ctab].eql?('activity')%>
 <div class="content-box contest-box">
 	<div class="t">&nbsp;</div>
 	<div class="c">
@@ -22,10 +22,15 @@
 		<% case params[:ctab] 
 			
 			when 'user'%>
+				<div class="sort-holder">
+					<ul class="results">
+						<%= render :partial => 'users/user', :collection => @contest.users.paginate(:page => params[:page])%>
+					</ul>
+				</div>
+			<% when 'activity' %>
+			<%= render :partial => 'activity', :collection => Activity.only(Activity::ContestWallActions).all(:limit => 25, :conditions => {:contest_id => @contest}) %>
 			
-				<%= render :partial => 'users/user', :collection => @contest.users.paginate(:page => params[:page])%>
-			
-			<% when 'non-profit'%>
+			<% else 'non-profit'%>
 			<% for organization_id_score in @top_organizations_score_list 
 				organization = Organization.find(organization_id_score.first)
 			%>
@@ -55,9 +60,6 @@
 				</div>
 			</div>
 			<% end %>
-			
-			<% else %>
-		<%= render :partial => 'activity', :collection => Activity.only(Activity::ContestWallActions).all(:limit => 25, :conditions => {:contest_id => @contest}) %>
 		<% end %>
 	</div>
 	<div class="b">&nbsp;</div>		

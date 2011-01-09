@@ -12,7 +12,6 @@
 			
 
 			<div>
-				<h2 > Recent Participants </h2>
 				<% for user in @contest.users.all(:limit => 10)%>
 				<span>
 					<img style="padding: 0.1em; border: 2px solid rgb(102, 102, 102); margin:0.2em 1em 0.2em 0" src="<%= facebook_profile_picture(user)%>" />
@@ -28,13 +27,14 @@
 			</div>
 
 		</div>
+		<div class="b">&nbsp;</div>
 	</div><!--main-block-->
 	<% end %>
 			<div class="nav-holder" style="float:none;margin:0">
 			<ul id="nav">
-				<li> <%= link_to 'activity', contest_path(@contest) %></li>
+				<li>  <%= link_to 'non-profits', contest_path(@contest) %></li>
 				<li>  <%= link_to 'leaderboard', contest_path(@contest, :ctab=> 'user') %></li>
-				<li>  <%= link_to 'non-profits', contest_path(@contest, :ctab=> 'non-profit') %></li>
+				<li> <%= link_to 'activity', contest_path(@contest, :ctab => 'activity') %></li>				
 			</ul>	
 			</div>
 
