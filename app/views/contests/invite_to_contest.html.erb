@@ -17,13 +17,13 @@
     <div class="btn-holder">
       <ul>
 		<% join_url = URI.escape(join_by_invitation_url(facebook_invite.code)) 
-		   name = "Invite to vote for " + facebook_invite.invitable.name
-		   caption = "Join the contest and vote"
+		   name = "Vote for " + facebook_invite.invitable.name
+		   caption = "Enter the contest and vote"
 		   description = facebook_invite.contest.facebook_message.sub('[name]', facebook_invite.invitable.name)
 		   atch_url = 'http://' + request.host + facebook_invite.invitable.image.url(:medium)
 		   
 		%>
-		<li><a onclick="post_to_facebook('<%= name %>', '<%= caption %>', '<%= description %>', '<%= join_url %>', '<%= atch_url %>','Join', '<%= join_url %>')"> Invite</a>  </li>
+		<li><a onclick="post_to_facebook('<%= name %>', '<%= caption %>', '<%= description %>', '<%= join_url %>', '<%= atch_url %>','Enter Contest', '<%= join_url %>')"> Invite</a>  </li>
       </ul>
     </div>
 	<hr />
