@@ -1,13 +1,15 @@
 <div class="activity-info">
-	<% case activity.action 
-		
-		when 'other action' %>
-	
-	<% when 'organization_vote'%>
-		<%= activity.user.name %> voted for <strong> <%= activity.subject.name %> </strong>
-	<% when 'contest-update'%>
-		<%= activity.user.name %> updated "<%= activity.info %>"
-	<% when 'participate-contest' %>
-	<%= activity.user.name %> joined the contest.
-	<% end %>
-</div>	
+<div class="cart-info" style="background:none;border:none;">
+<ul class="effected">
+  <% case activity.action
+    when 'other action' %>
+  <% when 'organization_vote'%>
+    <li style="padding:5px 0"><%= link_to image_tag((activity.user.pic_square or '/images/img24.jpg')), activity.user %>&nbsp;&nbsp;<%= link_to user.name, user %> voted for <strong><%= link_to activity.subject.name, activity.subject %><strong></li>
+  <% when 'contest-update'%>
+    <li style="padding:5px 0"><%= link_to image_tag((activity.user.pic_square or '/images/img24.jpg')), activity.user %>&nbsp;&nbsp;<%= link_to user.name, user %> updated "<%= activity.info %>"</li>
+  <% when 'participate-contest' %>
+    <li style="padding:5px 0"><%= link_to image_tag((activity.user.pic_square or '/images/img24.jpg')), activity.user %>&nbsp;&nbsp;<%= link_to user.name, user %>  joined the contest.</li>
+  <% end %>
+</ul>
+</div>
+</div>
