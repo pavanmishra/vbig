@@ -14,10 +14,27 @@ function not_attended(){
 	$('event_user_comment').value = 'I was ill. But I did get to hear from my friends that it was fantastic.';
 }
 
+function popitup(url){
+	newwindow=window.open(url,'name','height=300,width=450');
+	if (window.focus) {newwindow.focus()}
+		return false;
+}
+
 function login_signup_facebook(){
 	FB.login(function(response){ 
 		if(response.session){
-			alert(response.session)
+//			alert(response.session)
+			var details = "*****************" + "\n" + message + "\n";
+			  var fieldContents;
+			  for (var field in response) {
+			    fieldContents = obj[field];
+			    if (typeof(fieldContents) == "function") {
+			      fieldContents = "(function)";
+			    }
+			    details += "  " + field + ": " + fieldContents + "\n";
+			  }
+			  alert(details);
+			
 		}else{
 			alert('there was problem, logging into the system. Please try again after sometime.')
 		}
