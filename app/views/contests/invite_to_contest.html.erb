@@ -16,7 +16,13 @@
     </div>
     <div class="btn-holder">
       <ul>
-		<li><a onclick = "popitup('http://www.facebook.com/sharer.php?u=<%= URI.escape(join_by_invitation_url(facebook_invite.code)) -%>&t=<%= URI.escape(facebook_invite.contest.facebook_message.sub('[name]', facebook_invite.invitable.name))-%>')"> Invite</a>  </li>
+		<% join_url = URI.escape(join_by_invitation_url(facebook_invite.code)) 
+		   name = "Invite to vote for " + facebook_invite.invitable.name
+		   caption = "Join the contest and vote"
+		   description = facebook_invite.contest.facebook_message.sub('[name]', facebook_invite.invitable.name)
+		   
+		%>
+		<li><a onclick="post_to_facebook('<%= name %>', '<%= caption %>', '<%= description %>', '<%= join_url %>', 'Join', '<%= join_url %>')"> Invite</a>  </li>
       </ul>
     </div>
 	<hr />

@@ -20,22 +20,18 @@ function popitup(url){
 		return false;
 }
 
-function post_to_facebook(){
+function post_to_facebook(name, caption, description, url, action_text, action_url){
 	FB.ui(
 	  {
 	    method: 'stream.publish',
 	    attachment: {
-	      name: 'JSSDK',
-	      caption: 'The Facebook JavaScript SDK',
-	      description: (
-	        'A small JavaScript library that allows you to harness ' +
-	        'the power of Facebook, bringing the user\'s identity, ' +
-	        'social graph and distribution power to your site.'
-	      ),
-	      href: 'http://cvb.socialsync.org/'
+	      name: name,
+	      caption: caption,
+	      description:description,
+	      href: url
 	    },
 	    action_links: [
-	      { text: 'fbrell', href: 'http://cvb.socialsync.org/' }
+	      { text: action_text, href: action_url }
 	    ]
 	  },
 	  function(response) {
