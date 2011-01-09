@@ -21,7 +21,8 @@ class FacebookSessionsController < ApplicationController
       logout_keeping_session!
       self.current_user = user
       logger.debug "redirecting to join_with_facebook_account_and_email to create a new user"
-      user_signup ? redirect_to(:controller => :users, :action => :set_address_and_preferences) : redirect_to(redirect_path)
+      redirect_to redirect_path
+      #user_signup ? redirect_to(:controller => :users, :action => :set_address_and_preferences) : redirect_to(redirect_path)
     else
       logger.debug "couldn't verify the fb cookies; redirecting back - user must have clicked on don't allow"
       flash[:notice] = 'TO USE VOLUNTEERBIG, YOU MUST ALLOW ACCESS TO YOUR FACEBOOK ACCOUNT'

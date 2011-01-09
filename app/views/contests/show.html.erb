@@ -28,6 +28,7 @@
 					</ul>
 				</div>
 			<% when 'activity' %>
+			<%#= raise Activity.only(Activity::ContestWallActions).all(:limit => 25, :conditions => {:contest_id => @contest}).inspect %>
 			<%= render :partial => 'activity', :collection => Activity.only(Activity::ContestWallActions).all(:limit => 25, :conditions => {:contest_id => @contest}) %>
 			
 			<% else 'non-profit'%>
