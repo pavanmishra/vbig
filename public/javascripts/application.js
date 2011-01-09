@@ -20,7 +20,7 @@ function popitup(url){
 		return false;
 }
 
-function post_to_facebook(name, caption, description, url, action_text, action_url){
+function post_to_facebook(name, caption, description, url, img_url, action_text, action_url){
 	FB.ui(
 	  {
 	    method: 'stream.publish',
@@ -28,7 +28,8 @@ function post_to_facebook(name, caption, description, url, action_text, action_u
 	      name: name,
 	      caption: caption,
 	      description:description,
-	      href: url
+	      href: url,
+		  media: [{ type: 'image', src: img_url, href: url}]
 	    },
 	    action_links: [
 	      { text: action_text, href: action_url }
