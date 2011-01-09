@@ -20,6 +20,34 @@ function popitup(url){
 		return false;
 }
 
+function post_to_facebook(){
+	FB.ui(
+	  {
+	    method: 'stream.publish',
+	    attachment: {
+	      name: 'JSSDK',
+	      caption: 'The Facebook JavaScript SDK',
+	      description: (
+	        'A small JavaScript library that allows you to harness ' +
+	        'the power of Facebook, bringing the user\'s identity, ' +
+	        'social graph and distribution power to your site.'
+	      ),
+	      href: 'http://cvb.socialsync.org/'
+	    },
+	    action_links: [
+	      { text: 'fbrell', href: 'http://cvb.socialsync.org/' }
+	    ]
+	  },
+	  function(response) {
+	    if (response && response.post_id) {
+	      alert('Post was published.');
+	    } else {
+	      alert('Post was not published.');
+	    }
+	  }
+	);
+	
+}
 function login_signup_facebook(){
 	FB.login(function(response){ 
 		if(response.session){
