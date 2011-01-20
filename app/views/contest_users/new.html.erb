@@ -11,7 +11,7 @@
     </div>
     <div class="btn-holder">
       <ul>
-        <li><%= link_to 'Agree', {:action => :create, :id => params[:id]}, :class=> 'sign-up' %></li>
+        <li><%= link_to '<span>Agree</span>', {:action => :create, :id => params[:id]}, :class=> 'lbAction sign-up', :rel => :insert %></li>
         <li><%= link_to 'Disagree', '#', :class=> 'lbAction', :rel => 'deactivate'%></li>
       </ul>
     </div>

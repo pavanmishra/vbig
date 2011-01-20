@@ -1,0 +1,21 @@
+
+<div class="main-block" style="width:450px;margin-left:200px">
+	<div class="t">&nbsp;</div>
+	<div class="c" style="width:410px"> 
+		<div class="holder">
+			<h2> Vote for <%= organization.name %></h2>
+			<div class="visual"><%= image_tag organization.image.url(:medium), :width => 150%></div>
+			<p>
+				Continue by voting this organization.
+			</p>	
+			
+		</div>	
+		<div class="btn-holder">
+	      <ul>
+			<li><%= link_to 'Vote', vote_contest_organization_path(contest.id, organization), :class=> '', :rel => 'deactivate'%></li>
+	        <li><%= link_to 'Cancel', '#', :class=> 'lbAction', :rel => 'deactivate'%></li>
+	      </ul>
+	    </div>
+</div>
+<div class="b">&nbsp;</div>
+</div>

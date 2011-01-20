@@ -14,4 +14,8 @@ class ContestOrganizationUsersController < ApplicationController
     redirect_to contest_vote.contest
   end
   
+  def new
+    
+  end
+  
 end

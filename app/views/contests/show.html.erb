@@ -47,13 +47,13 @@
 							<%= link_to 'Recruit!',  signup_for_action_path, :class=>'lbOn btn' %>
 							<% else %>
 								<% unless @contest.has_participant?(current_user) %>
-									<%= link_to 'Vote', enter_contest_path(@contest), :class => 'btn lbOn' %>
-									<%= link_to 'Recruit', enter_contest_path(@contest), :class => 'btn lbOn' %>
+									<%= link_to 'Vote', enter_contest_path(@contest, :vote_or_recruit => 'vote', :target => organization.id), :class => 'btn lbOn' %>
+									<%= link_to 'Recruit', enter_contest_path(@contest, :vote_or_recruit => 'recruit', :target => organization.id), :class => 'btn lbOn' %>
 								<% else %>
 									<% unless @contest.has_voted?(current_user, organization)%>
-									<%= link_to 'Vote', vote_contest_organization_path(@contest, organization), :method => :post, :class => 'btn'%>
+									<%= link_to 'Vote', vote_contest_organization_path(@contest, organization), :method => :post, :class => 'btn', :id => "vote-#{organization.id}"%>
 									<% end %>
-									<%= link_to 'Recruit', invite_to_contest_path(:id => @contest.id, :for => 'organization', :for_id => organization.id), :class => 'btn lbOn'%>
+									<%= link_to 'Recruit', invite_to_contest_path(:id => @contest.id, :for => 'organization', :for_id => organization.id), :class => 'btn lbOn', :id => "recruit-#{organization.id}"%>
 								<% end %>
 							<% end %>
 						</div>	
@@ -128,7 +128,11 @@
 <% if params[:code] %>
 	
 	<div style="display:none">
+	  <% if !@contest.has_participant?(current_user) %>
+		<%= link_to '', enter_contest_path(@contest, :vote_or_recruit => 'vote', :target => Invitation.find_by_code(params[:code]).invitable_id), :class => 'lbOn', :id => 'pop_code'%>
+	  <% else %>
 	  <%= link_to '', pop_vote_for_organization_path(:id => Invitation.find_by_code(params[:code]).invitable_id, :contest_id => @contest), :class => 'lbOn', :id => 'pop_code' %>
+	  <% end %>
 	</div>	
 	<script>
 	Event.observe(window, 'load', function() {
