@@ -138,4 +138,8 @@ class ContestsController < ApplicationController
     @social_invites = Invitation.create_social_invites_for_invitable_components(current_user, Contest.find(params[:id]), params[:for], params[:for_id])
     render  :layout => false
   end
+  
+  def reports
+    @contest = Contest.find(params[:id])
+  end
 end

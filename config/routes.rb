@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.profile 'profile', :controller => :users, :action => :profile
   map.edit_profile 'profile/edit', :controller => :users, :action => :edit
   map.contest_admin 'contests/:id/admin', :controller => :contests, :action => :admin_show
+  map.contest_report  'contests/:id/reports', :controller => :contests, :action => :reports
   map.sponsors_autocomplete 'sponsors-autocomplete', :controller => :sponsors, :action => :autocomplete_list
   map.prizes_autocomplete 'prizes-autocomplete', :controller => :prizes, :action => :autocomplete_list  
   map.contesting_organizations '/contesting-organizations', :controller => 'organizations', :action => 'autocomplete_list'
