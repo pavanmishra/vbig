@@ -4,10 +4,42 @@
 		<h2>App Analytics</h2>
 	</div><!--title-->
 	<div class="search-form">
-		<img src="http://chart.apis.google.com/chart?chxr=0,0,10000&chxs=0,676767,11.5,0,_,676767&chxt=y&chs=620x250&cht=lc&chco=FF9900,0000FF,008000,49188F,AA0033&chd=s:LLLKLMQPPPPUQOLPRQVqy048hfhkXW,BCBCCDBBCCBCDBDCBDCDDheojuv39v,CCCCCCCDTBBBCCDEOTSPRx1640utng,KHIHBEDFKQRNRPPNRRecbabaaw2237,GECBDDDDDECFGJJHIswx1245x0gfgg&chdl=Exposure|Shares|Comments|Likes|Recruits&chls=2|2|2|2|2&chma=|0,7&chtt=Analytics+By+Day" width="620" height="250" alt="Analytics By Day" />
-
+		<div class="title cutd" >
+					<h2 style="color:#339E35;float:right">9 days  (21 Left!)</h2>
+				</div>
+		<div>
+			<script>
+				function change_chart(selector){
+					$$('.chart').each(function(chart){chart.hide()})
+					$(selector.options[selector.selectedIndex].value.sub('option', 'chart')).show()
+				}
+			</script>
+			Select Chart
+			<select onchange='change_chart(this)'>
+				<option value="exposures-option" selected="selected">Exposures</option>
+	            <option value="recruits-option">Recruits</option>			
+	            <option value="shares-option">FB Shares</option>
+	            <option value="comments-option">FB Comments</option>
+	            <option value="hours-option">Volunteer Hours</option>
+			</select>
+			<div id="exposures-chart" style="display:block" class="chart">
+				<img src="http://chart.apis.google.com/chart?chxr=0,0,100000|1,0,9&chxs=0,676767,12.5,0,l,676767|1,676767,14.5,0,lt,676767&chxt=y,x&chs=650x300&cht=lc&chd=s:ZUaUUYemq&chls=2&chtt=Exposures" width="650" height="300" alt="Exposures" />
+			</div>
+			<div id="recruits-chart" style="display:none" class="chart">
+				<img src="http://chart.apis.google.com/chart?chxr=0,0,5850|1,0,9&chxs=0,676767,12.5,0,l,676767|1,676767,14.5,0,lt,676767&chxt=y,x&chs=650x300&cht=lc&chd=s:ZccYikokh&chls=2&chtt=Recruits" width="650" height="300" alt="Recruits" />
+			</div>	
+			<div id="shares-chart" style="display:none" class="chart">
+				<img src="http://chart.apis.google.com/chart?chxr=0,0,1585|1,0,9&chxs=0,676767,12.5,0,l,676767|1,676767,14.5,0,lt,676767&chxt=y,x&chs=650x300&cht=lc&chd=s:HMNQOTcim&chls=2&chtt=Shares" width="650" height="300" alt="Shares" />
+			</div>	
+			<div id="comments-chart" style="display:none" class="chart">
+				<img src="http://chart.apis.google.com/chart?chxr=0,0,8000|1,0,9&chxs=0,676767,12.5,0,l,676767|1,676767,14.5,0,lt,676767&chxt=y,x&chs=650x300&cht=lc&chd=s:RSXiy4x0y&chls=2&chtt=Comments" width="650" height="300" alt="Comments" />
+			</div>	
+			<div id="hours-chart" style="display:none" class="chart">
+				<img src="http://chart.apis.google.com/chart?chxr=0,0,180|1,0,9&chxs=0,676767,12.5,0,l,676767|1,676767,14.5,0,lt,676767&chxt=y,x&chs=650x300&cht=lc&chd=s:YVeWWemkf&chls=2&chtt=Exposures" width="650" height="300" alt="Exposures" />
+			</div>	
 			<br />
-						<br />
+			<br />
+		</div>	
 			<!-- Table markup-->
 		<h2>Top Activists</h2>
 			<table id="hor-minimalist-b" summary="Employee Pay Sheet">
@@ -17,49 +49,39 @@
 			            <th scope="col">Recruits</th>			
 			            <th scope="col">FB Shares</th>
 			            <th scope="col">FB Comments</th>
-			            <th scope="col">New Likes</th>
-			            <th scope="col">Product Click Throughs</th>
 			            <th scope="col">Volunteer Hours</th>
 			        </tr>
 			    </thead>
 			    <tbody>
 			    	<tr>
-			        	<td>Stephen C. Cox</td>
+			        	<td>Pavan Mishra</td>
 			            <td>2000</td>
 			            <td>980</td>								           
 			            <td>250</td>
-			            <td>2260</td>
-			            <td>3300</td>
 			            <td>50</td>
 			
 			        </tr>
 			    	<tr>
-			        	<td>Movitzer Shane</td>
+			        	<td>Jordan Epstein</td>
 			            <td>1300</td>
 			            <td>600</td>								           
 			            <td>120</td>
-			            <td>1123</td>
-			            <td>921</td>
 			            <td>20</td>
 			
 			        </tr>
 			    	<tr>
-			        	<td>Peter Pan</td>
+			        	<td>Ashley Freely</td>
 			            <td>519</td>
 			            <td>259</td>								           
 			            <td>70</td>
-			            <td>860</td>
-			            <td>426</td>
 			            <td>5</td>
 			
 			        </tr>
 			    	<tr>
-			        	<td>Heroku. Nandi</td>
+			        	<td>Shruti Parmar</td>
 			            <td>300</td>
 			            <td>300</td>								           
 			            <td>50</td>
-			            <td>260</td>
-			            <td>300</td>
 			            <td>2</td>
 			
 			        </tr>
@@ -88,6 +110,61 @@
 	<div class="t">&nbsp;</div>
 	<div class="c">
 		<div class="title cutd">
+			<h3>Total Performance</h3>
+		</div>
+		<ul>
+			<li>
+				<div style="border:2px solid #ddd;padding:0.5em;font-size:2em;margin-bottom:0.5em">
+					<div style="width:40%;font-size:1.1em ;float:left">2555</div>
+					<div style="color:#003399;float:left">Recruits</div>
+					<br clear="all" />
+				</div>
+			</li>
+			<li>
+				<div style="border:2px solid #ddd;padding:0.5em;font-size:2em;margin-bottom:0.5em">
+					<div style="width:40%;font-size:1.1em ;float:left">208000</div>
+					<div style="color:#003399;float:left">Exposures</div>
+					<br clear="all" />
+				</div>
+			</li>
+			<li>
+				<div style="border:2px solid #ddd;padding:0.5em;font-size:2em;margin-bottom:0.5em">
+					<div style="width:40%;font-size:1.2em ;float:left">350</div>
+					<div style="color:#003399;float:left">Participants</div>
+					<br clear="all" />
+				</div>
+			</li>
+			<li>
+				<div style="border:2px solid #ddd;padding:0.5em;font-size:2em;margin-bottom:0.5em">
+					<div style="width:40%;font-size:1.1em ;float:left">6487</div>
+					<div style="color:#003399;float:left">Shares</div>
+					<br clear="all" />
+				</div>
+			</li>
+			<li>
+				<div style="border:2px solid #ddd;padding:0.5em;font-size:2em;margin-bottom:0.5em">
+					<div style="width:40%;font-size:1.1em ;float:left">16240</div>
+					<div style="color:#003399;float:left">New Likes</div>
+					<br clear="all" />
+				</div>
+			</li>
+			<li>
+				<div style="border:2px solid #ddd;padding:0.5em;font-size:2em;margin-bottom:0.5em">
+					<div style="width:40%;float:left;font-size:1.1em ;">9697</div>
+					<div style="color:#003399;float:left">Clicks</div>
+					<br clear="all" />
+				</div>
+			</li>
+			
+		</ul>	
+	</div>
+	<div class="b">&nbsp;</div>
+</div><!--box-->
+
+<div class="box">
+	<div class="t">&nbsp;</div>
+	<div class="c">
+		<div class="title cutd">
 			<h3>Download</h3>
 		</div>
 		<ul>
@@ -98,45 +175,5 @@
 	</div>
 	<div class="b">&nbsp;</div>
 </div><!--box-->
-<div class="box">
-	<div class="t">&nbsp;</div>
-	<div class="c">
-		<div class="title cutd">
-			<h3>Total Performance</h3>
-		</div>
-		<ul>
-			<li>
-				<div style="border:2px solid #ddd;padding:1em;font-size:1.5em;margin-bottom:0.5em">
-					<div style="width:50%;font-size:1.8em ;float:left">2555</div>
-					<div style="color:#003399;float:left">Recruits</div>
-					<br clear="all" />
-				</div>
-			</li>
-			<li>
-				<div style="border:2px solid #ddd;padding:1em;font-size:1.5em;margin-bottom:0.5em">
-					<div style="width:50%;font-size:1.8em ;float:left">90555</div>
-					<div style="color:#003399;float:left">Exposures</div>
-					<br clear="all" />
-				</div>
-			</li>
-			<li>
-				<div style="border:2px solid #ddd;padding:1em;font-size:1.5em;margin-bottom:0.5em">
-					<div style="width:50%;font-size:1.8em ;float:left">350</div>
-					<div style="color:#003399;float:left">Participants</div>
-					<br clear="all" />
-				</div>
-			</li>
-			<li>
-				<div style="border:2px solid #ddd;padding:1em;font-size:1.5em;margin-bottom:0.5em">
-					<div style="width:50%;font-size:1.8em ;float:left">6487</div>
-					<div style="color:#003399;float:left">Shares</div>
-					<br clear="all" />
-				</div>
-			</li>
-		</ul>	
-	</div>
-	<div class="b">&nbsp;</div>
-</div><!--box-->
-
 <% end %>
 
