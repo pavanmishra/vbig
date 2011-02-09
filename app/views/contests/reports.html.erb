@@ -1,7 +1,7 @@
 <div class="t">&nbsp;</div>
 <div class="c">
 	<div class="title">
-		<h2>App Analytics</h2>
+		<h2 style="color:#339E35;">App Analytics</h2>
 	</div><!--title-->
 	<div class="search-form">
 		<div class="title cutd" >
@@ -14,14 +14,6 @@
 					$(selector.options[selector.selectedIndex].value.sub('option', 'chart')).show()
 				}
 			</script>
-			Select Chart
-			<select onchange='change_chart(this)'>
-				<option value="exposures-option" selected="selected">Exposures</option>
-	            <option value="recruits-option">Recruits</option>			
-	            <option value="shares-option">FB Shares</option>
-	            <option value="comments-option">FB Comments</option>
-	            <option value="hours-option">Volunteer Hours</option>
-			</select>
 			<div id="exposures-chart" style="display:block" class="chart">
 				<img src="http://chart.apis.google.com/chart?chxr=0,0,100000|1,0,9&chxs=0,676767,12.5,0,l,676767|1,676767,14.5,0,lt,676767&chxt=y,x&chs=650x300&cht=lc&chd=s:ZUaUUYemq&chls=2&chtt=Exposures" width="650" height="300" alt="Exposures" />
 			</div>
@@ -38,16 +30,25 @@
 				<img src="http://chart.apis.google.com/chart?chxr=0,0,180|1,0,9&chxs=0,676767,12.5,0,l,676767|1,676767,14.5,0,lt,676767&chxt=y,x&chs=650x300&cht=lc&chd=s:YVeWWemkf&chls=2&chtt=Exposures" width="650" height="300" alt="Exposures" />
 			</div>	
 			<br />
+			Select Chart
+			<select onchange='change_chart(this)'>
+				<option value="exposures-option" selected="selected">Exposures</option>
+	            <option value="recruits-option">Recruits</option>			
+	            <option value="shares-option">FB Shares</option>
+	            <option value="comments-option">FB Comments</option>
+	            <option value="hours-option">Volunteer Hours</option>
+			</select>
+			<br />
 			<br />
 		</div>	
 			<!-- Table markup-->
-		<h2>Top Activists</h2>
+		<h2 style="color:#339E35;">Top Activists</h2>
 			<table id="hor-minimalist-b" summary="Employee Pay Sheet">
 			    <thead>
 			    	<tr>
 			        	<th scope="col">Top Recruiter</th>
 			            <th scope="col">Recruits</th>			
-			            <th scope="col">FB Shares</th>
+			            <th scope="col">FB Local Likes</th>
 			            <th scope="col">FB Comments</th>
 			            <th scope="col">Volunteer Hours</th>
 			        </tr>
@@ -114,44 +115,44 @@
 		</div>
 		<ul>
 			<li>
-				<div style="border:2px solid #ddd;padding:0.5em;font-size:2em;margin-bottom:0.5em">
-					<div style="width:40%;font-size:1.1em ;float:left">2555</div>
-					<div style="color:#003399;float:left">Recruits</div>
+				<div style="border:2px solid #ddd;padding:0.7em;font-size:1.6em;margin-bottom:0.5em">
+					<div style="width:40%;font-size:1.4em ;float:left">2555</div>
+					<div style="color:#003399;float:left">Volunteer Hours</div>
 					<br clear="all" />
 				</div>
 			</li>
 			<li>
-				<div style="border:2px solid #ddd;padding:0.5em;font-size:2em;margin-bottom:0.5em">
-					<div style="width:40%;font-size:1.1em ;float:left">208000</div>
+				<div style="border:2px solid #ddd;padding:0.7em;font-size:1.6em;margin-bottom:0.5em">
+					<div style="width:40%;font-size:1.4em ;float:left">208000</div>
 					<div style="color:#003399;float:left">Exposures</div>
 					<br clear="all" />
 				</div>
 			</li>
 			<li>
-				<div style="border:2px solid #ddd;padding:0.5em;font-size:2em;margin-bottom:0.5em">
-					<div style="width:40%;font-size:1.2em ;float:left">350</div>
+				<div style="border:2px solid #ddd;padding:0.7em;font-size:1.6em;margin-bottom:0.5em">
+					<div style="width:40%;font-size:1.4em ;float:left">10080</div>
 					<div style="color:#003399;float:left">Participants</div>
 					<br clear="all" />
 				</div>
 			</li>
 			<li>
-				<div style="border:2px solid #ddd;padding:0.5em;font-size:2em;margin-bottom:0.5em">
-					<div style="width:40%;font-size:1.1em ;float:left">6487</div>
-					<div style="color:#003399;float:left">Shares</div>
+				<div style="border:2px solid #ddd;padding:0.7em;font-size:1.6em;margin-bottom:0.5em">
+					<div style="width:40%;font-size:1.4em ;float:left">6487</div>
+					<div style="color:#003399;float:left">Local Likes</div>
 					<br clear="all" />
 				</div>
 			</li>
 			<li>
-				<div style="border:2px solid #ddd;padding:0.5em;font-size:2em;margin-bottom:0.5em">
-					<div style="width:40%;font-size:1.1em ;float:left">16240</div>
+				<div style="border:2px solid #ddd;padding:0.7em;font-size:1.6em;margin-bottom:0.5em">
+					<div style="width:40%;font-size:1.4em ;float:left">8840</div>
 					<div style="color:#003399;float:left">New Likes</div>
 					<br clear="all" />
 				</div>
 			</li>
 			<li>
-				<div style="border:2px solid #ddd;padding:0.5em;font-size:2em;margin-bottom:0.5em">
-					<div style="width:40%;float:left;font-size:1.1em ;">9697</div>
-					<div style="color:#003399;float:left">Clicks</div>
+				<div style="border:2px solid #ddd;padding:0.7em;font-size:1.6em;margin-bottom:0.5em">
+					<div style="width:40%;float:left;font-size:1.4em ;">9697</div>
+					<div style="color:#003399;float:left">Product Clicks</div>
 					<br clear="all" />
 				</div>
 			</li>
